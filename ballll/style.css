@@ -1,0 +1,38 @@
+body{
+    margin-left: 0;
+    margin-top: 0;
+    display: inline-block;
+    position: relative;
+    
+}
+
+#nav{
+    top: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px; /*choose your width*/
+    background-color: #45494C; /*choose your color*/
+    height: 100%; /* Full height */
+    position: fixed; /* Make it stick, even on scroll */
+    overflow: auto; /* Enable scrolling if the sidenav has too much content */
+}
+#nav a{
+    display: block; 
+    color: lightgray; /*actual color*/
+    padding: 8px 16px;
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#nav a:hover {
+    background-color: #7ED9CF; /*choose your color*/
+    color: black;
+}
+.container {
+    position: fixed; 
+    left: 210px;
+    right: 10px;
+    color: white;
+    /* background-color: black; */
+}
