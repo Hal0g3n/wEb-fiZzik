@@ -9,7 +9,8 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 * `mkdocs build` - Build the documentation site.
 * `mkdocs -h` - Print help message and exit.
 
-<iframe style="height:50vmin; width:50vmin;" src="interactive/index.html"/>
+<iframe style="height:50vmin; width:50vmin;" src="interactive/index.html">
+</iframe>
 
 ## Project layout
 
