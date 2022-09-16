@@ -1,9 +1,5 @@
 site_name: BALLLLL
 
-markdown_extensions:
-  - pymdownx.arithmatex:
-      generic: true
-
 theme:
     name: null
     custom_dir: ballll/
