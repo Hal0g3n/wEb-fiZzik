@@ -6,12 +6,13 @@
     <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
 </li>
 {% else %}
-  <li>
-    {{ nav_item.title }}
+<details>
+    <summary> {{ nav_item.title }} </summary>
+
     <ul>
         {% for nav_item in nav_item.children %}
             {% include "nav.html" %}
         {% endfor %}
     </ul>
-  </li>
+</details>
 {% endif %}
