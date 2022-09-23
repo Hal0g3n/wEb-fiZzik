@@ -41,7 +41,7 @@ body{
 }/*#aca693*/
 #nav details ul li a:hover{
     background-color: #aca693;
-    color: lightgray; /*actual color*/
+    color: black; /*body radiation*/
 }
 #nav a:hover {
     background-color: #7ED9CF; /*choose your color*/
