@@ -1,0 +1,19 @@
+<!--
+
+-->
+
+{% if not nav_item.children %}
+<li {% if nav_item.active %}class="active"{% endif %} class="decodex">
+    <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
+</li>
+{% else %}
+<details>
+    <summary class="decode"> {{ nav_item.title }} </summary>
+
+    <ul>
+        {% for nav_item in nav_item.children %}
+            {% include "nav.html" %}
+        {% endfor %}
+    </ul>
+</details>
+{% endif %}
