@@ -1,9 +1,31 @@
+
+const pi = Math.PI; // why
+
+const config = {
+
+  star: {
+    radius: 0.3, // widths
+    balls: 400, // number
+    ball_size: 10, // pixels
+  },
+
+  camera: {
+    FOV: 0.4, // widths
+  },
+
+};
+
 // window size
 let _w = window.innerWidth;
 let _h = window.innerHeight;
-// mouse position
-let _mx = _w / 2;
-let _my = _h / 2;
+let fov = _w * config.camera.FOV;
+
+// mouse stuff
+const mouse = {
+  x: _w / 2,
+  y: _h / 2,
+  down: false,
+};
 
 // canvas stuff
 const canvas = document.getElementById("canvas");
@@ -14,12 +36,18 @@ const ctx = canvas.getContext("2d");
 // •
 class Dot {
 
+  static _id = 0;
+
   static dots = [];
 
+  static r = 1; // global radius multiplier
+
   static init() {
-    for (let i = 0; i < 10; i++) {
-      let d = new Dot();
+    for (let i = 0; i < config.star.balls; i++) {
+      let d = new Dot(_w * config.star.radius, config.star.ball_size);
+      d.colour = "#ffffff99";
       d.create();
+      d.random_all();
     }
   }
 
@@ -30,6 +58,9 @@ class Dot {
   }
 
   static draw_all() {
+    Dot.dots.sort((a, b) => {
+      return a.dr - b.dr;
+    });
     for (const dot of Dot.dots) {
       if (dot != null) dot.draw();
     }
@@ -41,18 +72,44 @@ class Dot {
     }
   }
 
-  // position (non-null after constructor has run)
+  id = Dot._id++;
+
+  size = 0.001;
+  t_size = 5;
+
+  // cartesian position (non-null after constructor has run)
   x = _w / 2;
   y = _h / 2;
-  // target position (non-null after constructor has run)
+  z = 0;
+  // target cartesian position (non-null after constructor has run)
   tx = null;
   ty = null;
+  // 3d polar coordinates
+  r = 0.001;
+  theta = 0.001; // theta
+  phi = 0.001; // phi
+  // target polar position
+  t_r = null;
+  t_theta = null;
+  t_phi = null;
+  t_r_mult = 1;
 
-  constructor(x, y) {
-    if (x != null) this.tx = x;
-    if (y != null) this.ty = y;
-    if (this.tx == null) this.tx = Math.round(Math.random() * _w * 0.8 + _w * 0.1);
-    if (this.ty == null) this.ty = Math.round(Math.random() * _h * 0.8 + _h * 0.1);
+  // screen stuff (to be calculated)
+  sx = 0;
+  sy = 0;
+  sr = 0;
+  dr = 0;
+
+  // display stuff
+  colour = "#ffffff";
+
+  constructor(r, size) {
+    //if (x != null) this.tx = x;
+    //if (y != null) this.ty = y;
+    //if (this.tx == null) this.tx = Math.round(Math.random() * _w * 0.8 + _w * 0.1);
+    //if (this.ty == null) this.ty = Math.round(Math.random() * _h * 0.8 + _h * 0.1);
+    if (r != null) this.t_r = r;
+    if (size != null) this.t_size = size;
   }
   
   create() {
@@ -60,15 +117,37 @@ class Dot {
   }
 
   tick() {
+    this.t_theta += 0.05;
+    // this.t_phi += 0.01;
     const lerp_amount = 0.03;
-    this.x = lerp(this.x, this.tx, lerp_amount);
-    this.y = lerp(this.y, this.ty, lerp_amount);
+    this.size = lerp(this.size, this.t_size, lerp_amount);
+    this.r = lerp(this.r, this.t_r * this.t_r_mult * Dot.r, lerp_amount);
+    this.theta = lerp_angle(this.theta, this.t_theta, lerp_amount);
+    this.phi = lerp_angle(this.phi, this.t_phi, lerp_amount);
+    this.calculate();
+    if (this.id === 0) console.log(this.r);
+  }
+
+  calculate() {
+    // mod the stuff
+    this.t_theta %= pi * 2;
+    this.t_phi %= pi;
+    // polar to cartesian
+    this.x = this.r * Math.sin(this.phi) * Math.cos(this.theta);
+    this.y = this.r * Math.cos(this.phi);
+    this.z = this.r * Math.sin(this.phi) * Math.sin(this.theta) + this.r;
+    // projection
+    const dr = (fov / (fov + this.z));
+    this.dr = dr;
+    this.sx = (this.x * dr) + _w / 2;
+    this.sy = (this.y * dr) + _h / 2;
+    this.sr = this.size * dr;
   }
 
   draw() {
-    ctx.fillStyle = "white";
+    ctx.fillStyle = (this.id === 0) ? "lime" : this.colour;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 5, 0, Math.PI * 2);
+    ctx.arc(this.sx, this.sy, this.sr, 0, pi * 2);
     ctx.fill();
   }
 
@@ -83,9 +162,25 @@ class Dot {
     return (this.x - dot.x) * (this.x - dot.x) + (this.y - dot.y) * (this.y - dot.y);
   }
 
+  distance3(dot) { // no, the 3 in this case does not mean cubed, but 3d...
+    return (this.x - dot.x) * (this.x - dot.x) + (this.y - dot.y) * (this.y - dot.y) + (this.z - dot.z) * (this.z - dot.z);
+  }
+
+  /*
   random_target() {
-    this.tx = Math.round(Math.random() * _w * 0.8 + _w * 0.1);
-    this.ty = Math.round(Math.random() * _h * 0.8 + _h * 0.1);
+    this.tx = Math.round(Math.random() * _w * 0.8);
+    this.ty = Math.round(Math.random() * _h * 0.8);
+  }
+  */
+
+  random_angles() {
+    this.t_theta = Math.random() * 2 * pi;
+    this.t_phi = Math.acos((Math.random() * 2) - 1); // 0, pi
+  }
+
+  random_all() {
+    this.t_r_mult = random_sphere();
+    this.random_angles();
   }
 
 };
@@ -94,6 +189,22 @@ class Dot {
 
 const lerp = (a, b, t) => {
   return a * (1 - t) + b * t;
+}
+
+const lerp_angle = (a1, a2, t) => {
+  return a1 + (((((a2 - a1) % (pi * 2)) + pi * 3) % (pi * 2)) - pi) * t;
+}
+
+const lerp_half_angle = (a1, a2, t) => {
+  return lerp_mod(a1, a2, t, pi);
+}
+
+const lerp_mod = (a1, a2, t, mod) => {
+  return a1 + (((((a2 - a1) % mod) + mod * 3 / 2) % mod) - mod / 2) * t;
+}
+
+const random_sphere = () => {
+  return Math.cbrt(Math.random());
 }
 
 const get_color_component = (number_from_0_to_1) => {
@@ -107,11 +218,11 @@ const color_alpha = (hex, alpha) => {
 }
 
 const deg_to_rad = (deg) => {
-  return deg / 180 * Math.PI;
+  return deg / 180 * pi;
 }
 
 const rad_to_deg = (rad) => {
-  return rad / Math.PI * 180;
+  return rad / pi * 180;
 }
 
 // functions
@@ -140,7 +251,7 @@ const draw_before = () => {
   ctx.fillRect(0, 0, _w, _h);
   ctx.fillStyle = "darkred";
   ctx.beginPath();
-  ctx.arc(_w / 2, _h / 2, 100, 0, Math.PI * 2);
+  ctx.arc(_w / 2, _h / 2, _w * config.star.radius / 2, 0, Math.PI * 2);
   ctx.fill();
 };
 
@@ -148,6 +259,8 @@ const draw_after = () => {
 }
 
 const skill_issue = () => {
+  // no no no
+  return;
   // what?
   const threshold = Math.min(_w, _h) * 0.5;
   ctx.fillStyle = "transparent";
@@ -168,6 +281,20 @@ const skill_issue = () => {
   }
 };
 
+const mouse_down = () => {
+  Dot.r = 0.2;
+}
+
+const mouse_up = () => {
+  Dot.r = 1;
+}
+
+const mouse_right = () => {
+  Dot.for_each((dot) => {
+    dot.random_all();
+  });
+}
+
 // event listeners
 
 window.addEventListener("load", function(event) {
@@ -176,24 +303,52 @@ window.addEventListener("load", function(event) {
 window.addEventListener("resize", function(event) {
   _w = window.innerWidth;
   _h = window.innerHeight;
+  fov = _w * config.camera.FOV;
   init_canvas();
 });
 
 const update_mouse = (event) => {
-  _mx = event.clientX;
-  _my = event.clientY;
+  mouse.x = event.clientX;
+  mouse.y = event.clientY;
 }
+
+const key_listeners = {
+
+  "Space": function() {
+    Dot.for_each((dot) => {
+      dot.random_all();
+    });
+  },
+
+};
 
 window.addEventListener("mousemove", update_mouse);
 window.addEventListener("mousedown", function(event) {
-  Dot.for_each((dot) => {
-    dot.random_target();
-  });
   update_mouse(event);
+  /*
   if (event.buttons > 0) {
     Dot.for_each((dot) => {
       dot.x = _mx;
       dot.y = _my;
     });
+  }
+  */
+  mouse.down = true;
+  mouse_down();
+});
+window.addEventListener("mouseup", function(event) {
+  mouse.down = false;
+  mouse_up();
+});
+window.addEventListener("contextmenu", function(event) {
+  event.preventDefault();
+  mouse_right();
+});
+
+window.addEventListener("keypress", function(event) {
+  event.preventDefault();
+  const listener = key_listeners[event.code];
+  if (listener != null) {
+    listener();
   }
 });
