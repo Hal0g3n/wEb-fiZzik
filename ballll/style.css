@@ -14,17 +14,42 @@ body{
     position: fixed; /* Make it stick, even on scroll */
     overflow: auto; /* Enable scrolling if the sidenav has too much content */
 }
-#nav a{
+#nav a, #nav details{
     display: block; 
     color: lightgray; /*actual color*/
     padding: 8px 16px;
     text-decoration: none;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
+#nav details {
+    transition: max-height ease-in-out 3000ms ;
+    padding: 0px;
+}
+#nav details summary {
+    padding: 8px 16px;
+    
+}
+#nav details:hover {
+    background-color: #7ED9CF; /*choose your color*/
+    color: black;
+    
+}
+#nav details[open]{
+    
+    background-color: #557555; /*choose your color*/ 
+    color: lightgray; /*actual color*/
+}/*#aca693*/
+#nav details ul li a:hover{
+    background-color: #aca693;
+    color: black; /*body radiation*/
+}
 #nav a:hover {
     background-color: #7ED9CF; /*choose your color*/
     color: black;
+}
+#nav details ul{
+    list-style-type: none;
+    padding: 0px;
 }
 .container {
     /* display: flex; */
