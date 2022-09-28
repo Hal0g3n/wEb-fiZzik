@@ -1,0 +1,23 @@
+button.quizBtn {
+    margin: 1ch;
+    min-width: 10vmin;
+    border-radius: 6px;
+    font-size: 3.5ch;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 4px solid black;
+    outline: none;
+    background-color: #0091ff;
+    color: white;
+}
+
+button.quizCorrect {
+    background-color: #39ff14;
+    color: black;
+}
+
+button.quizIncorrect {
+    background-color: #ff4122;
+    color: black;
+}
