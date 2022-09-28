@@ -30,8 +30,8 @@ star, and that's where things get weird. Normal stars are permanently in a preca
 <details>
 <summary>Self Check</summary>
 
-<span style='font-size: 5ch'> What is your favourite language? </span>
-<div>
+<span style='font-size: 3ch'> What is your favourite language? </span>
+<div class='quiz'>
     <button class="quizBtn" name="Q1_right" onClick="markQ1.call(this)">HTML</button>
     <button class="quizBtn" name="Q1_wrong" onClick="markQ1.call(this)">CSS</button>
     <button class="quizBtn" name="Q1_wrong" onClick="markQ1.call(this)">Java</button>
@@ -44,7 +44,7 @@ var markQ1 = function(button) {
 	const right = document.getElementsByName("Q1_right")
     const wrong = document.getElementsByName("Q1_wrong")
     
-    this.classList.add("quizIncorrect")
+    if (this.name == "Q1_wrong") this.classList.add("quizIncorrect")
 
     for (const btn of wrong) btn.disabled = true;
 	for (const btn of right) {

@@ -1,5 +1,12 @@
 site_name: PC5132 Website
 
+nav:
+    - Welcome: index.md
+    - Neutron Stars:
+        - What?: Neutron Stars/Intro.md
+        - How?: Neutron Stars/Theory.md
+    - Quark Stars: Quek Stars.md
+
 theme:
     name: "material"
     # custom_dir: "ballll/"
