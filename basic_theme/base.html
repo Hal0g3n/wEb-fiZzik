@@ -111,7 +111,7 @@
 
     See the nav.html file for more details about how this works.
   -->
-  <ul>
+  <ul id="azov">
   {% for nav_item in nav %}
     {% include "nav.html" %}
   {% endfor %}
@@ -169,7 +169,7 @@
   <hr/>
 
   <h2>Show the table of contents for the current page</h2>
-  <ul>
+  <ul id="vzv">
   {% for toc_item in page.toc %}
       <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
       {% for toc_item in toc_item.children %}
