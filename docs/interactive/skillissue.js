@@ -1,12 +1,15 @@
 
 const pi = Math.PI; // why
 
+const among = new Image();
+among.src = "among.png";
+
 const config = {
 
   star: {
-    radius: 0.3, // widths
-    balls: 400, // number
-    ball_size: 10, // pixels
+    radius: 0.47, // widths
+    balls: 500, // number
+    ball_size: 20, // pixels
   },
 
   camera: {
@@ -45,7 +48,7 @@ class Dot {
   static init() {
     for (let i = 0; i < config.star.balls; i++) {
       let d = new Dot(_w * config.star.radius, config.star.ball_size);
-      d.colour = "#ffffff99";
+      d.colour = "#ff000099"; // random_color() + "99";
       d.create();
       d.random_all();
     }
@@ -145,7 +148,7 @@ class Dot {
   }
 
   draw() {
-    ctx.fillStyle = (this.id === 0) ? "lime" : this.colour;
+    ctx.fillStyle = this.colour; //(this.id === 0) ? "lime" : this.colour;
     ctx.beginPath();
     ctx.arc(this.sx, this.sy, this.sr, 0, pi * 2);
     ctx.fill();
@@ -217,6 +220,10 @@ const color_alpha = (hex, alpha) => {
   return hex + get_color_component(alpha);
 }
 
+const random_color = () => {
+  return "#" + get_color_component(Math.random()) + get_color_component(Math.random()) + get_color_component(Math.random());
+}
+
 const deg_to_rad = (deg) => {
   return deg / 180 * pi;
 }
@@ -247,12 +254,16 @@ const init_canvas = () => {
 };
 
 const draw_before = () => {
+  const r = _w * config.star.radius / 2 * 0.6;
+
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, _w, _h);
   ctx.fillStyle = "darkred";
   ctx.beginPath();
-  ctx.arc(_w / 2, _h / 2, _w * config.star.radius / 2, 0, Math.PI * 2);
-  ctx.fill();
+  ctx.arc(_w / 2, _h / 2, r, 0, Math.PI * 2);
+  // ctx.fill();
+
+  // ctx.drawImage(among, _w / 2 - r, _h / 2 - r);
 };
 
 const draw_after = () => {
@@ -317,6 +328,18 @@ const key_listeners = {
   "Space": function() {
     Dot.for_each((dot) => {
       dot.random_all();
+    });
+  },
+
+  "KeyQ": function() {
+    Dot.for_each((dot) => {
+      dot.t_r *= 1.1;
+    });
+  },
+
+  "KeyW": function() {
+    Dot.for_each((dot) => {
+      dot.t_r /= 1.1;
     });
   },
 
