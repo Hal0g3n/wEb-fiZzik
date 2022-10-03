@@ -1,9 +1,20 @@
-# Neutron Stars
+# What are they?
 
-You may have heard of neutron stars before, but what really are they?
-Neutron stars are very nearly the densest objects in the universe. 
-Rarely more than a couple dozen kilometers across, but with masses comparable
-to our sun, they are eclipsed only in extremeness by black holes.
+<img src="https://d2kspx2x29brck.cloudfront.net/1200x675/filters:format(webp)/img/iea/y5wWkZZlwX/what-is-a-neutron-star-1.jpg"></img>
+
+> *From the death of a supergiant star, <br>
+> birthed a smaller star shining so bright.   <br>
+> In space with darkness close to tar,    <br>
+> neutron stars fights back with its last light.*
+
+## A Prelude
+You may have heard of neutron stars before, but what are really they?
+Neutron stars are very nearly the densest objects in the universe, right before black holes.
+With a mass close to that of our sun, they are usually a few dozen kilometers across.
+
+Neutron stars are fundamentally different from stars, despite the name.
+Stars generate heat energy through nuclei fusion, 
+
 But how do they form?
 
 When giant stars die, they can go supernova -- i.e. explode with the power
@@ -19,21 +30,33 @@ star, and that's where things get weird. Normal stars are permanently in a preca
 <details>
 <summary>Self Check</summary>
 
-What is your favourite language?
-<form>
-  <input type="radio" id="html" name="fav_language" value="HTML">
-  <label for="html">HTML</label><br>
-  <input type="radio" id="css" name="fav_language" value="CSS">
-  <label for="css">CSS</label><br>
-  <input type="radio" id="javascript" name="fav_language" value="JavaScript">
-  <label for="javascript">JavaScript</label>
-</form> 
-<button onclick="check()">Submit</button>
-<div id='test'></div>
+<span style='font-size: 3ch'> What is your favourite language? </span>
+<div class='quiz'>
+    <button class="quizBtn" name="Q1_right" onClick="markQ1.call(this)">HTML</button>
+    <button class="quizBtn" name="Q1_wrong" onClick="markQ1.call(this)">CSS</button>
+    <button class="quizBtn" name="Q1_wrong" onClick="markQ1.call(this)">Java</button>
+    <hr>
+    <div id='test'></div>
+</div> 
 
 <script>
-function check() {
-    document.getElementById("test").innerText = "Wow! You like " + document.querySelector('input[name = "fav_language"]:checked').value;
+var markQ1 = function(button) {   
+	const right = document.getElementsByName("Q1_right")
+    const wrong = document.getElementsByName("Q1_wrong")
+    
+    if (this.name == "Q1_wrong") this.classList.add("quizIncorrect")
+
+    for (const btn of wrong) btn.disabled = true;
+	for (const btn of right) {
+        btn.classList.add("quizCorrect")
+        btn.disabled = true;
+    }
+
+    document.getElementById("test").innerText = this.name=="Q1_wrong" ? "Incorrect! 😔" : "Correct! 🎉";
+    document.getElementById("test").innerText += `
+    Java is cancer, CSS is hard.
+    Only HTML is easy and good.
+    `;
 }
 </script>
 </details>
