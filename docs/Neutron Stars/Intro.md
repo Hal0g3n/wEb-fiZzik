@@ -8,16 +8,16 @@
 > neutron stars fights back with its last light.*
 
 ## A Prelude
-You may have heard of neutron stars before, but what are really they?
+You may have heard of neutron stars before, but what are they really?
 Neutron stars are very nearly the densest objects in the universe, right before black holes.
 With a mass close to that of our sun, they are usually a few dozen kilometers across.
 
 Neutron stars are fundamentally different from stars, despite the name.
-Stars generate heat energy through nuclei fusion, 
+Stars generate heat energy through nuclei fusion, ...
 
 But how do they form?
 
-When giant stars die, they can go supernova -- i.e. explode with the power
+When giant stars die, they can go supernova -- i.e., explode with the power
 output of an entire galaxy -- and form one of two things. If the star was big enough,
 then the remnants of the star rushing inwards before the explosion get close enough
 together that gravity can overcome the Pauli Exclusion principle (we'll get to that later)
@@ -52,7 +52,7 @@ var markQ1 = function(button) {
         btn.disabled = true;
     }
 
-    document.getElementById("test").innerText = this.name=="Q1_wrong" ? "Incorrect! 😔" : "Correct! 🎉";
+    document.getElementById("test").innerText = this.name == "Q1_wrong" ? "Incorrect! 😔" : "Correct! 🎉";
     document.getElementById("test").innerText += `
     Java is cancer, CSS is hard.
     Only HTML is easy and good.
@@ -81,4 +81,4 @@ Past spaghetti, naturally, comes lasagna, where these strands form long, planar 
 
 Having exhausted the culinary delights, we reach the core of neutron stars. By definition, at this point, the vast majority of particles are neutrons. Neutron star cores are some of the most extreme places in the universe, second only to black holes themselves, and bear similarities to the conditions the universe found itself in shortly after the big bang. Because of this, they are of great interest to researchers, as they provide a glimpse into the far past.
 
-Other than that though, we don't know for sure what the core looks like. Researchers have put forth many theories, from a neutron-degenerate  superfluid (a fluid with no thickness), to a mix of neutrons and other rarer particles, such as pions and kaons. One of the most interesting, and possibly the weirdest, involves hyper-dense matter supported by quark-degeneracy, and a little something known as... strange matter.
+Other than that though, we don't know for sure what the core looks like. Researchers have put forth many theories, from a neutron-degenerate superfluid (a fluid with no thickness), to a mix of neutrons and other rarer particles, such as pions and kaons. One of the most interesting, and possibly the weirdest, involves hyper-dense matter supported by quark-degeneracy, and a little something known as... strange matter.
