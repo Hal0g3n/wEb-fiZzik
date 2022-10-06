@@ -1,0 +1,13 @@
+## Why they're called neutron stars
+
+As you may have guessed, neutron stars are made primarily out of neutrons. If you need a refresher, neutrons, along with protons, are what make up the nuclei of atoms ("nuclei" are the hard centres of atoms, surrounded by fuzzy layers of electrons). But all these neutrons have to come from somewhere, and in neutron stars, that turns out to be from the combining of protons and electrons.
+
+Under the incredible pressures inside neutron stars, at a certain point, compressing the same stuff into a smaller volume becomes inefficient. Instead, it's more energetically viable to compress particles together, fusing negatively charged electrons and positively charged protons together to form neutral neutrons. It's so much more viable, in fact, that as one gets deeper into a neutron star, neutrons are nearly the only things you'll find.
+
+Neutron stars are, as mentioned before, incredibly extreme, even amongst stars. In neutron stars, we find the strongest magnetic fields in existence, the strongest gravitational fields bar black holes, and the highest pressures known to man. They're also very hot. Despite all this, however, neutron stars aren't very bright. This might seem a little strange to you at first, because it's generally known that hotter things glow brighter. But this is where possibly the most extreme aspect of neutron stars comes in; their size.
+
+Neutron stars are tiny. The average neutron star is about 20 kilometres across. To put that in perspective, that's about the length of Manhattan, in New York. As a point of comparison, our sun, already larger than most stars in the universe, is about 1.4 million kilometres across, or 66 thousand Manhattans. Consider then that volume is given by the cube of radius, and we arrive at the astounding realisation that you could fit a million billion neutron stars in our sun.
+
+As a consequence of this, neutron stars are unbelievably dense. Indeed, while they may only be a miniscule fraction of the volume of the sun, the average neutron star actually weighs more than the sun! At 1.5 solar masses, with their tiny sizes, neutron stars are the second densest objects in the universe, behind black hole singularities (with all their poorly defined density). Just a single millilitre of neutron star material would weigh as much as the combined weight of about 70% of all people alive today.
+
+The insides of neutron stars are somewhat unknown to us, and we only have theories, but those theories tell us that it probably starts out as iron, turns into spaghetti, and then becomes soup. Indeed, the scientific term for the matter in the inner crusts of neutron stars is "Nuclear Pasta". So let's dig in, shall we?

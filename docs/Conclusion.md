@@ -1,0 +1,3 @@
+# The nature of all things
+
+So, where does this leave us? We've taken a look at the secrets of neutron stars, delved through the mechanisms of their formation, understood the principle of one Pauli and had time to chew on their doughy insides. We've also looked at the quarkier side of thing, before taking a peek at the more conjectural, stranger aspects of thing. And now, I am afraid that we have nearly reached the bounds of the current scientific literature. To be sure, there are other related things to explore: the Strong Force, the Nuclear Drip Line, the Electroweak Interaction, and Symmetry Breaking. But in regards to neutron stars specifically? We're back to the lab again.
