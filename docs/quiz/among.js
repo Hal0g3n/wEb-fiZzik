@@ -1,3 +1,4 @@
+import { collide } from "./collide.js";
 import { util } from "./util.js";
 
 let time = 0;
@@ -63,10 +64,20 @@ class Thing {
     }
   }
 
+  static get_line_p1(t) {
+    
+  }
+
   constructor(o) {
     Thing.things.push(this);
     this.make(o);
   }
+
+  x = 0;
+  y = 0;
+  map = false;
+  player = false;
+  dynamic = false;
 
   make(o) {
     for (const k in o) {
@@ -122,10 +133,13 @@ class Thing {
 
 class Among extends Thing {
 
+  move_speed = 5;
+
   constructor() {
     super();
     this.make({
       player: true,
+      dynamic: true,
       shape: "circle",
       x: 0,
       y: 0,
@@ -133,10 +147,36 @@ class Among extends Thing {
     });
   }
 
+  tick() {
+    super.tick();
+    this.tick_move();
+  }
+
+  tick_move() {
+    let dx = 0;
+    let dy = 0;
+    if (keys["KeyW"] || keys["ArrowUp"]) dy--;
+    if (keys["KeyS"] || keys["ArrowDown"]) dy++;
+    if (keys["KeyA"] || keys["ArrowLeft"]) dx--;
+    if (keys["KeyD"] || keys["ArrowRight"]) dx++;
+    if (dx !== 0 || dy !== 0) {
+      this.move(dx, dy);
+    }
+  }
+
   move(x, y) {
     const sqrt = Math.sqrt(x * x + y * y);
-    this.x += x / sqrt;
-    this.y += y / sqrt;
+    this.x += x / sqrt * this.move_speed;
+    this.y += y / sqrt * this.move_speed;
+    
+    // collide
+    for (const t of Thing.things) {
+      if (t === this || !t.map) continue;
+      switch (t.shape) {
+        case "line":
+          collide.line_circle()
+      }
+    }
   }
 
 };
@@ -150,8 +190,8 @@ const tick = () => {
 
   // nice smooth camera
   const smooth_amount = 0.05;
-  camera.x = util.lerp(camera.x, among.x + _w / 2, smooth_amount);
-  camera.y = util.lerp(camera.y, among.y + _h / 2, smooth_amount);
+  camera.x = util.lerp(camera.x, -among.x + _w / 2, smooth_amount);
+  camera.y = util.lerp(camera.y, -among.y + _h / 2, smooth_amount);
 
 };
 
@@ -188,7 +228,8 @@ const init = () => {
 
 const make_map = () => {
   for (const element of among_map) {
-    new Thing(element);
+    const t = new Thing(element);
+    t.map = true;
   }
 };
 
@@ -265,4 +306,12 @@ window.addEventListener("keypress", function(event) {
   if (listener != null) {
     listener();
   }
+});
+
+window.addEventListener("keydown", function(event) {
+  keys[event.code] = true;
+});
+
+window.addEventListener("keyup", function(event) {
+  keys[event.code] = false;
 });

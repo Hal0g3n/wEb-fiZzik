@@ -4,13 +4,18 @@
 let _w = window.innerWidth;
 let _h = window.innerHeight;
 
+// canvas stuff
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
 const config = {
 
-  layer_points: [],
-  layer_widths: [],
+  la_y_er: [0, 0.1],
+  layer_heights: [0.1, ],
+  layer_colours: ["#999999", ],
   layers: {
 
-  }
+  },
 
 };
 
@@ -18,16 +23,26 @@ const config = {
 
 
 const draw_background = () => {
-  const r = _w * config.star.radius / 2 * 0.6;
-
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, _w, _h);
 };
 
 const draw_foreground = () => {
-  // sus
+  // draw layers
   let layer_index = 0;
-  
+  ctx.strokeStyle = "#ffffff";
+  ctx.lineWidth = 5;
+  for (let layer_index = 0; layer_index < config.la_y_er.length; layer_index++) {
+    let layer_start = config.la_y_er[layer_index] * _h;
+    let layer_height = config.layer_heights[layer_index] * _h;
+    let c = config.layer_colours[layer_index];
+    ctx.fillStyle = c;
+    ctx.fillRect(0, layer_start, _w, layer_height);
+    ctx.strokeRect(0, layer_start, _w, layer_height);
+    if (layer_index === 2) {
+      
+    }
+  }
 };
 
 const draw = () => {
@@ -36,7 +51,7 @@ const draw = () => {
 }
 
 const tick = () => {
-
+  draw();
 };
 
 const init = () => {
