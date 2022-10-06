@@ -3,6 +3,7 @@ import { draw } from "./draw.js";
 import { C, category, make } from "./lib.js";
 import { canvas, ctx, world } from "./main.js";
 import { ui } from "./ui.js";
+import { util } from "./util.js";
 
 const Body = Matter.Body,
       Bodies = Matter.Bodies,
@@ -75,7 +76,11 @@ export class Thing {
   make(o) {
     if (o == null) return;
     if (o.hasOwnProperty("parent")) {
-      for (let make_thing of o.parent) {
+      let parent = o.parent;
+      if (typeof parent === "string") {
+        parent = [o.parent];
+      }
+      for (let make_thing of parent) {
         this.make(make[make_thing]);
       }
     }
@@ -119,6 +124,26 @@ export class Thing {
       this.initial_position = position;
     } else {
       Body.setPosition(this.body, position);
+    }
+  }
+
+  set x(x) {
+    if (this.body == null) {
+      this.initial_position.x = x;
+    } else {
+      const pos = Vector.clone(this.position);
+      pos.x = x;
+      Body.setPosition(this.body, pos);
+    }
+  }
+
+  set y(y) {
+    if (this.body == null) {
+      this.initial_position.y = y;
+    } else {
+      const pos = Vector.clone(this.position);
+      pos.y = y;
+      Body.setPosition(this.body, pos);
     }
   }
 
@@ -179,7 +204,6 @@ export class Thing {
     ctx.lineWidth = (shape.width || 3);
     const size = this.size * scale;
     const type = shape.type;
-    console.log(this.x);
     const location = this.draw_point_location(Vector.create(shape.x, shape.y), scale);
     const x = location.x;
     const y = location.y;
@@ -242,7 +266,6 @@ export class Thing {
   }
 
   create_body() {
-    if (this.no_body) return;
     if (this.body != null) {
       this.remove_body();
     }
@@ -282,7 +305,7 @@ export class Thing {
       body = Bodies.rectangle(x, y, w, h, options);
     } else if (type.includes("polygon")) {
       const r = this.get_shape_dimension(shape.r);
-      const vertices = math_util.regpoly(shape.sides, r, shape.rotation || 0, x, y);
+      const vertices = util.regpoly(shape.sides, r, shape.rotation || 0, x, y);
       body = Bodies.fromVertices(x, y, [vertices], options); // Bodies.polygon(x, y, shape.sides, r, options);
     } else if (type.includes("line") && false) { // not yet ready
       const location2 = this.real_point_location(Vector.create(shape.x2, shape.y2));
@@ -352,3 +375,5 @@ export class Thing {
   }
 
 }
+
+window.Thing = Thing;

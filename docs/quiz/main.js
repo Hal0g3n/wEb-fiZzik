@@ -2,6 +2,7 @@
 import { camera } from "./camera.js";
 import { init_key, add_key_listener } from "./key.js";
 import { make } from "./lib.js";
+import { init_map } from "./maps.js";
 import { player } from "./player.js";
 import { Thing } from "./thing.js";
 import { init_ui, ui } from "./ui.js";
@@ -46,19 +47,22 @@ function init_after() {
   player.create();
 
   // create map
+  init_map();
 
   // add key listeners
+  /*
   add_key_listener("KeyA", function() {
     console.log("a");
   });
+  */
 
 }
 
 function test() {
 
-  const t = new Thing(Vector.create(0, 100));
-  t.make(make.wall);
-  t.create();
+  //const t = new Thing(make.walltest.position);
+  //t.make(make.walltest);
+  //t.create();
 
 }
 

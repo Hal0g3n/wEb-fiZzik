@@ -1,5 +1,7 @@
+import { camera } from "./camera.js";
 
 export const keys = {};
+
 const key_listeners = {};
 
 // ok
@@ -56,6 +58,11 @@ export const init_key = function() {
     for (const key in keys) {
       keys[key] = false;
     }
+  });
+
+  // added event listener (from controls)
+  window.addEventListener("mousemove", function(event) {
+    camera.set_mouse(event.clientX, event.clientY);
   });
 
   window.addEventListener("mousedown", function(event) {

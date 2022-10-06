@@ -51,11 +51,14 @@ make.wall = {
   friction: 0.1,
   collision_filter: category.wall,
   color: C.white,
+  /*
   shapes: [
     { type: "rectangle", x: 0, y: 0, w: 100, h: 1, body: true, },
   ],
-  
-}
+  */
+};
+
+//make.walltest = {"shapes":[{"type":"rectangle","x1":200,"y1":200,"x2":200,"y2":-200,"x":0,"y":0,"w":1,"h":200,"body":true,}],"parent":"wall","position":{"x":200,"y":0},"angle":-1.5707963267948966};
 
 make.player = {
   player: true,

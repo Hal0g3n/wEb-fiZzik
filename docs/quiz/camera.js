@@ -9,7 +9,7 @@ export class Camera {
 
   static settings = {
     smoothness: 0.1,
-    mouse_offset_factor: 0.2,
+    mouse_offset_factor: 0.05,
     mouse_offset_smoothness: 0.1,
   }
   
