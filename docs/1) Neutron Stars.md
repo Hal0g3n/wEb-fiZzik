@@ -1,0 +1,64 @@
+# Neutron Stars
+
+<img src="https://d2kspx2x29brck.cloudfront.net/1200x675/filters:format(webp)/img/iea/y5wWkZZlwX/what-is-a-neutron-star-1.jpg"></img>
+
+> *From the death of a supergiant star, <br>
+> birthed a smaller star shining so bright.   <br>
+> In space with darkness close to tar,    <br>
+> neutron stars fights back with its last light.*
+
+You may have heard of neutron stars before, but what really are they?
+
+Neutron stars are very nearly the densest objects in the universe. Rarely more than a couple dozen kilometres across, but with masses greater than the sun, they are eclipsed only in extremeness by black holes. There's a reason Hollywood has recently fallen in love with them. But how do we go from a normal star to a neutron star?
+
+Stars have lives, just like the rest of us. They are born, grow, age, and die. For most stars, that's pretty much the whole story. But when giant stars die, instead of going out with a whimper, they can go out with a bang. This is called a supernova. These supernovae (plural of supernova) can briefly outshine entire galaxies. But the aftermath of a supernova is not always the same.
+
+During a supernova, the matter of the star goes through cycles of falling inward, compressing, heating up, and expanding. How exactly this all happens is complicated, but in summary, stellar death begins with the exhaustion of fuel. When this happens, nuclear fusion can no longer happen, and the energy that was providing heat to the star, keeping it from falling in on itself, disappears. What follows is collapse, compressing the plasma of the star to a huge degree. The ideal gas law tells us that when a gas (or plasma) decreases in volume, temperature and pressure increase to compensate. (Insert adiabatic later)
+
+$$PV = nRT$$
+
+This increase in temperature and pressure triggers another round of fusion, fusing heavier elements like carbon and neon together. Surging outward, the star expands once more... only to collapse, because it can't fuse heavier elements anymore. So go the death throes of the star, progressively and more rapidly fusing elements up the chain. And then, we hit iron. Iron is the most stable element. Fusing iron, rather than giving off energy, **drains** energy. There will be only one more expansion.
+
+The remains of the star rush in towards the centre, building up insane pressures as they pick up momentum. But even as they build momentum, atoms at the centre push closer and closer to one another, until they can't get any closer. The wavefront of the incoming stellar matter impinges on the hyper-dense core, bounces, sends shockwaves back out through the dying star.
+
+No matter what happens next, the vast majority of the star is blown off in a cataclysmic explosion that creates what's (poorly termed) as a planetary nebula, a new stellar dust and gas cloud. If the star was big enough, then the very insides of the star get dense enough that gravity can overcome the Pauli Exclusion principle (we'll get to that later) and form a black hole, a region of space where all matter is drawn in irreversibly towards a singularity, and gravity overcomes even light.
+
+If the star wasn't quite massive enough, though, what's formed is instead a neutron star, and that's where things get weird. All stars are permanently in a precarious balance between collapse and expansion, with the inward force of gravity being perfectly balanced by the outwards pressure of the hot plasma. Neutron stars are different, though; heat-based pressure being insufficient to overcome gravity, they're stopped from collapsing by the Pauli Exclusion principle.
+
+But what is this principle?
+
+<!-- Quiz -->
+<details>
+<summary>Self Check</summary>
+
+<span style='font-size: 3ch'> What is your favourite language? </span>
+<div class='quiz'>
+    <button class="quizBtn" name="Q1_right" onClick="markQ1.call(this)">HTML</button>
+    <button class="quizBtn" name="Q1_wrong" onClick="markQ1.call(this)">CSS</button>
+    <button class="quizBtn" name="Q1_wrong" onClick="markQ1.call(this)">Java</button>
+    <hr>
+    <div id='test'></div>
+</div> 
+
+<script>
+var markQ1 = function(button) {   
+	const right = document.getElementsByName("Q1_right")
+    const wrong = document.getElementsByName("Q1_wrong")
+    
+    if (this.name == "Q1_wrong") this.classList.add("quizIncorrect")
+
+    for (const btn of wrong) btn.disabled = true;
+	for (const btn of right) {
+        btn.classList.add("quizCorrect")
+        btn.disabled = true;
+    }
+
+    document.getElementById("test").innerText = this.name=="Q1_wrong" ? "Incorrect! 😔" : "Correct! 🎉";
+    document.getElementById("test").innerText += `
+    Java is cancer, CSS is hard.
+    Only HTML is easy and good.
+    `;
+}
+</script>
+</details>
+<!-- /Quiz -->
