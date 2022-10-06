@@ -41,3 +41,22 @@ util.deg_to_rad = (deg) => {
 util.rad_to_deg = (rad) => {
   return rad / pi * 180;
 }
+
+const Vector = Matter.Vector;
+
+// just some extensions
+Vector.createpolar = function(theta, r = 1) {
+  return Vector.create(r * Math.cos(theta), r * Math.sin(theta));
+}
+Vector.lerp = function(v1, v2, smoothness) {
+  return Vector.add(Vector.mult(v1, 1 - smoothness), Vector.mult(v2, smoothness));
+}
+Vector.lerp_angle = function(a1, a2, smoothness) {
+  return Vector.angle(Vector.create(), Vector.add(Vector.createpolar(a1, 1 - smoothness), Vector.createpolar(a2, smoothness)));
+}
+Vector.deg_to_rad = function(degrees) {
+  return degrees / 180 * Math.PI;
+}
+Vector.rad_to_deg = function(radians) {
+  return radians * 180 / Math.PI;
+}
