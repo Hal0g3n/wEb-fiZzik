@@ -1,12 +1,15 @@
 
 import { camera } from "./camera.js";
 import { init_key, add_key_listener } from "./key.js";
+import { make } from "./lib.js";
+import { player } from "./player.js";
 import { Thing } from "./thing.js";
 import { init_ui, ui } from "./ui.js";
 import { util } from "./util.js";
 
 const Engine = Matter.Engine,
-      Runner = Matter.Runner;
+      Runner = Matter.Runner,
+      Vector = Matter.Vector;
 
 // const parameters = new URLSearchParams(document.location.search);
 
@@ -40,6 +43,7 @@ function tick(time) {
 function init_after() {
   
   // create player
+  player.create();
 
   // create map
 
@@ -50,12 +54,21 @@ function init_after() {
 
 }
 
+function test() {
+
+  const t = new Thing(Vector.create(0, 100));
+  t.make(make.wall);
+  t.create();
+
+}
+
 function init() {
   init_before();
   init_canvas();
   init_key();
   init_ui();
   init_after();
+  test();
 }
 
 function main() {

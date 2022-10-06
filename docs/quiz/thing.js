@@ -32,11 +32,20 @@ export class Thing {
       thing.draw();
     }
   }
+  
+  static settings = {
+    force_factor: 0.00005,
+    recoil_factor: 50.0,
+    friction_factor: 1.0,
+    density_factor: 1.0,
+  }
 
   // location variables
   body = null; // physics body
   size = 0;
-  initial_position = null;
+  initial_position = Vector.create();
+  initial_angle = 0;
+  initial_velocity = Vector.create();
 
   // property booleans
   exists = false;
@@ -51,8 +60,8 @@ export class Thing {
   collision_filter = category.all;
 
   // display
+  stroke = C.transparent;
   color = "#FFFFFF";
-  fill = C.transparent;
   layer = 0;
   shapes = [];
 
@@ -90,7 +99,7 @@ export class Thing {
   }
 
   get angle() {
-    return this.body.angle;
+    return this.body == null ? this.initial_angle : this.body.angle;
   }
 
   get rotation() {
@@ -102,19 +111,31 @@ export class Thing {
   }
 
   get velocity() {
-    return Vector.clone(this.body.velocity);
+    return Vector.clone(this.body == null ? this.initial_velocity : this.body.velocity);
   }
 
   set position(position) {
-    Body.setPosition(this.body, position);
+    if (this.body == null) {
+      this.initial_position = position;
+    } else {
+      Body.setPosition(this.body, position);
+    }
   }
 
   set velocity(velocity) {
-    Body.setPosition(this.body, velocity);
+    if (this.body == null) {
+      this.initial_velocity = velocity;
+    } else {
+      Body.setPosition(this.body, velocity);
+    }
   }
 
   set angle(angle) {
-    Body.setAngle(this.body, angle);
+    if (this.body == null) {
+      this.initial_angle = angle;
+    } else {
+      Body.setAngle(this.body, angle);
+    }
   }
 
   set rotation(angle) {
@@ -126,18 +147,11 @@ export class Thing {
   }
 
   real_point_location(vector) {
-    return Vector.add(this.position, Vector.rotate(Vector.create(this.get_shape_dimension(vector.x, 1, 0, 0), this.get_shape_dimension(vector.y, 1, 0)), this.rotation));
+    return Vector.add(this.position, Vector.rotate(Vector.create(this.get_shape_dimension(vector.x, 1, 0), this.get_shape_dimension(vector.y, 1, 0)), this.rotation));
   }
 
   draw_point_location(vector, scale) {
-    return Vector.add(this.screenpos, Vector.mult(Vector.rotate(Vector.create(this.get_shape_dimension(vector.x, 1, 0), this.get_shape_dimension(vector.y, 1)), this.rotation), scale));
-  }
-
-  // checks whether a shape is active and drawable
-  check_shape(shape) {
-    if (shape.activate_below != null && this.health.health / this.health.capacity > shape.activate_below) return false;
-    if (shape.activate_above != null && this.health.health / this.health.capacity < shape.activate_above) return false;
-    return true;
+    return Vector.add(this.screenpos, Vector.mult(Vector.rotate(Vector.create(this.get_shape_dimension(vector.x, 1, 0), this.get_shape_dimension(vector.y, 1, 0)), this.rotation), scale));
   }
 
   get_shape_dimension(dimension, multiplier = 1, normal = 1) {
@@ -156,53 +170,44 @@ export class Thing {
   }
 
   draw(scale = camera.scale) {
-    if (this.invisible) return;
     for (const shape of this.shapes) {
-      this.draw_shape(scale, shape);
-    }
-    for (const shape of this.shapes2) {
       this.draw_shape(scale, shape);
     }
   }
 
   draw_shape(scale, shape, options = { }) {
-    if (!this.check_shape(shape)) return;
     ctx.lineWidth = (shape.width || 3);
+    const size = this.size * scale;
     const type = shape.type;
+    console.log(this.x);
     const location = this.draw_point_location(Vector.create(shape.x, shape.y), scale);
     const x = location.x;
     const y = location.y;
     const rot = (shape.rotation || 0) + this.rotation;
-    let r, w, h, location2, x2, y2, c, fill;
+    let r, w, h, location2, x2, y2, c, stroke;
+    stroke = options.stroke || shape.stroke || this.stroke || C.transparent;
     c = options.color || shape.color || this.color;
-    fill = options.fill || shape.fill || this.fill || C.transparent;
-    const whiteness = ((this.invincible) ? 0.5 * (bounce(Thing.time, 10)) : 0);
-    ctx.strokeStyle = (whiteness === 0) ? c : chroma.mix(c, C.white, whiteness);
-    ctx.fillStyle = (whiteness === 0) ? fill : chroma.mix(fill, C.white, whiteness);
-    if (type.includes("fade")) {
-      const mix_fade = 1 - this.get_shoot_ratio(shape.shoot_index, shape.duration_reload);
-      ctx.strokeStyle = chroma.mix(ctx.strokeStyle, shape.fade_color || C.transparent, mix_fade);
-      ctx.fillStyle = chroma(ctx.fillStyle).alpha(chroma(ctx.fillStyle).alpha() * mix_fade);
-    }
+    ctx.strokeStyle = stroke;
+    ctx.fillStyle = c;
     switch (type) {
       case "circle":
-        r = this.get_shape_dimension(shape.r, 1 * scale);
+        r = size * (shape.r || 1);
         draw.circle(ctx, x, y, r);
         ctx.fill();
         ctx.stroke();
         break;
       case "square":
       case "rectangle":
-        w = this.get_shape_dimension(shape.w, 2 * scale);
-        h = this.get_shape_dimension(shape.h, 2 * scale);
+        w = size * (shape.w || 1) * 2;
+        h = size * (shape.h || 1) * 2;
         draw.fill_rectangle_angle(ctx, x, y, w, h, rot);
         draw.stroke_rectangle_angle(ctx, x, y, w, h, rot);
         break;
       case "rounded_square":
       case "rounded_rectangle":
-        // TODO: actually rounded rectangle
-        w = this.get_shape_dimension(shape.w, 2 * scale);
-        h = this.get_shape_dimension(shape.h, 2 * scale);
+        // TODO: make an actually rounded rectangle
+        w = size * (shape.w || 1) * 2;
+        h = size * (shape.h || 1) * 2;
         draw.fill_rectangle_angle(ctx, x, y, w, h, rot);
         draw.stroke_rectangle_angle(ctx, x, y, w, h, rot);
         break;
@@ -213,7 +218,7 @@ export class Thing {
         draw.line(ctx, x, y, x2, y2);
         break;
       case "polygon":
-        r = this.get_shape_dimension(shape.r, 1 * scale, shape.shoot_index || 0);
+        r = size * (shape.r || 1);
         draw.regular_polygon(ctx, shape.sides, r, x, y, rot);
         ctx.fill();
         ctx.stroke();
@@ -247,9 +252,9 @@ export class Thing {
       isBullet: this.is_bullet,
       collisionFilter: this.collision_filter,
       label: this.label,
-      density: this.density * config.physics.density_factor,
+      density: this.density * Thing.settings.density_factor,
       restitution: this.restitution,
-      frictionAir: this.friction * config.physics.friction_factor,
+      frictionAir: this.friction * Thing.settings.friction_factor,
       friction: 0,
       frictionStatic: 0,
     };
@@ -290,11 +295,11 @@ export class Thing {
     }
     body.thing = this;
     body.restitution = this.restitution;
-    Body.setAngle(body, this.target.rotation);
+    Body.setAngle(body, this.initial_angle);
     this.body = body;
     Composite.add(world, this.body);
     // set velocity
-    Body.setVelocity(body, this.target.velocity);
+    Body.setVelocity(body, this.initial_velocity);
   }
 
   remove() {
@@ -333,7 +338,7 @@ export class Thing {
   }
 
   move_force(v) {
-    const move_v = Vector.mult(v, this.speed * this.body.mass * config.physics.force_factor);
+    const move_v = Vector.mult(v, this.speed * this.body.mass * Thing.settings.force_factor);
     if (this.body != null) {
       Body.applyForce(this.body, this.position, move_v);
     }
