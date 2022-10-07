@@ -1,20 +1,13 @@
-# Welcome to MkDocs
+<!-- Boxes and shit -->
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Neutron Stars
+Pauli and His Principle
+Why they're called neutron stars
+The structures of Neutron Stars
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Quark Stars
+Strange Matter
+Conclusion
 
 <iframe style="height:50vmin; width:50vmin;" src="interactive/index.html">
 </iframe>
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
