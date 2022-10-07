@@ -1,3 +1,11 @@
+.question {
+    font-size: 1.5rem;
+}
+
+.result {
+    font-size: 0.75rem;
+}
+
 button.quizBtn {
     margin: 0.5ch;
     width: calc(100% - 1ch);
@@ -20,6 +28,16 @@ button.quizIncorrect {
     color: black;
 }
 
-div.quiz {
-    width: 100%;
+details {
+    background: gainsboro;
+    padding: 10px;
+}
+
+details summary {
+    cursor: pointer;
+    transition: margin 150ms ease-out;
+}
+
+details[open] summary {
+    margin-bottom: 10px;
 }

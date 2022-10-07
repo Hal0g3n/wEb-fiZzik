@@ -36,7 +36,7 @@ theme:
         code: Roboto Mono
     favicon: assets/favicon.png
     icon:
-        logo: material/circle
+        logo: /fontawesome/solid/shuttle-space
 
     palette:
         - media: "(prefers-color-scheme: dark)"
