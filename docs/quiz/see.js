@@ -63,6 +63,8 @@ export const clip_visibility_polygon = () => {
 
   //console.log(result.length);
   const s = camera.object_position(start);
+  ctx.beginPath();
+  ctx.moveTo(s.x, s.y);
   for (const triangle of result) {
     const p1 = triangle[0];
     const p2 = triangle[1];
@@ -70,15 +72,46 @@ export const clip_visibility_polygon = () => {
     ctx.strokeStyle = "#00000000";
     const e1 = camera.object_position(p1);
     const e2 = camera.object_position(p2);
-    ctx.beginPath();
-    ctx.moveTo(s.x, s.y);
     ctx.lineTo(e1.x, e1.y);
     ctx.lineTo(e2.x, e2.y);
     ctx.lineTo(s.x, s.y);
-    ctx.fill();
-    //draw.line(ctx, s.x, s.y, e1.x, e1.y);
-    //draw.line(ctx, s.x, s.y, e2.x, e2.y);
   }
+  ctx.clip();
+
+  draw_lighting();
+
+}
+
+// call this function after clipping
+export const draw_lighting = () => {
+ 
+  const centre = camera.object_position(player.position);
+  const x = centre.x;
+  const y = centre.y;
+
+  const w = screen.w;
+  const h = screen.h;
+  const min_radius = player.size;
+  const max_radius = Math.sqrt(w * w + h * h);
+  
+  const gradient = ctx.createRadialGradient(x, y, min_radius, x, y, max_radius);
+  gradient.addColorStop(0, "#ffff0040");
+  gradient.addColorStop(0.1, "#ffff0010");
+  gradient.addColorStop(0.6, "#ffff0005");
+  gradient.addColorStop(1, "#ffff0000");
+  ctx.fillStyle = gradient;
+
+  draw.circle(ctx, x, y, max_radius);
+  ctx.fill();
+  
+  /*
+  ctx.fillStyle = "#ffff0002";
+  for (let i = 30; i < max_radius; i += 50) {
+    let r = i;
+    draw.circle(ctx, centre.x, centre.y, r);
+    ctx.fill();
+  }
+  */
 
 }
 
