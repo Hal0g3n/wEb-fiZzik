@@ -9,7 +9,9 @@ const make_room = (x, y, w, h) => {
     { shapes: [{ type: "line", x1: 200, y1: 200, x2: -200, y2: 200, }] },
     { shapes: [{ type: "line", x1: -200, y1: -200, x2: 200, y2: -200, }] },
     { shapes: [{ type: "line", x1: -200, y1: -200, x2: -200, y2: 200, }] },
-    { shapes: [{ type: "polygon", sides: 3, r: 10, }], x: 100, y: -100, },
+    { shapes: [{ type: "line", x1: -140, y1: -100, x2: 30, y2: 100, }] },
+    { shapes: [{ type: "line", x1: 80, y1: -30, x2: 50, y2: 140, }] },
+    //{ shapes: [{ type: "polygon", sides: 3, r: 10, }], x: 100, y: -100, },
   ];
 }
 

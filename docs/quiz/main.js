@@ -1,12 +1,11 @@
 
+import { Thing, player } from "./thing.js";
 import { camera } from "./camera.js";
 import { init_key, add_key_listener } from "./key.js";
 import { make } from "./lib.js";
 import { init_map } from "./maps.js";
-import { player } from "./player.js";
-import { Thing } from "./thing.js";
+import { get_visibility_polygon } from "./see.js";
 import { init_ui, ui } from "./ui.js";
-import { util } from "./util.js";
 
 const Engine = Matter.Engine,
       Runner = Matter.Runner,
@@ -16,6 +15,12 @@ const Engine = Matter.Engine,
 
 export const canvas = document.getElementById("canvas");
 export const ctx = canvas.getContext("2d");
+export const screen = {
+  x: 0,
+  y: 0,
+  w: 0,
+  h: 0,
+};
 
 // create the engine (and world)
 export const engine = Engine.create({
@@ -104,6 +109,8 @@ const init_canvas = function() {
 const resize = function() {
   const w = window.innerWidth;
   const h = window.innerHeight;
+  screen.w = w;
+  screen.h = h;
   canvas.width = w;
   canvas.height = h;
   canvas.style.width = w;

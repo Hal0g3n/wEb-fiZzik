@@ -1,7 +1,8 @@
 import { camera } from "./camera.js";
 import { draw } from "./draw.js";
+import { check_keys, add_key_listener } from "./key.js";
 import { C, category, make } from "./lib.js";
-import { canvas, ctx, world } from "./main.js";
+import { canvas, ctx, screen, world } from "./main.js";
 import { ui } from "./ui.js";
 import { util } from "./util.js";
 
@@ -171,6 +172,118 @@ export class Thing {
 
   }
 
+  memo_shape_size = null;
+
+  roughly_on_screen() { // not exact
+    const shape = this.get_body_shape();
+    let shape_size = this.memo_shape_size;
+    if (shape_size == null) {
+      shape_size = this.size;
+      if (shape.type === "line") {
+        let minx = Math.min(0, shape.x1 || 0, shape.x2 || 0);
+        let maxx = Math.max(0, shape.x1 || 0, shape.x2 || 0);
+        let miny = Math.min(0, shape.y1 || 0, shape.y2 || 0);
+        let maxy = Math.max(0, shape.y1 || 0, shape.y2 || 0);
+        let dx = maxx - minx;
+        let dy = maxy - miny;
+        shape_size *= Math.sqrt(dx * dx + dy * dy);
+      } else if (shape.type === "polygon") {
+        shape_size *= shape.r || 1;
+      } else if (shape.type === "rectangle") {
+        shape_size *= Math.max(shape.w || 1, shape.h || 1);
+      }
+    }
+    const screenpos = this.screenpos;
+    return !(screenpos.x + shape_size < 0 || screenpos.x - shape_size > screen.w
+      || screenpos.y + shape_size < 0 || screenpos.y - shape_size > screen.h); 
+  }
+
+  exactly_on_screen() { // very exact
+    let points_on_screen = 0;
+    for (const point of this.get_points()) {
+      const draw_point = camera.object_position(point);
+      if (draw_point.x < 0 || draw_point.x > w) break;
+      if (draw_point.y < 0 || draw_point.y > h) break;
+      points_on_screen++;
+    }
+    return points_on_screen > 0;
+  }
+
+  fully_on_screen() { // very exact
+    const points = this.get_points();
+    for (const point of points) {
+      const draw_point = camera.object_position(point);
+      if (draw_point.x < 0 || draw_point.x > w) return false;
+      if (draw_point.y < 0 || draw_point.y > h) return false;
+    }
+    return true;
+  }
+
+  memo_shape_points = null;
+  memo_get_points = null;
+
+  // returns an array of points (in world coordinates)
+  get_points() {
+
+    if (this.fixed && this.memo_get_points != null) {
+      return this.memo_get_points;
+    }
+
+    const shape = this.get_body_shape();
+    const shape_points = this.memo_shape_points || [ ];
+    const points = [ ];
+
+    if (shape_points.length <= 0) {
+      if (shape.type === "line") {
+        shape_points.push(Vector.create(shape.x1, shape.y1));
+        shape_points.push(Vector.create(shape.x2, shape.y2));
+      } else if (shape.type === "polygon") {
+        shape_points.push(...util.regpoly(shape.sides, shape.r || 1, shape.rotation || 0, shape.x, shape.y));
+      } else if (shape.type === "rectangle") {
+        if (shape.w * this.size <= 1) {
+          const _h = shape.h;
+          shape_points.push(Vector.create(shape.x, shape.y + _h));
+          shape_points.push(Vector.create(shape.x, shape.y - _h));
+        } else if (shape.h * this.size <= 1) {
+          const _w = shape.w;
+          shape_points.push(Vector.create(shape.x + _w, shape.y));
+          shape_points.push(Vector.create(shape.x - _w, shape.y));
+        } else {
+          const _w = shape.w;
+          const _h = shape.h;
+          shape_points.push(Vector.create(shape.x + _w, shape.y + _h));
+          shape_points.push(Vector.create(shape.x - _w, shape.y + _h));
+          shape_points.push(Vector.create(shape.x + _w, shape.y - _h));
+          shape_points.push(Vector.create(shape.x - _w, shape.y - _h));
+        }
+      }
+    }
+
+    for (const shape_point of shape_points) {
+      points.push(this.real_point_location(shape_point));
+    }
+    
+    if (this.fixed) {
+      this.memo_get_points = points;
+    }
+    return points;
+
+  }
+
+  get_body_shape() {
+    const shapes = this.shapes;
+    if (shapes.length <= 0) {
+      console.error("nobody exists")
+    } else if (shapes.length === 1) {
+      return shapes[0];
+    } else {
+      for (const s of shapes) {
+        if (s.body) return shape = s;
+      }
+      return shapes[0];
+    }
+  }
+
   real_point_location(vector) {
     return Vector.add(this.position, Vector.rotate(Vector.create(this.get_shape_dimension(vector.x, 1, 0), this.get_shape_dimension(vector.y, 1, 0)), this.rotation));
   }
@@ -208,7 +321,7 @@ export class Thing {
     const x = location.x;
     const y = location.y;
     const rot = (shape.rotation || 0) + this.rotation;
-    let r, w, h, location2, x2, y2, c, stroke;
+    let r, w, h, location1, x1, y1, location2, x2, y2, c, stroke;
     stroke = options.stroke || shape.stroke || this.stroke || C.transparent;
     c = options.color || shape.color || this.color;
     ctx.strokeStyle = stroke;
@@ -236,10 +349,14 @@ export class Thing {
         draw.stroke_rectangle_angle(ctx, x, y, w, h, rot);
         break;
       case "line":
+        location1 = this.draw_point_location(Vector.create(shape.x1, shape.y1), scale);
+        x1 = location1.x;
+        y1 = location1.y;
         location2 = this.draw_point_location(Vector.create(shape.x2, shape.y2), scale);
         x2 = location2.x;
         y2 = location2.y;
-        draw.line(ctx, x, y, x2, y2);
+        ctx.strokeStyle = ctx.fillStyle; // temp
+        draw.line(ctx, x1, y1, x2, y2);
         break;
       case "polygon":
         r = size * (shape.r || 1);
@@ -308,9 +425,19 @@ export class Thing {
       const vertices = util.regpoly(shape.sides, r, shape.rotation || 0, x, y);
       body = Bodies.fromVertices(x, y, [vertices], options); // Bodies.polygon(x, y, shape.sides, r, options);
     } else if (type.includes("line") && false) { // not yet ready
+      /*
+      const x = shape.x2 - shape.x1;
+      const y = shape.y2 - shape.y1;
+      const newx = (shape.x1 + shape.x2) / 2;
+      const newy = (shape.y1 + shape.y2) / 2;
+      const newlength = Math.sqrt(x * x + y * y) / 2;
+      const newposition = Vector.create(newx, newy);
+      const newangle = Math.atan2(shape.x2 - newx, shape.y2 - newy);
+      this.initial_angle += newangle;
+      */
       const location2 = this.real_point_location(Vector.create(shape.x2, shape.y2));
       const middle = Vector.mult(Vector.add(location, location2), 0.5);
-      const vertices = [Vector.sub(location, middle), Vector.sub(location2, middle)];
+      const vertices = [Vector.sub(location, middle), Vector.sub(location2, middle), Vector.sub(location, middle)];
       console.log(vertices);
       body = Bodies.fromVertices(0, 0, vertices, options);
     } else {
@@ -375,5 +502,47 @@ export class Thing {
   }
 
 }
+
+
+// amogus.js, but here now becausse of import issues...
+
+export class Amogus extends Thing {
+
+  static tick() {
+    
+  }
+
+  constructor() {
+    super(Vector.create(0, 0));
+    this.make(make.player);
+  }
+
+  tick() {
+    super.tick();
+    this.tick_player();
+  }
+
+  tick_player() {
+    // this.target.facing = camera.mouse_position;
+    // move player
+    const move_x = (check_keys(["ArrowRight", "KeyD"]) ? 1 : 0) - (check_keys(["ArrowLeft", "KeyA"]) ? 1 : 0);
+    const move_y = (check_keys(["ArrowDown", "KeyS"]) ? 1 : 0) - (check_keys(["ArrowUp", "KeyW"]) ? 1 : 0);
+    this.move_force(Vector.normalise(Vector.create(move_x, move_y)));
+  }
+
+  draw(ctx) {
+    super.draw(ctx);
+    this.draw_player(ctx);
+  }
+
+  draw_player(ctx) {
+    // among us
+    // sus?
+  }
+
+}
+
+export const player = new Amogus();
+
 
 window.Thing = Thing;

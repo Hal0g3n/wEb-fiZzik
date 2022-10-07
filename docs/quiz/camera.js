@@ -1,6 +1,6 @@
-import { Thing } from "./thing.js";
+import { Thing, player } from "./thing.js";
 import { draw } from "./draw.js";
-import { player } from "./player.js";
+import { get_visibility_polygon } from "./see.js";
 import { draw_ui, draw_ui_before, draw_ui_middle } from "./ui.js";
 
 const Vector = Matter.Vector;
@@ -70,6 +70,7 @@ export class Camera {
     draw.clear(ctx, "#000000");
     draw_ui_before(ctx);
     Thing.draw_things();
+    get_visibility_polygon();
     draw_ui_middle(ctx);
     draw_ui(ctx);
   }
