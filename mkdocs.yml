@@ -36,7 +36,7 @@ theme:
         code: Roboto Mono
     favicon: assets/favicon.png
     icon:
-        logo: material/telescope
+        logo: material/circle
 
     palette:
         - media: "(prefers-color-scheme: dark)"
@@ -58,10 +58,14 @@ markdown_extensions:
     - pymdownx.superfences
     - pymdownx.tabbed:
         alternate_style: true 
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
 
 extra_css:
     - stylesheets/style.css
     - stylesheets/quiz.css
+    - stylesheets/card.css
   
 extra_javascript:
     - javascripts/mathjax.js
