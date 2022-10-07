@@ -1,6 +1,6 @@
 import { Thing, player } from "./thing.js";
 import { draw } from "./draw.js";
-import { get_visibility_polygon } from "./see.js";
+import { clip_visibility_polygon, unclip_visibility_polygon } from "./see.js";
 import { draw_ui, draw_ui_before, draw_ui_middle } from "./ui.js";
 
 const Vector = Matter.Vector;
@@ -69,8 +69,9 @@ export class Camera {
     this.height = window.innerHeight;
     draw.clear(ctx, "#000000");
     draw_ui_before(ctx);
+    clip_visibility_polygon();
     Thing.draw_things();
-    get_visibility_polygon();
+    unclip_visibility_polygon();
     draw_ui_middle(ctx);
     draw_ui(ctx);
   }

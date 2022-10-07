@@ -4,7 +4,7 @@ import { camera } from "./camera.js";
 import { init_key, add_key_listener } from "./key.js";
 import { make } from "./lib.js";
 import { init_map } from "./maps.js";
-import { get_visibility_polygon } from "./see.js";
+import { clip_visibility_polygon } from "./see.js";
 import { init_ui, ui } from "./ui.js";
 
 const Engine = Matter.Engine,

@@ -202,8 +202,8 @@ export class Thing {
     let points_on_screen = 0;
     for (const point of this.get_points()) {
       const draw_point = camera.object_position(point);
-      if (draw_point.x < 0 || draw_point.x > w) break;
-      if (draw_point.y < 0 || draw_point.y > h) break;
+      if (draw_point.x < 0 || draw_point.x > w) continue;
+      if (draw_point.y < 0 || draw_point.y > h) continue;
       points_on_screen++;
     }
     return points_on_screen > 0;
@@ -239,6 +239,8 @@ export class Thing {
         shape_points.push(Vector.create(shape.x2, shape.y2));
       } else if (shape.type === "polygon") {
         shape_points.push(...util.regpoly(shape.sides, shape.r || 1, shape.rotation || 0, shape.x, shape.y));
+      } else if (shape.type === "circle") {
+        shape_points.push(...util.regpoly(12, shape.r || 1, 0, shape.x, shape.y));
       } else if (shape.type === "rectangle") {
         if (shape.w * this.size <= 1) {
           const _h = shape.h;
@@ -256,6 +258,8 @@ export class Thing {
           shape_points.push(Vector.create(shape.x + _w, shape.y - _h));
           shape_points.push(Vector.create(shape.x - _w, shape.y - _h));
         }
+      } else {
+        console.error("Invalid shape type for get_points: " + shape.type + "!")
       }
     }
 
