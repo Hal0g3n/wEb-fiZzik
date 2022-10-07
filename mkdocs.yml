@@ -3,18 +3,23 @@ site_name: PC5132 Website
 nav:
     - Welcome: index.md
     - Neutron Stars:
-        - What?: Neutron Stars/Intro.md
-        - How?: Neutron Stars/Theory.md
-    - Quark Stars: Quek Stars.md
+        - Preview: 1.md
+        - Principles of Pauli: 2.md
+        - The Origin: 3.md
+        - The Structure: 4.md
+    - Quark Stars: 5.md
+    - Strange Matter: 6.md
+    - Fin: Conclusion.md
 
 theme:
     name: "material"
-    # custom_dir: "ballll/"
+    custom_dir: "material/"
 
     features:
-        - navigation.tabs
         - search.suggest
         - search.share
+        - navigation.top
+        - navigation.instant
 
     # 404 page
     static_templates:
@@ -31,7 +36,7 @@ theme:
         code: Roboto Mono
     favicon: assets/favicon.png
     icon:
-        logo: material/telescope
+        logo: material/circle
 
     palette:
         - media: "(prefers-color-scheme: dark)"
@@ -49,11 +54,18 @@ theme:
 
 markdown_extensions:
     - pymdownx.arithmatex:
-          generic: true
+        generic: true
+    - pymdownx.superfences
+    - pymdownx.tabbed:
+        alternate_style: true 
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
 
 extra_css:
     - stylesheets/style.css
     - stylesheets/quiz.css
+    - stylesheets/card.css
   
 extra_javascript:
     - javascripts/mathjax.js
