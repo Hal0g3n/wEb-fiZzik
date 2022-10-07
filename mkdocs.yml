@@ -1,20 +1,25 @@
 site_name: PC5132 Website
 
 nav:
-    - Welcome: index.md
+    - Welcome: "!Outline.md"
     - Neutron Stars:
-        - What?: Neutron Stars/Intro.md
-        - How?: Neutron Stars/Theory.md
-    - Quark Stars: Quek Stars.md
+        - Preview: 1.md
+        - Principles of Pauli: 2.md
+        - The Origin: 3.md
+        - The Structure: 4.md
+    - Quark Stars: 5.md
+    - Strange Matter: 6.md
+    - Fin: Conclusion.md
 
 theme:
     name: "material"
-    # custom_dir: "ballll/"
+    custom_dir: "material/"
 
     features:
-        - navigation.tabs
+        - header.autohide
         - search.suggest
         - search.share
+        - navigation.top
 
     # 404 page
     static_templates:
@@ -49,7 +54,10 @@ theme:
 
 markdown_extensions:
     - pymdownx.arithmatex:
-          generic: true
+        generic: true
+    - pymdownx.superfences
+    - pymdownx.tabbed:
+        alternate_style: true 
 
 extra_css:
     - stylesheets/style.css
