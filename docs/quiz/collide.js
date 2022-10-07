@@ -1,5 +1,7 @@
 export const collide = { };
 
+const PI = Math.PI;
+
 const Vector = Matter.Vector;
 
 collide.point_circle = (point, circle, r) => {
@@ -73,11 +75,45 @@ collide.line_circle = (a, b, circle, radius, nearest) => {
 
 // added and modified from https://github.com/Silverwolf90/2d-visibility/blob/master/src/
 
+collide.calculate_segment_angles = (source, segment) => {
+  const x = source.x;
+  const y = source.y;
+  const dx = 0.5 * (segment.p1.x + segment.p2.x) - x;
+  const dy = 0.5 * (segment.p1.y + segment.p2.y) - y;
+
+  segment.d = (dx * dx) + (dy * dy);
+  segment.p1.angle = Math.atan2(segment.p1.y - y, segment.p1.x - x);
+  segment.p2.angle = Math.atan2(segment.p2.y - y, segment.p2.x - x);
+};
+
+collide.calculate_segment_beginning = (segment) => {
+  let angle = segment.p2.angle - segment.p1.angle;
+
+  if (angle <= -PI) angle += 2 * PI;
+  if (angle > PI) angle -= 2 * PI;
+
+  segment.p1.begin = angle > 0;
+  segment.p2.begin = !segment.p1.begin;
+};
+
+collide.make_segment = (source, p1, p2) => {
+  const segment = {
+    p1: Vector.clone(p1),
+    p2: Vector.clone(p2),
+    d: 0,
+  }
+  segment.p1.segment = segment;
+  segment.p2.segment = segment;
+  collide.calculate_segment_angles(source, segment);
+  collide.calculate_segment_beginning(segment);
+  return segment;
+}
+
 collide.endpoint_sort_comparator = (p1, p2) => {
   if (p1.angle > p2.angle) return 1;
   if (p1.angle < p2.angle) return -1;
-  if (!p1.beginsSegment && p2.beginsSegment) return 1;
-  if (p1.beginsSegment && !p2.beginsSegment) return -1;
+  if (!p1.begin && p2.begin) return 1;
+  if (p1.begin && !p2.begin) return -1;
   return 0;
 };
 
@@ -95,9 +131,11 @@ collide.lerp_vector = (p1, p2, f) => {
 };
 
 collide.segment_in_front = (seg1, seg2, relative_point) => {
+
   const A1 = collide.left_of(seg1, collide.lerp_vector(seg2.p1, seg2.p2, 0.01));
   const A2 = collide.left_of(seg1, collide.lerp_vector(seg2.p2, seg2.p1, 0.01));
   const A3 = collide.left_of(seg1, relative_point);
+  
   const B1 = collide.left_of(seg2, collide.lerp_vector(seg1.p1, seg1.p2, 0.01));
   const B2 = collide.left_of(seg2, collide.lerp_vector(seg1.p2, seg1.p1, 0.01));
   const B3 = collide.left_of(seg2, relative_point);
@@ -108,6 +146,7 @@ collide.segment_in_front = (seg1, seg2, relative_point) => {
   if (B1 === B2 && B2 === B3) return false;
 
   return false;
+
 };
 
 collide.line_intersection = (p1, p2, p3, p4) => {
@@ -125,8 +164,9 @@ collide.line_intersection = (p1, p2, p3, p4) => {
 };
 
 collide.triangle_points = (origin_point, angle1, angle2, segment) => {
+
   const p1 = origin_point;
-  const p2 = Vector.create(origin_point.x + cos(angle1), origin_point.y + sin(angle1));
+  const p2 = Vector.create(origin_point.x + Math.cos(angle1), origin_point.y + Math.sin(angle1));
   const p3 = Vector.create(0, 0);
   const p4 = Vector.create(0, 0);
 
@@ -136,35 +176,38 @@ collide.triangle_points = (origin_point, angle1, angle2, segment) => {
     p4.x = segment.p2.x;
     p4.y = segment.p2.y;
   } else {
-    p3.x = origin_point.x + cos(angle1) * 200;
-    p3.y = origin_point.y + sin(angle1) * 200;
-    p4.x = origin_point.x + cos(angle2) * 200;
-    p4.y = origin_point.y + sin(angle2) * 200;
+    p3.x = origin_point.x + Math.cos(angle1) * 200;
+    p3.y = origin_point.y + Math.sin(angle1) * 200;
+    p4.x = origin_point.x + Math.cos(angle2) * 200;
+    p4.y = origin_point.y + Math.sin(angle2) * 200;
   }
 
   const start = collide.line_intersection(p3, p4, p1, p2);
 
-  p2.x = origin_point.x + cos(angle2);
-  p2.y = origin_point.y + sin(angle2);
+  p2.x = origin_point.x + Math.cos(angle2);
+  p2.y = origin_point.y + Math.sin(angle2);
 
   const end = collide.line_intersection(p3, p4, p1, p2);
 
   return [start, end];
+
 };
 
-collide.calculateVisibility = (origin, endpoints) => {
-  let open_segments = [];
-  let output = [];
+collide.calculate_visibility = (origin, endpoints) => {
+
+  const open_segments = [ ];
+  const output = [ ];
   let begin_angle = 0;
 
   endpoints.sort(collide.endpoint_sort_comparator);
 
-  for(let pass = 0; pass < 2; pass += 1) {
+  for (let pass = 0; pass < 2; pass += 1) {
+
     for (let i = 0; i < endpoints.length; i += 1) {
       let endpoint = endpoints[i];
       let open_segment = open_segments[0];
       
-      if (endpoint.beginsSegment) {
+      if (endpoint.begin) {
         let index = 0;
         let segment = open_segments[index];
         while (segment && collide.segment_in_front(endpoint.segment, segment, origin)) {
@@ -184,13 +227,22 @@ collide.calculateVisibility = (origin, endpoints) => {
       
       if (open_segment !== open_segments[0]) {
         if (pass === 1) {
-          let triangle_points = collide.triangle_points(origin, begin_angle, endpoint.angle, open_segment);
+          const triangle_points = collide.triangle_points(origin, begin_angle, endpoint.angle, open_segment);
           output.push(triangle_points);
         }
         begin_angle = endpoint.angle;
       }
     }
+
   }
 
   return output;
+
+};
+
+const flat_map = (cb, array) =>
+  array.reduce((flat_array, item) => flat_array.concat(cb(item)), []);
+
+collide.get_endpoints_from_segments = (segments) => {
+  return flat_map((segment) => [segment.p1, segment.p2], segments);
 };

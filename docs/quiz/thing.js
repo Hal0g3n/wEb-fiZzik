@@ -1,4 +1,5 @@
 import { camera } from "./camera.js";
+import { collide } from "./collide.js";
 import { draw } from "./draw.js";
 import { check_keys, add_key_listener } from "./key.js";
 import { C, category, make } from "./lib.js";
@@ -255,11 +256,11 @@ export class Thing {
           const _h = shape.h;
           shape_points.push(Vector.create(shape.x + _w, shape.y + _h));
           shape_points.push(Vector.create(shape.x - _w, shape.y + _h));
-          shape_points.push(Vector.create(shape.x + _w, shape.y - _h));
           shape_points.push(Vector.create(shape.x - _w, shape.y - _h));
+          shape_points.push(Vector.create(shape.x + _w, shape.y - _h));
         }
       } else {
-        console.error("Invalid shape type for get_points: " + shape.type + "!")
+        console.error("thing.get_points: invalid shape type for get_points: " + shape.type + "!")
       }
     }
 
@@ -271,6 +272,46 @@ export class Thing {
       this.memo_get_points = points;
     }
     return points;
+
+  }
+
+  memo_get_segments = null;
+  
+  // returns an array of segments (collide.make_segment) typed
+  get_segments() {
+
+    const source = player.position;
+
+    if (this.fixed && this.memo_get_segments != null) {
+      for (const segment of this.memo_get_segments) {
+        collide.calculate_segment_angles(source, segment);
+        collide.calculate_segment_beginning(segment);
+      }
+      return this.memo_get_segments;
+    }
+
+    const points = this.get_points();
+    const segments = [ ];
+
+    if (points.length === 2) {
+      const p1 = points[0];
+      const p2 = points[1];
+      segments.push(collide.make_segment(source, p1, p2));
+    } else if (points.length > 2) {
+      for (let i = 0; i < points.length; i++) {
+        const p1 = points[i];
+        const p2 = points[(i + 1) % points.length];
+        segments.push(collide.make_segment(source, p1, p2));
+      }
+    } else {
+      console.error("thing.get_segments: Less than 2 points!");
+    }
+    
+    if (this.fixed) {
+      this.memo_get_segments = segments;
+    }
+
+    return segments;
 
   }
 

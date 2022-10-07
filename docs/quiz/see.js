@@ -1,5 +1,6 @@
 // yuan
 import { camera } from "./camera.js";
+import { collide } from "./collide.js";
 import { draw } from "./draw.js";
 import { screen, ctx } from "./main.js";
 import { Thing, player} from "./thing.js";
@@ -18,8 +19,8 @@ export const clip_visibility_polygon = () => {
   // get points from all things
 
   const points = [ ];
-  const relevant_things = [ ];
   const bodies = [ ];
+  const end_points = [ ];
 
   for (const t of Thing.things) {
     if (t.body == null || t == player) continue;
@@ -32,14 +33,16 @@ export const clip_visibility_polygon = () => {
       points_on_screen++;
       points.push(point);
     }
-    if (points_on_screen > 0) {
-      relevant_things.push(t);
-      bodies.push(t.body);
-    }
+    bodies.push(t.body);
+    const segments = t.get_segments();
+    end_points.push(...collide.get_endpoints_from_segments(segments));
   }
 
   const start = player.position;
-  console.log(points.length);
+
+  /*
+
+  // just a test
 
   for (let i = 0; i < points.length; i++) {
     const point = points[i];
@@ -52,6 +55,29 @@ export const clip_visibility_polygon = () => {
     const s = camera.object_position(start);
     const e = camera.object_position(end);
     draw.line(ctx, s.x, s.y, e.x, e.y);
+  }
+  */
+
+  // the real thing is in collide
+  const result = collide.calculate_visibility(start, end_points);
+
+  //console.log(result.length);
+  const s = camera.object_position(start);
+  for (const triangle of result) {
+    const p1 = triangle[0];
+    const p2 = triangle[1];
+    ctx.fillStyle = "#ff000055";
+    ctx.strokeStyle = "#00000000";
+    const e1 = camera.object_position(p1);
+    const e2 = camera.object_position(p2);
+    ctx.beginPath();
+    ctx.moveTo(s.x, s.y);
+    ctx.lineTo(e1.x, e1.y);
+    ctx.lineTo(e2.x, e2.y);
+    ctx.lineTo(s.x, s.y);
+    ctx.fill();
+    //draw.line(ctx, s.x, s.y, e1.x, e1.y);
+    //draw.line(ctx, s.x, s.y, e2.x, e2.y);
   }
 
 }
