@@ -144,7 +144,7 @@ const draw_bottom_text = () => {
   const text_height = util.lerp(old_bottom_text_height, target_bottom_text_height, 0.1);
   old_bottom_text_height = text_height;
 
-  if (ui.time - bottom_text_time > 200) {
+  if (ui.time - bottom_text_time > bottom_text_timeout) {
     bottom_text_time = 0;
     target_bottom_text_height = -50;
   }
@@ -162,20 +162,34 @@ const draw_bottom_text = () => {
   ctx.textAlign = "center";
 
   w = draw.get_text_width([bottom_text]);
+  if (w > _w * 0.75) {
+    w = _w * 0.75;
+    const splitted = draw.split_text(bottom_text, _w * 0.75);
+    let yy = y - ((splitted.length - 1) * size * 2.5);
+    ctx.fillStyle = "#05a10020";
+    draw.fill_rect(_w / 2 - w / 2 - size, yy - size * 2, w + size * 2, size * 4 + (y - yy));
+    for (const s of splitted) {
+      ctx.fillStyle = C.white;
+      draw.fill_text(s, _w / 2, yy + 1);
+      yy += size * 2.5;
+    }
+  } else {
+    ctx.fillStyle = "#05a10020";
+    draw.fill_rect(_w / 2 - w / 2 - size, y - size * 2, w + size * 2, size * 4);
 
-  ctx.fillStyle = "#05a10020";
-  draw.fill_rect(_w / 2 - w / 2 - size, y - size * 2, w + size * 2, size * 4);
-
-  ctx.fillStyle = C.white;
-  draw.fill_text(bottom_text, _w / 2, y + 1);
+    ctx.fillStyle = C.white;
+    draw.fill_text(bottom_text, _w / 2, y + 1);
+  }
 
 }
 
-export const send_bottom_text = (text, target_height = 50, timeout = 200) => {
+export const send_bottom_text = (text, target_height = 50, timeout = null) => {
 
   if (bottom_text === text) {
     return;
   }
+
+  timeout = timeout || (text.split(" ").length * 20);
 
   const time_left = bottom_text_timeout - (ui.time - bottom_text_time);
   
@@ -197,7 +211,7 @@ export const send_bottom_text = (text, target_height = 50, timeout = 200) => {
     bottom_text_time = ui.time;
     bottom_text_timeout = timeout;
     target_bottom_text_height = target_height;
-  }, wait_time * 16 + 1000);
+  }, wait_time * 16 + 500);
 
 }
 

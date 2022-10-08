@@ -5,6 +5,7 @@ export const C = {
   transparent: "#00000000",
   white: "#ffffff",
   grey: "#808080",
+  floor_symbol: "#60606060",
   black: "#000000",
 
   red: "#ff0000", // "#amogus",
@@ -75,6 +76,11 @@ make.decoration = {
   parent: "wall",
   blocks_sight: false,
   decoration: true,
+};
+
+make.floor = {
+  parent: "decoration",
+  floor: true,
 };
 
 make.window = {

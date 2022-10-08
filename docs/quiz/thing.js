@@ -29,11 +29,21 @@ export class Thing {
 
   static draw_things = function() {
     // sorts things in ascending order of their layer property
+    /*
     const sorted_things = Thing.things.sort(function(a, b) {
       return a.layer - b.layer;
     });
-    for (const thing of sorted_things) {
-      thing.draw();
+    */
+    // (is it slow?)
+    for (const thing of Thing.things) {
+      if (thing.floor) {
+        thing.draw();
+      }
+    }
+    for (const thing of Thing.things) {
+      if (!thing.floor) {
+        thing.draw();
+      }
     }
   }
   
@@ -53,6 +63,7 @@ export class Thing {
 
   // property booleans
   exists = false;
+  floor = false;
   fixed = false;
   static = false;
   deleted = false;
@@ -389,7 +400,7 @@ export class Thing {
     const location = this.draw_point_location(Vector.create(shape.x, shape.y), scale);
     const x = location.x;
     const y = location.y;
-    const rot = (shape.rotation || 0) + this.rotation;
+    const rot = (shape.rotation || shape.angle || 0) + this.rotation;
     let r, w, h, location1, x1, y1, location2, x2, y2, c, stroke;
     c = options.color || shape.color || this.color;
     stroke = options.stroke || shape.stroke || this.stroke || c;
@@ -432,6 +443,10 @@ export class Thing {
         draw.regular_polygon(shape.sides, r, x, y, rot);
         ctx.fill();
         ctx.stroke();
+        break;
+      case "svg":
+        r = size * (shape.r || 1);
+        draw.svg(shape.svg, x, y, r, rot);
         break;
       default:
         console.error("Invalid shape type: " + type);
