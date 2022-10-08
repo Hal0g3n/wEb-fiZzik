@@ -81,14 +81,26 @@ const main_map = [
     { shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 300, y2: -400 - 60 * sqrt_2, }] },
     { shapes: [{ type: "line", x1: 300, y1: -400 - 60 * sqrt_2, x2: 500 + 60 * sqrt_2, y2: -200, }] },
     { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -200, x2: 500 + 60 * sqrt_2, y2: -70, }] },
+    {
+      shapes: [{ type: "line", x1: 505, y1: -70, x2: 500 + 58 * sqrt_2, y2: -70, }],
+      parent: "door", constraint: [{ type: "pivot", x: 500 + 58 * sqrt_2, y: -70, }, { type: "fix_point", x: 505, y: -70, }],
+      message: "Wow, a door! I've never seen one before!", message_once: true, // why does this rhyme
+    },
+    {
+      shapes: [{ type: "line", x1: -505, y1: -70, x2: -500 - 58 * sqrt_2, y2: -70, }],
+      parent: "door", constraint: [{ type: "pivot", x: -500 - 58 * sqrt_2, y: -70, }, { type: "fix_point", x: -505, y: -70, }],
+    },
+
 
     // right passage
     { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -70, x2: 800, y2: -70, }] },
     { shapes: [{ type: "line", x1: 500, y1: 70, x2: 800, y2: 70, }] },
+    { shapes: [{ type: "svg", svg: "arrow_right", x: 450, y1: 0, r: 75, }], parent: "floor", color: C.floor_symbol, },
 
     // left passage
     { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -800, y2: -70, }] },
     { shapes: [{ type: "line", x1: -500, y1: 70, x2: -800, y2: 70, }] },
+    { shapes: [{ type: "svg", svg: "arrow_left", x: -450, y1: 0, r: 75, }], parent: "floor", color: C.floor_symbol, },
 
   ], 0, 0),
   /*

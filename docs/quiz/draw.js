@@ -123,41 +123,41 @@ draw.stroke_text = function(s, x, y) {
   ctx.strokeText(s, x, y);
 }
 
-draw._split_text = function(text, maxWidth) {
+draw._split_text = function(text, max_width) {
   let words = text.split(" "),
       lines = [],
-      currentLine = words[0];
+      current_line = words[0];
   for (let i = 1; i < words.length; i++) {
     let word = words[i],
-        width = ctx.measureText(currentLine + " " + word).width;
-    if (width < maxWidth) {
-        currentLine += " " + word;
+        width = ctx.measureText(current_line + " " + word).width;
+    if (width < max_width) {
+        current_line += " " + word;
     } else {
-        lines.push(currentLine);
-        currentLine = word;
+        lines.push(current_line);
+        current_line = word;
     }
   }
-  lines.push(currentLine);
+  lines.push(current_line);
   return lines;
 }
 
-draw.split_text = function(text, maxWidth) {
+draw.split_text = function(text, max_width) {
   const lines = text.split("\n"),
         newlines = [];
   for (const line of lines) {
-    for (const a of draw._split_text(line, maxWidth)) {
+    for (const a of draw._split_text(line, max_width)) {
       newlines.push(a);
     }
   }
   return newlines;
 }
 
-draw.get_text_width = function(textArray) {
-  if (!Array.isArray(textArray)) {
-    textArray = [textArray];
+draw.get_text_width = function(text_array) {
+  if (!Array.isArray(text_array)) {
+    text_array = [text_array];
   }
   let _max = 0;
-  for (let text of textArray) {
+  for (let text of text_array) {
     _max = Math.max(_max, ctx.measureText(text).width);
   }
   return _max;

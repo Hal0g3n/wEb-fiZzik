@@ -259,6 +259,9 @@ const collide_start = function(a, b, pair) {
   if (u.player) {
     if (t.message != null) {
       send_bottom_text(t.message);
+      if (t.message_once) {
+        t.message = null;
+      }
     }
   }
 }
