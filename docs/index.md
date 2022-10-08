@@ -9,7 +9,7 @@ hide:
 
 <div class="cards">
     <a href="1" class="card">
-        <img src="https://d2kspx2x29brck.cloudfront.net/1200x675/filters:format(webp)/img/iea/y5wWkZZlwX/what-is-a-neutron-star-1.jpg" class="card__image" alt="" />
+        <img src="https://images-ext-1.discordapp.net/external/DOQryAi5r3twKOAClq8GkVq5fDSfX7cXoJX7FFWVs8w/https/static.scientificamerican.com/sciam/cache/file/D98268F4-B69A-4552-9B6122A4052D56C4_source.jpg?width=1052&height=701" class="card__image" alt="" />
         <div class="card__overlay">
             <p class="card__title">Neutron Stars</p>
             <p class="card__description">What are they really?</p>
