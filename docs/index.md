@@ -2,6 +2,10 @@
 hide:
 - toc
 ---
+<iframe style="position: absolute; top: 50px; left: 50%; width: 100vw; margin-left: -50vw; height:100vh;" allowtransparency="true" frameBorder="0" src="interactive/index.html">
+</iframe>
+
+# <center>Welcome</center>
 
 <div class="cards">
     <a href="1" class="card">
@@ -26,6 +30,3 @@ hide:
         </div>
     </a>    
 </div>
-
-<iframe style="height:50vmin; width:50vmin;" src="interactive/index.html">
-</iframe>

@@ -43,12 +43,12 @@ class Dot {
 
   static dots = [];
 
-  static r = 1; // global radius multiplier
+  static r = 10; // global radius multiplier
 
   static init() {
     for (let i = 0; i < config.star.balls; i++) {
       let d = new Dot(_w * config.star.radius, config.star.ball_size);
-      d.colour = "#ff000099"; // random_color() + "99";
+      d.colour = "#4475f6"; // random_color() + "99";
       d.create();
       d.random_all();
     }
@@ -256,11 +256,7 @@ const init_canvas = () => {
 const draw_before = () => {
   const r = _w * config.star.radius / 2 * 0.6;
 
-  ctx.fillStyle = "black";
-  ctx.fillRect(0, 0, _w, _h);
-  ctx.fillStyle = "darkred";
-  ctx.beginPath();
-  ctx.arc(_w / 2, _h / 2, r, 0, Math.PI * 2);
+  ctx.clearRect(0, 0, _w, _h);
   // ctx.fill();
 
   // ctx.drawImage(among, _w / 2 - r, _h / 2 - r);
@@ -297,7 +293,7 @@ const mouse_down = () => {
 }
 
 const mouse_up = () => {
-  Dot.r = 1;
+  Dot.r = 10;
 }
 
 const mouse_right = () => {
