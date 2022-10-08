@@ -5,7 +5,7 @@ hide:
 <iframe style="position: absolute; top: 50px; left: 50%; width: 100vw; margin-left: -50vw; height:100vh;" allowtransparency="true" frameBorder="0" src="interactive/index.html">
 </iframe>
 
-# <center>Welcome</center>
+<h1 style="font-size: 10rem; margin: 0;"><center><b>Welcome</b></center></h1>
 
 <div class="cards">
     <a href="1" class="card">
