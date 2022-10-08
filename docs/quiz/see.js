@@ -100,7 +100,7 @@ export const draw_lighting = () => {
   gradient.addColorStop(1, "#ffff0000");
   ctx.fillStyle = gradient;
 
-  draw.circle(ctx, x, y, max_radius);
+  draw.circle(x, y, max_radius);
   ctx.fill();
   
   /*

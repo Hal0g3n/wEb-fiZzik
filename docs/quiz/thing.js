@@ -394,7 +394,7 @@ export class Thing {
     switch (type) {
       case "circle":
         r = size * (shape.r || 1);
-        draw.circle(ctx, x, y, r);
+        draw.circle(x, y, r);
         ctx.fill();
         ctx.stroke();
         break;
@@ -402,16 +402,16 @@ export class Thing {
       case "rectangle":
         w = size * (shape.w || 1) * 2;
         h = size * (shape.h || 1) * 2;
-        draw.fill_rectangle_angle(ctx, x, y, w, h, rot);
-        draw.stroke_rectangle_angle(ctx, x, y, w, h, rot);
+        draw.fill_rectangle_angle(x, y, w, h, rot);
+        draw.stroke_rectangle_angle(x, y, w, h, rot);
         break;
       case "rounded_square":
       case "rounded_rectangle":
         // TODO: make an actually rounded rectangle
         w = size * (shape.w || 1) * 2;
         h = size * (shape.h || 1) * 2;
-        draw.fill_rectangle_angle(ctx, x, y, w, h, rot);
-        draw.stroke_rectangle_angle(ctx, x, y, w, h, rot);
+        draw.fill_rectangle_angle(x, y, w, h, rot);
+        draw.stroke_rectangle_angle(x, y, w, h, rot);
         break;
       case "line":
         location1 = this.draw_point_location(Vector.create(shape.x1, shape.y1), scale);
@@ -421,11 +421,11 @@ export class Thing {
         x2 = location2.x;
         y2 = location2.y;
         ctx.strokeStyle = ctx.fillStyle; // temp
-        draw.line(ctx, x1, y1, x2, y2);
+        draw.line(x1, y1, x2, y2);
         break;
       case "polygon":
         r = size * (shape.r || 1);
-        draw.regular_polygon(ctx, shape.sides, r, x, y, rot);
+        draw.regular_polygon(shape.sides, r, x, y, rot);
         ctx.fill();
         ctx.stroke();
         break;

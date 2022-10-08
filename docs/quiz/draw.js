@@ -1,14 +1,14 @@
-
+import { ctx } from "./main.js";
 
 export const draw = {};
 
 
-draw.clear = function(ctx, color) {
+draw.clear = function(color) {
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 }
 
-draw.clear_transparent = function(ctx) {
+draw.clear_transparent = function() {
   // Store the current transformation matrix
   ctx.save();
   // Use the identity matrix while clearing the canvas
@@ -20,36 +20,36 @@ draw.clear_transparent = function(ctx) {
 
 // circles
 
-draw.circle = function(ctx, x, y, r) {
+draw.circle = function(x, y, r) {
   ctx.beginPath();
   ctx.arc(x, y, r, 0, 2 * Math.PI);
 }
 
-draw.arc = function(ctx, x, y, r, s, e, clockwise = false) {
+draw.arc = function(x, y, r, s, e, clockwise = false) {
   ctx.beginPath();
   ctx.arc(x, y, r, s, e, !clockwise);
 }
 
 // rectangles
 
-draw.stroke_rect = function(ctx, x, y, w, h) {
+draw.stroke_rect = function(x, y, w, h) {
   ctx.strokeRect(x, y, w, h);
 }
 
-draw.fill_rect = function(ctx, x, y, w, h) {
+draw.fill_rect = function(x, y, w, h) {
   ctx.fillRect(x, y, w, h);
 }
 
-draw.stroke_rectangle = function(ctx, x, y, w, h) {
+draw.stroke_rectangle = function(x, y, w, h) {
   ctx.strokeRect(x - w / 2, y - h / 2, w, h);
 }
 
-draw.fill_rectangle = function(ctx, x, y, w, h) {
+draw.fill_rectangle = function(x, y, w, h) {
   ctx.fillRect(x - w / 2, y - h / 2, w, h);
 }
 
 // angle in radians
-draw.draw_rect_angle = function(ctx, x, y, w, h, a) {
+draw.draw_rect_angle = function(x, y, w, h, a) {
   ctx.save();
   ctx.beginPath();
   ctx.translate(x + w / 2, y + h / 2);
@@ -57,29 +57,29 @@ draw.draw_rect_angle = function(ctx, x, y, w, h, a) {
   ctx.rect(-w / 2, -h / 2, w, h);
 }
 
-draw.stroke_rect_angle = function(ctx, x, y, w, h, a) {
-  draw.draw_rect_angle(ctx, x, y, w, h, a);
+draw.stroke_rect_angle = function(x, y, w, h, a) {
+  draw.draw_rect_angle(x, y, w, h, a);
   ctx.stroke();
   ctx.restore();
 }
 
-draw.fill_rect_angle = function(ctx, x, y, w, h, a) {
-  draw.draw_rect_angle(ctx, x, y, w, h, a);
+draw.fill_rect_angle = function(x, y, w, h, a) {
+  draw.draw_rect_angle(x, y, w, h, a);
   ctx.fill();
   ctx.restore();
 }
 
-draw.stroke_rectangle_angle = function(ctx, x, y, w, h, a) {
-  draw.stroke_rect_angle(ctx, x - w / 2, y - h / 2, w, h, a);
+draw.stroke_rectangle_angle = function(x, y, w, h, a) {
+  draw.stroke_rect_angle(x - w / 2, y - h / 2, w, h, a);
 }
 
-draw.fill_rectangle_angle = function(ctx, x, y, w, h, a) {
-  draw.fill_rect_angle(ctx, x - w / 2, y - h / 2, w, h, a);
+draw.fill_rectangle_angle = function(x, y, w, h, a) {
+  draw.fill_rect_angle(x - w / 2, y - h / 2, w, h, a);
 }
 
 // lines
 
-draw.line = function(ctx, x1, y1, x2, y2) {
+draw.line = function(x1, y1, x2, y2) {
   ctx.beginPath();
   if (x2 == null && y2 == null) {
     ctx.moveTo(x1.x, x1.y);
@@ -91,7 +91,7 @@ draw.line = function(ctx, x1, y1, x2, y2) {
   ctx.stroke();
 }
 
-draw.regular_polygon = function(ctx, sides, r, x, y, angle = 0) {
+draw.regular_polygon = function(sides, r, x, y, angle = 0) {
   const oldlinecap = ctx.lineCap;
   ctx.lineCap = "square";
   ctx.beginPath();
@@ -105,24 +105,24 @@ draw.regular_polygon = function(ctx, sides, r, x, y, angle = 0) {
   ctx.lineCap = oldlinecap;
 }
 
-draw.x_cross = function(ctx, x, y, w, h, ratio = 0.7) {
+draw.x_cross = function(x, y, w, h, ratio = 0.7) {
   const x_gap = w * (1 - ratio) / 2;
   const y_gap = h * (1 - ratio) / 2;
-  draw.line(ctx, x + x_gap, y + y_gap, x + w - x_gap, y + h - y_gap);
-  draw.line(ctx, x + w - x_gap, y + y_gap, x + x_gap, y + h - y_gap);
+  draw.line(x + x_gap, y + y_gap, x + w - x_gap, y + h - y_gap);
+  draw.line(x + w - x_gap, y + y_gap, x + x_gap, y + h - y_gap);
 }
 
 // texts
 
-draw.fill_text = function(ctx, s, x, y) {
+draw.fill_text = function(s, x, y) {
   ctx.fillText(s, x, y);
 }
 
-draw.stroke_text = function(ctx, s, x, y) {
+draw.stroke_text = function(s, x, y) {
   ctx.strokeText(s, x, y);
 }
 
-draw._split_text = function(ctx, text, maxWidth) {
+draw._split_text = function(text, maxWidth) {
   let words = text.split(" "),
       lines = [],
       currentLine = words[0];
@@ -140,18 +140,18 @@ draw._split_text = function(ctx, text, maxWidth) {
   return lines;
 }
 
-draw.split_text = function(ctx, text, maxWidth) {
+draw.split_text = function(text, maxWidth) {
   const lines = text.split("\n"),
         newlines = [];
   for (const line of lines) {
-    for (const a of draw._split_text(ctx, line, maxWidth)) {
+    for (const a of draw._split_text(line, maxWidth)) {
       newlines.push(a);
     }
   }
   return newlines;
 }
 
-draw.get_text_width = function(ctx, textArray) {
+draw.get_text_width = function(textArray) {
   if (!Array.isArray(textArray)) {
     textArray = [textArray];
   }

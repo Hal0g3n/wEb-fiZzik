@@ -9,7 +9,7 @@ const Vector = Matter.Vector;
 export class Camera {
 
   static settings = {
-    camera_scale: 0.0008,
+    camera_scale: 0.0012,
     smoothness: 0.1,
     mouse_offset_factor: 0.05,
     mouse_offset_smoothness: 0.1,
@@ -67,7 +67,7 @@ export class Camera {
   draw() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-    draw.clear(ctx, "#000000");
+    draw.clear("#000000");
     draw_ui_before(ctx);
     clip_visibility_polygon();
     Thing.draw_things();

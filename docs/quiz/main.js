@@ -124,11 +124,11 @@ window.addEventListener("resize", function(event) {
   resize();
 });
 
+// resize detector, scale the camera accordingly
 const resizeObserver = new ResizeObserver(entries => {
   for (let entry of entries) {
     let width = 0;
     if (entry.contentBoxSize) {
-      // Firefox implements `contentBoxSize` as a single content rect, rather than an array
       const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize;
       width = contentBoxSize.inlineSize;
     } else {
@@ -139,3 +139,22 @@ const resizeObserver = new ResizeObserver(entries => {
   }
 });
 resizeObserver.observe(document.getElementById("canvas"));
+
+// fps counter
+const fps_times = [];
+export let FPS; // import this in ui.js
+
+function fps_loop() {
+  window.requestAnimationFrame(() => {
+    const now = performance.now();
+    while (fps_times.length > 0 && fps_times[0] <= now - 1000) {
+      fps_times.shift();
+    }
+    fps_times.push(now);
+    FPS = fps_times.length;
+    fps_loop();
+    console.log(FPS);
+  });
+}
+
+fps_loop();

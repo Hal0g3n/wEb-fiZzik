@@ -38,16 +38,16 @@ const main_map = [
 
   // ***** cafeteria *****
   ...translate([
-    { shapes: [{ type: "line", x1: -500, y1: -100, x2: -500, y2: -200, }] },
+    { shapes: [{ type: "line", x1: -500, y1: -70, x2: -500, y2: -200, }] },
     { shapes: [{ type: "line", x1: -500, y1: -200, x2: -300, y2: -400, }] },
     { shapes: [{ type: "line", x1: -300, y1: -400, x2: 300, y2: -400, }] },
     { shapes: [{ type: "line", x1: 300, y1: -400, x2: 500, y2: -200, }] },
-    { shapes: [{ type: "line", x1: 500, y1: -200, x2: 500, y2: -100, }] },
-    { shapes: [{ type: "line", x1: 500, y1: 100, x2: 500, y2: 300, }] },
+    { shapes: [{ type: "line", x1: 500, y1: -200, x2: 500, y2: -70, }] },
+    { shapes: [{ type: "line", x1: 500, y1: 70, x2: 500, y2: 300, }] },
     { shapes: [{ type: "line", x1: 500, y1: 300, x2: 300, y2: 500, }] },
     { shapes: [{ type: "line", x1: 300, y1: 500, x2: -200, y2: 500, }] },
     { shapes: [{ type: "line", x1: -200, y1: 500, x2: -500, y2: 200, }] },
-    { shapes: [{ type: "line", x1: -500, y1: 200, x2: -500, y2: 100, }] },
+    { shapes: [{ type: "line", x1: -500, y1: 200, x2: -500, y2: 70, }] },
     { shapes: [
       { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
       { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
@@ -74,12 +74,12 @@ const main_map = [
       x: 0, y: 50, color: C.table_blue,
     },
     // "secret"
-    { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -100, x2: -500 - 60 * sqrt_2, y2: -200, }] },
+    { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -500 - 60 * sqrt_2, y2: -200, }] },
     { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -200, x2: -300, y2: -400 - 60 * sqrt_2, }] },
     { shapes: [{ type: "line", x1: -300, y1: -400 - 60 * sqrt_2, x2: -40, y2: -400 - 60 * sqrt_2, }] },
     { shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 300, y2: -400 - 60 * sqrt_2, }] },
     { shapes: [{ type: "line", x1: 300, y1: -400 - 60 * sqrt_2, x2: 500 + 60 * sqrt_2, y2: -200, }] },
-    { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -200, x2: 500 + 60 * sqrt_2, y2: -100, }] },
+    { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -200, x2: 500 + 60 * sqrt_2, y2: -70, }] },
   ], 0, 0),
   /*
   { shapes: [{ type: "line", x1: 200, y1: 200, x2: 200, y2: -200, }] },
