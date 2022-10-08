@@ -81,6 +81,15 @@ const main_map = [
     { shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 300, y2: -400 - 60 * sqrt_2, }] },
     { shapes: [{ type: "line", x1: 300, y1: -400 - 60 * sqrt_2, x2: 500 + 60 * sqrt_2, y2: -200, }] },
     { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -200, x2: 500 + 60 * sqrt_2, y2: -70, }] },
+    {
+      shapes: [{ type: "line", x1: 505, y1: -70, x2: 500 + 58 * sqrt_2, y2: -70, }],
+      parent: "door", constraint: [{ type: "pivot", x: 500 + 58 * sqrt_2, y: -70, }, { type: "fix_point", x: 505, y: -70, }],
+    },
+    {
+      shapes: [{ type: "line", x1: -505, y1: -70, x2: -500 - 58 * sqrt_2, y2: -70, }],
+      parent: "door", constraint: [{ type: "pivot", x: -500 - 58 * sqrt_2, y: -70, }, { type: "fix_point", x: -505, y: -70, }],
+    },
+
 
     // right passage
     { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -70, x2: 800, y2: -70, }] },
@@ -128,7 +137,7 @@ const make_map = () => {
         break;
       }
     }
-
+    
     // console.log(JSON.stringify(M));
 
     const t = new Thing(M.position);

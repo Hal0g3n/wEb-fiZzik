@@ -10,6 +10,7 @@ import { util } from "./util.js";
 const Body = Matter.Body,
       Bodies = Matter.Bodies,
       Composite = Matter.Composite,
+      Constraint = Matter.Constraint,
       Query = Matter.Query,
       Vector = Matter.Vector;
 
@@ -189,6 +190,9 @@ export class Thing {
 
     if (this.spin != null) {
       this.angle += this.spin;
+    }
+    if (this.door_angle != null) {
+      this.angle = util.lerp(this.angle, this.door_angle, 0.05);
     }
     
   }
@@ -516,6 +520,62 @@ export class Thing {
     Composite.add(world, this.body);
     // set velocity
     Body.setVelocity(body, this.initial_velocity);
+
+    // optional: create constraint
+    if (this.constraint != null) {
+      this.create_constraint();
+    }
+  }
+
+  create_constraint() {
+    if (this.body == null) return;
+    const raint = "";
+    let constraint_options = this.constraint;
+    if (!Array.isArray(constraint_options)) {
+      constraint_options = [constraint_options];
+    }
+    let constraint;
+    let point, x, y;
+    for (const o of constraint_options) {
+      switch (o.type) {
+        case "pivot":
+          x = o.x == null ? this.x : o.x;
+          y = o.y == null ? this.y : o.y;
+          constraint = Constraint.create({
+            pointA: {
+              x: x,
+              y: y,
+            },
+            bodyB: this.body,
+            pointB: {
+              x: x - this.x,
+              y: y - this.y,
+            },
+            length: 0,
+          });
+          break;
+        case "fix_point":
+          x = o.x == null ? this.x : o.x;
+          y = o.y == null ? this.y : o.y;
+          constraint = Constraint.create({
+            pointA: {
+              x: x,
+              y: y,
+            },
+            bodyB: this.body,
+            pointB: {
+              x: x - this.x,
+              y: y - this.y,
+            },
+            stiffness: o.stiffness == null ? 0.0008 : o.stiffness,
+            damping: o.damping || 0,
+          });
+          break;
+        default:
+          console.error("invalid constraint type in thing.create_constraint: " + o.type);
+      }
+      Composite.add(world, constraint);      
+    }
   }
 
   remove() {
