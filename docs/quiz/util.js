@@ -1,5 +1,7 @@
 export const util = {};
 
+const pi = Math.PI;
+
 util.lerp = (a, b, t) => {
   return a * (1 - t) + b * t;
 }

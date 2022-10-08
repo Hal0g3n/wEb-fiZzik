@@ -4,10 +4,14 @@ export const C = {
 
   transparent: "#00000000",
   white: "#ffffff",
+  grey: "#808080",
   black: "#000000",
 
   red: "#ff0000", // "#amogus",
   window_blue: "#32a2a8",
+
+  table_blue: "#0b4163",
+  light_table_blue: "#146fa8",
 
 }
 
@@ -67,6 +71,12 @@ make.border = {
   always_on_screen: true,
 }
 
+make.decoration = {
+  parent: "wall",
+  blocks_sight: false,
+  decoration: true,
+};
+
 make.window = {
   parent: "wall",
   blocks_sight: false,
@@ -83,7 +93,7 @@ make.door = {
   fixed: false,
   static: false,
   constraint: {
-    
+
   },
 };
 

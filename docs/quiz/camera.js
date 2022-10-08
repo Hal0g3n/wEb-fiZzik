@@ -1,5 +1,6 @@
 import { Thing, player } from "./thing.js";
 import { draw } from "./draw.js";
+import { ctx } from "./main.js";
 import { clip_visibility_polygon, unclip_visibility_polygon } from "./see.js";
 import { draw_ui, draw_ui_before, draw_ui_middle } from "./ui.js";
 
@@ -8,13 +9,13 @@ const Vector = Matter.Vector;
 export class Camera {
 
   static settings = {
+    camera_scale: 0.0012,
     smoothness: 0.1,
     mouse_offset_factor: 0.05,
     mouse_offset_smoothness: 0.1,
   }
   
   position = Vector.create();
-  ctx = null;
   width = window.innerWidth;
   height = window.innerHeight;
   mouse = Vector.create();
@@ -63,11 +64,10 @@ export class Camera {
   }
 
   // actually the main draw function
-  draw(ctx) {
-    this.ctx = ctx;
+  draw() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-    draw.clear(ctx, "#000000");
+    draw.clear("#000000");
     draw_ui_before(ctx);
     clip_visibility_polygon();
     Thing.draw_things();

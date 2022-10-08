@@ -1,8 +1,13 @@
+import { engine } from "./main.js";
+import { send_bottom_text } from "./ui.js";
+
 export const collide = { };
 
 const PI = Math.PI;
 
-const Vector = Matter.Vector;
+const Engine = Matter.Engine,
+      Events = Matter.Events,
+      Vector = Matter.Vector;
 
 collide.point_circle = (point, circle, r) => {
   const dx = circle.x - point.x;
@@ -246,3 +251,37 @@ const flat_map = (cb, array) =>
 collide.get_endpoints_from_segments = (segments) => {
   return flat_map((segment) => [segment.p1, segment.p2], segments);
 };
+
+
+const collide_start = function(a, b, pair) {
+  const t = a.thing;
+  const u = b.thing;
+  if (u.player) {
+    if (t.message != null) {
+      send_bottom_text(t.message);
+    }
+  }
+}
+
+const collide_end = function(a, b, pair) {
+
+}
+
+export const init_collide = function() {
+  Events.on(engine, "collisionStart", function(event) {
+    for (const pair of event.pairs) {
+      const a = pair.bodyA;
+      const b = pair.bodyB;
+      collide_start(a, b, pair);
+      collide_start(b, a, pair);
+    }
+  });
+  Events.on(engine, "collisionEnd", function(event) {
+    for (const pair of event.pairs) {
+      const a = pair.bodyA;
+      const b = pair.bodyB;
+      collide_end(a, b, pair);
+      collide_end(b, a, pair);
+    }
+  });
+}
