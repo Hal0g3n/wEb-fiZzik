@@ -4,7 +4,7 @@ nav:
     - Welcome: index.md
     - Neutron Stars:
         - Preview: 1.md
-        - Principles of Pauli: 2.md
+        - Neutron Degeneracy Pressure: 2.md
         - The Origin: 3.md
         - The Structure: 4.md
     - Quark Stars: 5.md
