@@ -1,5 +1,6 @@
 import { draw } from "./draw.js";
 import { check_keys } from "./key.js";
+import { C } from "./lib.js";
 import { ctx, FPS, screen } from "./main.js";
 import { util } from "./util.js";
 
@@ -46,7 +47,7 @@ export const draw_ui_before = function() {
     ui.new_rclick = false;
     ui.old_rclick = false;
   }
-
+  ui.time++;
 }
 
 let _w, _h, size;
@@ -95,7 +96,7 @@ const draw_taskbar = () => {
   ctx.textAlign = "left";
   ctx.font = `${Math.round(size * 2)}px roboto condensed`;
   ctx.fillStyle = "#ffffff";
-  draw.fill_text("TOTAL TASKS COMPLETED", size * 2, size * 3 + 1);
+  draw.fill_text("TOTAL TASKS COMPLETED", size * 2, size * 3.1);
 
 }
 
@@ -103,11 +104,11 @@ let old_n = 0;
 
 const draw_fps = () => {
 
-  const n = util.lerp(old_n, Math.min(FPS, 60), 0.05);
-  old_n = n;
+  const n = util.lerp(old_n || 0, Math.min(FPS, 60), 0.05);
+  old_n = n || 0;
   const ratio = n / 60;
 
-  x = screen.w - size * 5;
+  x = _w - size * 5;
 
   ctx.lineWidth = size * 0.4;
   ctx.strokeStyle = "#ffffff60";
@@ -132,8 +133,72 @@ const draw_fps = () => {
   
 }
 
+let bottom_text = null;
+let bottom_text_time = 0;
+let bottom_text_timeout = 0;
+let old_bottom_text_height = 0;
+let target_bottom_text_height = -50;
+
 const draw_bottom_text = () => {
 
-  
+  const text_height = util.lerp(old_bottom_text_height, target_bottom_text_height, 0.1);
+  old_bottom_text_height = text_height;
+
+  if (ui.time - bottom_text_time > 200) {
+    bottom_text_time = 0;
+    target_bottom_text_height = -50;
+  }
+
+  if (target_bottom_text_height < -40 && old_bottom_text_height < -40) {
+    bottom_text = null;
+  }
+
+  if (bottom_text == null) return;
+
+  y = _h - text_height;
+
+  ctx.font = `${Math.round(size * 2)}px roboto condensed`;
+  ctx.textBaseline = "middle";
+  ctx.textAlign = "center";
+
+  w = draw.get_text_width([bottom_text]);
+
+  ctx.fillStyle = "#05a10020";
+  draw.fill_rect(_w / 2 - w / 2 - size, y - size * 2, w + size * 2, size * 4);
+
+  ctx.fillStyle = C.white;
+  draw.fill_text(bottom_text, _w / 2, y + 1);
 
 }
+
+export const send_bottom_text = (text, target_height = 50, timeout = 200) => {
+
+  if (bottom_text === text) {
+    return;
+  }
+
+  const time_left = bottom_text_timeout - (ui.time - bottom_text_time);
+  
+  if (bottom_text == null || time_left <= 0) {
+    bottom_text = text;
+    bottom_text_time = ui.time;
+    bottom_text_timeout = timeout;
+    target_bottom_text_height = target_height;
+    return;
+  }
+
+  // a text is displayed now, wait time_left / 2 seconds before showing the new one
+  const wait_time = Math.round(time_left / 2);
+  console.log(time_left, wait_time);
+  bottom_text_time -= wait_time;
+  setTimeout(() => {
+    console.log(text);
+    bottom_text = text;
+    bottom_text_time = ui.time;
+    bottom_text_timeout = timeout;
+    target_bottom_text_height = target_height;
+  }, wait_time * 16 + 1000);
+
+}
+
+window.send_bottom_text = send_bottom_text;

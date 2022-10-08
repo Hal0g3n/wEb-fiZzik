@@ -73,6 +73,7 @@ const main_map = [
       { type: "polygon", sides: 8, r: 80, rotation: degrees_22, stroke: C.white, line_width: 3, body: true, }],
       x: 0, y: 50, color: C.table_blue,
     },
+
     // "secret"
     { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -500 - 60 * sqrt_2, y2: -200, }] },
     { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -200, x2: -300, y2: -400 - 60 * sqrt_2, }] },
@@ -80,6 +81,15 @@ const main_map = [
     { shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 300, y2: -400 - 60 * sqrt_2, }] },
     { shapes: [{ type: "line", x1: 300, y1: -400 - 60 * sqrt_2, x2: 500 + 60 * sqrt_2, y2: -200, }] },
     { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -200, x2: 500 + 60 * sqrt_2, y2: -70, }] },
+
+    // right passage
+    { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -70, x2: 800, y2: -70, }] },
+    { shapes: [{ type: "line", x1: 500, y1: 70, x2: 800, y2: 70, }] },
+
+    // left passage
+    { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -800, y2: -70, }] },
+    { shapes: [{ type: "line", x1: -500, y1: 70, x2: -800, y2: 70, }] },
+
   ], 0, 0),
   /*
   { shapes: [{ type: "line", x1: 200, y1: 200, x2: 200, y2: -200, }] },
@@ -119,7 +129,7 @@ const make_map = () => {
       }
     }
 
-    console.log(JSON.stringify(M));
+    // console.log(JSON.stringify(M));
 
     const t = new Thing(M.position);
     t.make(M);

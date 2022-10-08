@@ -153,7 +153,6 @@ function fps_loop() {
     fps_times.push(now);
     FPS = fps_times.length;
     fps_loop();
-    console.log(FPS);
   });
 }
 
