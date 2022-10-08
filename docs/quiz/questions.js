@@ -8,10 +8,12 @@ export const questions = [
     choices: [
       "Around the size of a neutron, of course",
       "Around the size of the Sun",
-      "Around the size of Mount Everest",
-      "Black Body Radiation",
+      "Around the size of the Earth",
+      "Around the size of a mountain",
+      "Around the size of An Impostor",
+      "Black body radiation",
     ],
-    answer: 2,
+    answer: 3,
   },
 
   { // 2 
@@ -23,7 +25,7 @@ export const questions = [
       "long rods of nucleons",
       "an O(N) sorting algorithm",
     ],
-    answer: 3,
+    answer: 4,
   },
 
   { // 3 
@@ -33,9 +35,9 @@ export const questions = [
       "They are as dense as neutrons",
       "They are as hot as neutrons",
       "They eat neutrinos for lunch",
-      "Black Body Radiation",
+      "Black body radiation",
     ],
-    answer: 1,
+    answer: 2,
   },
 
   { // 4 
@@ -47,19 +49,31 @@ export const questions = [
       "a kilonova",
       "a white dwarf",
     ],
-    answer: 4,
+    answer: 5,
   },
 
   { // 5
     question: "Everyone likes neutron stars. Why?",
     choices: [
-      "they can be the most precise clock, better than atomic clocks",
+      "they are the most accurate and stable clock, even better than atomic clocks",
       "they are generally better than black holes, and won't eat you up",
-      "they enjoy eating neutrinos for lunch",
-      "they are very sus, especially in the game 'Among Us'",
+      "they have the second-strongest pasta in the universe",
+      "they are even cooler than the Sun",
       "they emit black body radiation",
     ],
-    answer: 4,
+    answer: 5,
+  },
+
+  { // 6
+    question: "Everyone doesn't like neutron stars. Why?",
+    choices: [
+      "they can make you blind if you stare at them for too long",
+      "they have a surface temperature of 600000 °C and cannot be used as beds",
+      "they enjoy eating neutrinos for lunch, leaving none for us",
+      "they don't like us, therefore we don't like them",
+      "they are very sus, especially in the game 'Among Us'",
+    ],
+    answer: 2,
   },
 
 ];
