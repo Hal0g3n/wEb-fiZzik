@@ -1,9 +1,9 @@
 
 import { Thing, player } from "./thing.js";
-import { camera } from "./camera.js";
+import { Camera, camera } from "./camera.js";
 import { init_key, add_key_listener } from "./key.js";
 import { make } from "./lib.js";
-import { init_map } from "./maps.js";
+import { init_map, player_starting_position } from "./maps.js";
 import { clip_visibility_polygon } from "./see.js";
 import { init_ui, ui } from "./ui.js";
 
@@ -39,7 +39,7 @@ function init_before() {
 }
 
 function tick(time) {
-  camera.draw(ctx);
+  camera.draw();
   if (true) { // !paused
     Runner.tick(runner, engine);
     camera.tick();
@@ -49,6 +49,7 @@ function tick(time) {
 function init_after() {
   
   // create player
+  player.position = player_starting_position;
   player.create();
 
   // create map
@@ -122,3 +123,19 @@ const resize = function() {
 window.addEventListener("resize", function(event) {
   resize();
 });
+
+const resizeObserver = new ResizeObserver(entries => {
+  for (let entry of entries) {
+    let width = 0;
+    if (entry.contentBoxSize) {
+      // Firefox implements `contentBoxSize` as a single content rect, rather than an array
+      const contentBoxSize = Array.isArray(entry.contentBoxSize) ? entry.contentBoxSize[0] : entry.contentBoxSize;
+      width = contentBoxSize.inlineSize;
+    } else {
+      width = entry.contentRect.width;
+    }
+    let height = width / window.innerWidth * window.innerHeight;
+    camera.scale = Math.sqrt(width * height) * Camera.settings.camera_scale;
+  }
+});
+resizeObserver.observe(document.getElementById("canvas"));

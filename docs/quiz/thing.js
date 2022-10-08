@@ -56,6 +56,7 @@ export class Thing {
   static = false;
   deleted = false;
   blocks_sight = false;
+  decoration = false;
 
   // physics
   friction = 0;
@@ -342,7 +343,7 @@ export class Thing {
       return shapes[0];
     } else {
       for (const s of shapes) {
-        if (s.body) return shape = s;
+        if (s.body) return s;
       }
       return shapes[0];
     }
@@ -447,6 +448,7 @@ export class Thing {
   }
 
   create_body() {
+    if (this.decoration) return;
     if (this.body != null) {
       this.remove_body();
     }

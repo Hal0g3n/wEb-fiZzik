@@ -16,7 +16,7 @@ export const check_click = function() {
 }
 
 export const init_ui = function() {
-
+  
 }
 
 
@@ -27,7 +27,7 @@ const tick_ui_before = function() {
 
 
 
-export const draw_ui_before = function(ctx) {
+export const draw_ui_before = function() {
   tick_ui_before();
   if (check_click()) {
     ui.new_click = !ui.old_click;
@@ -48,12 +48,16 @@ export const draw_ui_before = function(ctx) {
 
 
 
-export const draw_ui_middle = function(ctx) {
+export const draw_ui_middle = function() {
 
 }
 
 
 
-export const draw_ui = function(ctx) {
+export const draw_ui = function() {
+
+}
+
+const draw_bottom_text = () => {
 
 }
