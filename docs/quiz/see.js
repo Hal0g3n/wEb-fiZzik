@@ -4,6 +4,7 @@ import { collide } from "./collide.js";
 import { draw } from "./draw.js";
 import { screen, ctx } from "./main.js";
 import { Thing, player} from "./thing.js";
+import { util } from "./util.js";
 
 const Query = Matter.Query,
       Vector = Matter.Vector;
@@ -23,14 +24,14 @@ export const clip_visibility_polygon = () => {
   const end_points = [ ];
 
   for (const t of Thing.things) {
-    if (t.body == null || t == player) continue;
-    if (!t.roughly_on_screen()) continue;
-    let points_on_screen = 0;
+    if (t.body == null || !t.blocks_sight) continue;
+    if (!t.always_on_screen && !t.roughly_on_screen()) continue;
+    //let points_on_screen = 0;
     for (const point of t.get_points()) {
       const draw_point = camera.object_position(point);
       if (draw_point.x < 0 || draw_point.x > w) continue;
       if (draw_point.y < 0 || draw_point.y > h) continue;
-      points_on_screen++;
+      //points_on_screen++;
       points.push(point);
     }
     bodies.push(t.body);
@@ -63,15 +64,13 @@ export const clip_visibility_polygon = () => {
 
   //console.log(result.length);
   const s = camera.object_position(start);
+  // ctx.fillStyle = "#ff000055";
+  // ctx.strokeStyle = "#00000000";
   ctx.beginPath();
   ctx.moveTo(s.x, s.y);
   for (const triangle of result) {
-    const p1 = triangle[0];
-    const p2 = triangle[1];
-    ctx.fillStyle = "#ff000055";
-    ctx.strokeStyle = "#00000000";
-    const e1 = camera.object_position(p1);
-    const e2 = camera.object_position(p2);
+    const e1 = camera.object_position(triangle[0]);
+    const e2 = camera.object_position(triangle[1]);
     ctx.lineTo(e1.x, e1.y);
     ctx.lineTo(e2.x, e2.y);
     ctx.lineTo(s.x, s.y);
@@ -96,7 +95,7 @@ export const draw_lighting = () => {
   
   const gradient = ctx.createRadialGradient(x, y, min_radius, x, y, max_radius);
   gradient.addColorStop(0, "#ffff0040");
-  gradient.addColorStop(0.1, "#ffff0010");
+  gradient.addColorStop(0.12 - util.bounce(Thing.time, 30) * 0.02, "#ffff0010");
   gradient.addColorStop(0.6, "#ffff0005");
   gradient.addColorStop(1, "#ffff0000");
   ctx.fillStyle = gradient;

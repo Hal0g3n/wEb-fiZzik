@@ -44,7 +44,7 @@ export class Thing {
   }
 
   // location variables
-  body = null; // physics body
+  body; // physics body
   size = 0;
   initial_position = Vector.create();
   initial_angle = 0;
@@ -53,6 +53,7 @@ export class Thing {
   // property booleans
   exists = false;
   fixed = false;
+  static = false;
   deleted = false;
   blocks_sight = false;
 
@@ -62,8 +63,11 @@ export class Thing {
   density = 0.001;
   collision_filter = category.all;
 
+  constraint; // physics constraint options
+              // since constraint starts with "const", don't modify it!
+
   // display
-  stroke = C.transparent;
+  stroke;
   color = "#FFFFFF";
   layer = 0;
   shapes = [];
@@ -171,6 +175,21 @@ export class Thing {
 
   tick() {
 
+    this.tick_position();
+    this.tick_rotation();
+
+  }
+
+  tick_position() {
+
+  }
+
+  tick_rotation() {
+
+    if (this.spin != null) {
+      this.angle += this.spin;
+    }
+    
   }
 
   memo_shape_size = null;
@@ -359,7 +378,7 @@ export class Thing {
   }
 
   draw_shape(scale, shape, options = { }) {
-    ctx.lineWidth = (shape.width || 3);
+    ctx.lineWidth = (shape.line_width || 0);
     const size = this.size * scale;
     const type = shape.type;
     const location = this.draw_point_location(Vector.create(shape.x, shape.y), scale);
@@ -367,8 +386,8 @@ export class Thing {
     const y = location.y;
     const rot = (shape.rotation || 0) + this.rotation;
     let r, w, h, location1, x1, y1, location2, x2, y2, c, stroke;
-    stroke = options.stroke || shape.stroke || this.stroke || C.transparent;
     c = options.color || shape.color || this.color;
+    stroke = options.stroke || shape.stroke || this.stroke || c;
     ctx.strokeStyle = stroke;
     ctx.fillStyle = c;
     switch (type) {
@@ -433,7 +452,7 @@ export class Thing {
     }
     const shapes = this.shapes;
     const options = {
-      isStatic: this.fixed,
+      isStatic: this.static,
       isBullet: this.is_bullet,
       collisionFilter: this.collision_filter,
       label: this.label,
