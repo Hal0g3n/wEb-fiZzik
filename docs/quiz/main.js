@@ -6,6 +6,7 @@ import { make } from "./lib.js";
 import { init_map, player_starting_position } from "./maps.js";
 import { clip_visibility_polygon } from "./see.js";
 import { init_ui, ui } from "./ui.js";
+import { collide, init_collide } from "./collide.js";
 
 const Engine = Matter.Engine,
       Runner = Matter.Runner,
@@ -76,6 +77,7 @@ function init() {
   init_before();
   init_canvas();
   init_key();
+  init_collide();
   init_ui();
   init_after();
   test();

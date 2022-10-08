@@ -25,7 +25,7 @@ const translate = (list, tx = 0, ty = 0) => {
 
 export const player_starting_position = {
   x: 0,
-  y: 0,
+  y: -100,
 };
 
 const main_map = [
@@ -68,10 +68,10 @@ const main_map = [
       { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
       x: 250, y: -150, color: C.table_blue, parent: "window",
     },
-    { shapes: [
+    { shapes: [ // main table
       { type: "polygon", sides: 8, r: 100, rotation: degrees_22, color: C.light_table_blue, },
       { type: "polygon", sides: 8, r: 80, rotation: degrees_22, stroke: C.white, line_width: 3, body: true, }],
-      x: 0, y: 50, color: C.table_blue,
+      x: 0, y: 50, color: C.table_blue, message: "There used to be a red button here... where did it go?",
     },
 
     // "secret"
