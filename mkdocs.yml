@@ -2,16 +2,16 @@ site_name: PC5132 Website
 
 nav:
     - Neutron Stars:
-        - Preview: 1.md
+        - Introduction: 1.md
         - Neutron Degeneracy Pressure: 2.md
         - The Origin: 3.md
         - The Structure: 4.md
-    - Quark Stars: 5.md
-    - Strange Matter: 6.md
+    - The Quarkiness: 5.md
+    - Stranger Things: 6.md
     - Appendix: 
-        - Degeneracy: 7.md
-        - Strong Force: 8.md
-        - Pauli's Exclusion Principle++: 9.md
+        - On Degeneracy: 7.md
+        - The Strong Force: 8.md
+        - Overcoming Exclusion: 9.md
     - Final Test: quiz/index.html
     - Fin: Conclusion.md
     - Credits: Credits.md
