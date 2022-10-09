@@ -40,8 +40,8 @@ const old_player_starting_position = {
 };
 
 export const player_starting_position = {
-  x: -675,
-  y: 1550,
+  x: 0,
+  y: -100,
 };
 
 const map_cafeteria = [
@@ -110,19 +110,19 @@ const map_cafeteria = [
 
   // doors
   {
-    shapes: [{ type: "line", x1: 501, y1: -70, x2: 500 + 59 * sqrt_2, y2: -70, }],
-    parent: "door", constraint: [{ type: "pivot", x: 500 + 59 * sqrt_2, y: -70, }, { type: "fix_point", x: 501, y: -70, }],
+    shapes: [{ type: "line", x1: 500.1, y1: -70, x2: 500 + 59.95 * sqrt_2, y2: -70, }],
+    parent: "door", constraint: [{ type: "pivot", x: 500 + 59.95 * sqrt_2, y: -70, }, { type: "fix_point", x: 500.1, y: -70, }],
     message: "Wow, a door! I've never seen one before!", message_once: true, // why does this rhyme
   },
   {
-    shapes: [{ type: "line", x1: -501, y1: -70, x2: -500 - 59 * sqrt_2, y2: -70, }],
-    parent: "door", constraint: [{ type: "pivot", x: -500 - 59 * sqrt_2, y: -70, }, { type: "fix_point", x: -501, y: -70, }],
+    shapes: [{ type: "line", x1: -500.1, y1: -70, x2: -500 - 59.95 * sqrt_2, y2: -70, }],
+    parent: "door", constraint: [{ type: "pivot", x: -500 - 59.95 * sqrt_2, y: -70, }, { type: "fix_point", x: -500.1, y: -70, }],
   },
 
   // spinning door and bottom passage
   {
     shapes: [{ type: "line", x1: -25, y1: 500, x2: 75, y2: 500, }],
-    parent: "door", constraint: [{ type: "pivot", x: 25, y: 500, }, { type: "fix_point", x: -24, y: 500, }, /*{ type: "fix_point", x: 74, y: 500, } */],
+    parent: "door", constraint: [{ type: "pivot", x: 25, y: 500, }, { type: "fix_point", x: -24.9, y: 500, }, /*{ type: "fix_point", x: 74, y: 500, } */],
   },
   { shapes: [{ type: "svg", svg: "arrow_down", x: 25, y: 470, r: 30, }], parent: "floor", color: C.floor_symbol, },
   { shapes: [{ type: "line", x1: 90, y1: 500, x2: 72, y2: 680, }] },
@@ -180,17 +180,17 @@ const map_medbay = [
 
   // doors
   {
-    shapes: [{ type: "line", x1: -64, y1: 0, x2: -1, y2: 0, }],
+    shapes: [{ type: "line", x1: -64.9, y1: 0, x2: 0, y2: 0, }],
     parent: "door", constraint: [{ type: "pivot", x: -64, y: 0, }, { type: "fix_point", x: -1, y: 0, }],
   },
   {
-    shapes: [{ type: "line", x1: 64, y1: 0, x2: 1, y2: 0, }],
+    shapes: [{ type: "line", x1: 64.9, y1: 0, x2: 0, y2: 0, }],
     parent: "door", constraint: [{ type: "pivot", x: 64, y: 0, }, { type: "fix_point", x: 1, y: 0, }],
   },
 
   // tasks
   { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 125, y: 250, parent: "task", task: 2, },
-  { shapes: [{ type: "polygon", sides: 6, r: 20, }], x: 325, y: 375, parent: "task", task: 9, },
+  { shapes: [{ type: "polygon", sides: 6, r: 20, }], x: 325, y: 375, parent: "task", task: 11, },
 
   // floor
   { shapes: [{ type: "svg", svg: "arrow_down", r: 25, }], x: 0, y: -25, parent: "floor", color: C.floor_symbol, },
@@ -391,10 +391,15 @@ const map_storage = [
 
   // doors
   {
-    shapes: [{ type: "line", x1: 275, y1: 151, x2: 275, y2: 249, }],
-    parent: "door", constraint: [{ type: "fix_point", x: 275, y: 151, }, { type: "fix_point", x: 275, y: 249, }],
+    shapes: [{ type: "line", x1: 275, y1: 150.1, x2: 275, y2: 249.9, }],
+    parent: "door", constraint: [{ type: "fix_point", x: 275, y: 150.1, }, { type: "fix_point", x: 275, y: 249.9, }],
   },
   { shapes: [{ type: "line", x1: 235, y1: 150, x2: 235, y2: 250, }] },
+  {
+    shapes: [{ type: "line", x1: -300, y1: 550.1, x2: -300, y2: 649.9, }],
+    parent: "door", constraint: [{ type: "fix_point", x: 275, y: 550.1, }, { type: "fix_point", x: 275, y: 649.9, }],
+  },
+  { shapes: [{ type: "line", x1: -260, y1: 550, x2: -260, y2: 650, }] },
 
 
   // boxes
@@ -423,16 +428,16 @@ const map_electrical = [
 
   // doors
   {
-    shapes: [{ type: "line", x1: -99, y1: 0, x2: -1, y2: 0, }],
+    shapes: [{ type: "line", x1: -99.9, y1: 0, x2: 0, y2: 0, }],
     parent: "door", constraint: [{ type: "pivot", x: -99, y: 0, }, { type: "fix_point", x: -1, y: 0, }],
   },
   {
-    shapes: [{ type: "line", x1: 99, y1: 0, x2: 1, y2: 0, }],
+    shapes: [{ type: "line", x1: 99.9, y1: 0, x2: 0, y2: 0, }],
     parent: "door", constraint: [{ type: "pivot", x: 99, y: 0, }, { type: "fix_point", x: 1, y: 0, }],
   },
 
   // electric box
-  { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, color: C.offwhite, }, { type: "rectangle", w: 100, h: 50, body: true, stroke: C.white, line_width: 3, }],
+  { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, }, { type: "rectangle", w: 100, h: 50, body: true, stroke: C.white, line_width: 3, }],
     x: 1, y: -300, parent: "movable", color: C.grey,
     constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
   },
@@ -451,7 +456,52 @@ const map_electrical = [
 
 const map_engines = [ // with corridors!
 
+  // lower engine walls
+  { shapes: [{ type: "line", x1: 200, y1: 750, x2: 0, y2: 750, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 750, x2: 0, y2: 950, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 950, x2: -400, y2: 950, }] },
+  { shapes: [{ type: "line", x1: -400, y1: 950, x2: -500, y2: 850, }] },
+  { shapes: [{ type: "line", x1: -500, y1: 850, x2: -500, y2: 450, }] },
+  { shapes: [{ type: "line", x1: -500, y1: 450, x2: -290, y2: 450, }] },
+  { shapes: [{ type: "line", x1: -210, y1: 450, x2: 0, y2: 450, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 450, x2: 0, y2: 650, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 650, x2: 200, y2: 650, }] },
 
+  // upper engine walls
+  { shapes: [{ type: "line", x1: 200, y1: -770, x2: 0, y2: -770, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -770, x2: 0, y2: -950, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -950, x2: -400, y2: -950, }] },
+  { shapes: [{ type: "line", x1: -400, y1: -950, x2: -500, y2: -850, }] },
+  { shapes: [{ type: "line", x1: -500, y1: -850, x2: -500, y2: -450, }] },
+  { shapes: [{ type: "line", x1: -500, y1: -450, x2: -290, y2: -450, }] },
+  { shapes: [{ type: "line", x1: -210, y1: -450, x2: 0, y2: -450, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -450, x2: 0, y2: -630, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -630, x2: 300, y2: -630, }] },
+
+  // corridor
+  { shapes: [{ type: "line", x1: -290, y1: -450, x2: -290, y2: 450, }] },
+  { shapes: [{ type: "line", x1: -210, y1: -450, x2: -210, y2: 450, }] },
+  
+
+  // both engines
+  { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, }, { type: "rectangle", w: 150, h: 100, body: true, stroke: C.window_red, line_width: 3, }],
+    x: -351, y: 700, parent: "movable", color: C.grey,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+  { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, }, { type: "rectangle", w: 150, h: 100, body: true, stroke: C.window_red, line_width: 3, }],
+    x: -351, y: -700, parent: "movable", color: C.grey,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+
+  // floor
+  { shapes: [{ type: "svg", svg: "engine", r: 50, }], x: -100, y: -700, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "engine", r: 50, }], x: -100, y: 700, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: -50, y: -900, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: -50, y: 900, parent: "floor", color: C.floor_symbol, },
+
+  // tasks
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: -350, y: -875, parent: "task", task: 7, },
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: -350, y: 875, parent: "task", task: 6, },
 
 ];
 
@@ -481,7 +531,7 @@ const main_map = [
   ...translate(map_communications, 550, 1200),
   ...translate(map_storage, 25, 1000),
   ...translate(map_electrical, -675, 1550),
-  ...translate(map_engines, -675, 1550),
+  ...translate(map_engines, -1275, 700),
 
 ];
 
