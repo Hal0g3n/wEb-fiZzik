@@ -379,7 +379,30 @@ const map_communications = [
 const map_storage = [
 
   // walls
-  { shapes: [{ type: "line", x1: 0, y1: 1, x2: 1, y2: 0, }] },
+  { shapes: [{ type: "line", x1: 25, y1: 0, x2: 275, y2: 0, }] },
+  { shapes: [{ type: "line", x1: 275, y1: 0, x2: 275, y2: 150, }] },
+  { shapes: [{ type: "line", x1: 275, y1: 250, x2: 275, y2: 700, }] },
+  { shapes: [{ type: "line", x1: 275, y1: 700, x2: -250, y2: 700, }] },
+  { shapes: [{ type: "line", x1: -250, y1: 700, x2: -300, y2: 650, }] },
+  { shapes: [{ type: "line", x1: -300, y1: 550, x2: -300, y2: 50, }] },
+  { shapes: [{ type: "line", x1: -300, y1: 50, x2: -250, y2: 0, }] },
+  { shapes: [{ type: "line", x1: -250, y1: 0, x2: -25, y2: 0, }] },
+  { shapes: [{ type: "line", x1: -300, y1: 50, x2: -250, y2: 0, }] },
+
+  // doors
+  {
+    shapes: [{ type: "line", x1: 275, y1: 151, x2: 275, y2: 249, }],
+    parent: "door", constraint: [{ type: "fix_point", x: 275, y: 151, }, { type: "fix_point", x: 275, y: 249, }],
+  },
+  { shapes: [{ type: "line", x1: 235, y1: 150, x2: 235, y2: 250, }] },
+
+
+  // boxes
+  // TODO on monday
+
+  // floor
+  { shapes: [{ type: "svg", svg: "box", r: 50, }], x: 225, y: 650, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "arrow_down", r: 25, }], x: 0, y: -50, parent: "floor", color: C.floor_symbol, },
 
 ];
 
@@ -401,6 +424,7 @@ const main_map = [
   ...translate(map_navigation, 1500, 525),
   ...translate(map_shields, 800, 1200),
   ...translate(map_communications, 550, 1200),
+  ...translate(map_storage, 25, 1000),
 
 ];
 

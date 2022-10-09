@@ -16,13 +16,13 @@ export const questions = [
   },
 
   { // 2: Yu Pin
-    question: "What is spaghetti?",
+    question: "What is spaghetti? (Think of what you learnt)",
     choices: [
       "Long, thin, cylindrical noodles",
       "The code of this website",
       "Long rods of nucleons",
-      "An Astronaut falling into a black hole",
-      "When nuclei are squeezed until they touch",
+      "An astronaut falling into a black hole",
+      "When nuclei are squeezed until they touch fully",
     ],
     answer: 3,
   },
@@ -90,13 +90,13 @@ export const questions = [
   { // 8: Vikram
     question: "What might neutron star cores contain?",
     choices: [
-      "A Bose-Einstien Condensate",
+      "A Bose-Einstein Condensate",
       "Protons",
       "Quark-Gluon Plasma",
       "Nuclear Pasta",
       "Elemental Iron",
     ],
-    answer: 3, // of course!
+    answer: 3,
   },
 
   { // 9: Vikram
@@ -110,7 +110,6 @@ export const questions = [
     ],
     answer: 4,
   },
-
 
   { // 10: Vikram
     question: "When are Neutron Stars born?",
