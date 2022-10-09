@@ -12,7 +12,12 @@
         <meta name="description" content="{{ page.meta.description }}">
       {% elif config.site_description %}
         <meta name="description" content="{{ config.site_description }}">
+        {% endif %}
+
+      {% if page.meta and page.meta.description %}
+        <meta name="footer" content="{{ page.meta.footer }}">
       {% endif %}
+
       {% if page.meta and page.meta.author %}
         <meta name="author" content="{{ page.meta.author }}">
       {% elif config.site_author %}

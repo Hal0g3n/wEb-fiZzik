@@ -43,7 +43,14 @@
   {% endif %}
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      {% include "partials/copyright.html" %}
+      {% if page.meta and page.meta.footer %}
+      <div class="md-copyright__highlight">
+        {{ page.meta.footer }}
+      </div>
+      {% else %}
+        {% include "partials/copyright.html" %}
+      {% endif %}
+      
       {% if config.extra.social %}
         {% include "partials/social.html" %}
       {% endif %}

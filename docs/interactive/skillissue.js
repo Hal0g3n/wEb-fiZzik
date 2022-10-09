@@ -120,15 +120,14 @@ class Dot {
   }
 
   tick() {
-    this.t_theta += 0.05;
+    this.t_theta += 5 / this.r / Dot.r;
     // this.t_phi += 0.01;
-    const lerp_amount = 0.03;
+    const lerp_amount = 0.08;
     this.size = lerp(this.size, this.t_size, lerp_amount);
     this.r = lerp(this.r, this.t_r * this.t_r_mult * Dot.r, lerp_amount);
     this.theta = lerp_angle(this.theta, this.t_theta, lerp_amount);
     this.phi = lerp_angle(this.phi, this.t_phi, lerp_amount);
     this.calculate();
-    if (this.id === 0) console.log(this.r);
   }
 
   calculate() {

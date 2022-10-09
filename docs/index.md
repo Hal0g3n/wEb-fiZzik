@@ -1,6 +1,8 @@
 ---
 hide:
 - toc
+
+footer: "Did you click on the background?"
 ---
 <iframe style="position: absolute; top: 50px; left: 50%; width: 100vw; margin-left: -50vw; height:100vh;" allowtransparency="true" frameBorder="0" src="interactive/index.html">
 </iframe>
