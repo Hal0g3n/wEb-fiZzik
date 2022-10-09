@@ -37,13 +37,16 @@ export const runner = Runner.create();
 function init_before() {
 
   // set player position
+  player.position = player_starting_position;
 
 }
 
 function tick(time) {
   camera.draw();
   if (!tasks.active) { // !paused
-    Runner.tick(runner, engine);
+    if (!ui.paused()) {
+      Runner.tick(runner, engine);
+    }
     camera.tick();
   } else {
     tasks.draw();
@@ -54,7 +57,6 @@ function tick(time) {
 function init_after() {
   
   // create player
-  player.position = player_starting_position;
   player.create();
 
   // create map

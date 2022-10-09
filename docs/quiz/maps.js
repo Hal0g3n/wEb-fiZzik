@@ -34,9 +34,14 @@ const translate = (list, tx = 0, ty = 0) => {
   return list;
 };
 
-export const player_starting_position = {
+const old_player_starting_position = {
   x: 0,
   y: -100,
+};
+
+export const player_starting_position = {
+  x: 1000,
+  y: 400,
 };
 
 const map_cafeteria = [
@@ -249,7 +254,6 @@ const map_weapons = [
   // floor
   { shapes: [{ type: "svg", svg: "sword", r: 50, }], x: 190, y: 0, parent: "floor", color: C.floor_symbol, },
   { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 115, y: -260, parent: "floor", color: C.floor_symbol, },
-  //{ shapes: [{ type: "svg", svg: "arrow_right", r: 25, }], x: 0, y: 0, parent: "floor", color: C.floor_symbol, }, // this place doesn't need an arrow.
 
   // tasks
   { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 250, y: -120, parent: "task", task: 4, },
@@ -259,7 +263,45 @@ const map_weapons = [
 
 const map_co2 = [ // co2, not o2! neutron stars like consuming co2. yum yum!
 
+  // walls
+  { shapes: [{ type: "line", x1: -100, y1: -150, x2: -100, y2: -50, }] },
+  { shapes: [{ type: "line", x1: -100, y1: -50, x2: -200, y2: -50, }] },
+  { shapes: [{ type: "line", x1: -200, y1: -50, x2: -200, y2: -70, }] },
+  { shapes: [{ type: "line", x1: -200, y1: -70, x2: -430, y2: -70, }] },
+  { shapes: [{ type: "line", x1: -430, y1: -70, x2: -430, y2: -50, }] },
+  { shapes: [{ type: "line", x1: -430, y1: -50, x2: -500, y2: 0, }] },
+  { shapes: [{ type: "line", x1: -500, y1: 0, x2: -500, y2: 200, }] },
+  { shapes: [{ type: "line", x1: -500, y1: 200, x2: -200, y2: 200, }] },
+  { shapes: [{ type: "line", x1: -200, y1: 200, x2: -200, y2: 50, }] },
+  { shapes: [{ type: "line", x1: -200, y1: 50, x2: 100, y2: 50, }] },
+  { shapes: [{ type: "line", x1: 100, y1: 50, x2: 100, y2: 200, }] },
+  { shapes: [{ type: "line", x1: 100, y1: 200, x2: -100, y2: 200, }] },
+  { shapes: [{ type: "line", x1: -100, y1: 200, x2: -100, y2: 550, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 550, x2: 0, y2: 300, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 300, x2: 200, y2: 300, }] },
+  { shapes: [{ type: "line", x1: 200, y1: 300, x2: 200, y2: 175, }] },
+  { shapes: [{ type: "line", x1: 200, y1: 175, x2: 400, y2: 175, }] },
+  { shapes: [{ type: "line", x1: 400, y1: 75, x2: 200, y2: 75, }] },
+  { shapes: [{ type: "line", x1: 200, y1: 75, x2: 200, y2: -50, }] },
+  { shapes: [{ type: "line", x1: 200, y1: -50, x2: 0, y2: -50, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -50, x2: 0, y2: -150, }] },
+  { shapes: [{ type: "polygon", sides: 10, r: 20, stroke: C.white, line_width: 3, }], x: -350, y: 75, spin: -0.01, parent: "movewall", balloon: 5.5, },
   
+  // tasks
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: -480, y: 180, parent: "task", task: 4, },
+
+  // floor
+  { shapes: [{ type: "svg", svg: "co2", r: 50, }], x: -150, y: 0, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "arrow_left", r: 35, }], x: -200, y: 0, parent: "floor", color: C.floor_symbol, },
+
+  { shapes: [{ type: "svg", svg: "plane", r: 50, }], x: 350, y: 125, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "arrow_right", r: 35, }], x: 400, y: 125, parent: "floor", color: C.floor_symbol, },
+
+];
+
+const map_navigation = [
+
+
 
 ];
 
@@ -277,6 +319,7 @@ const main_map = [
   ...translate(map_medbay, -850, 70),
   ...translate(map_admin, 67, 730),
   ...translate(map_weapons, 800, 0),
+  ...translate(map_co2, 1000, 400),
 
 ];
 

@@ -190,6 +190,7 @@ export class Thing {
 
     this.tick_position();
     this.tick_rotation();
+    this.tick_size();
 
   }
 
@@ -208,6 +209,19 @@ export class Thing {
       }
     }
     
+  }
+
+  tick_size() {
+
+    if (this.balloon != null) {
+      let target_size = 1;
+      if (Vector.magnitudeSquared(Vector.sub(this.position, player.position)) <= (this.balloon_distance || 20000)) {
+        target_size = this.balloon || 5;
+      }
+      this.size = util.lerp(this.size, target_size, 0.2);
+      this.update_body();
+    }
+
   }
 
   memo_shape_size = null;
@@ -278,7 +292,7 @@ export class Thing {
       } else if (shape.type === "polygon") {
         shape_points.push(...util.regpoly(shape.sides, shape.r || 1, shape.rotation || 0, shape.x, shape.y));
       } else if (shape.type === "circle") {
-        shape_points.push(...util.regpoly(12, shape.r || 1, 0, shape.x, shape.y));
+        shape_points.push(...util.regpoly(16, shape.r || 1, 0, shape.x, shape.y));
       } else if (shape.type === "rectangle") {
         if (shape.w * this.size <= 1) {
           const _h = shape.h;

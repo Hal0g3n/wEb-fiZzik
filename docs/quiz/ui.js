@@ -1,3 +1,5 @@
+import { camera } from "./camera.js";
+import { collide } from "./collide.js";
 import { draw } from "./draw.js";
 import { check_keys } from "./key.js";
 import { C } from "./lib.js";
@@ -7,13 +9,19 @@ import { util } from "./util.js";
 
 const Vector = Matter.Vector;
 
-
 export const ui = {
+
   time: 0,
   old_click: false,
   new_click: false,
   old_rclick: false,
   new_rclick: false,
+  show_info: true,
+
+  paused: function() {
+    return ui.show_info;
+  }
+
 };
 
 export const check_click = function() {
@@ -69,9 +77,53 @@ export const draw_ui = function() {
   _h = screen.h;
   size = Math.sqrt(screen.w * screen.h) / 100;
 
+  draw_info();
   draw_taskbar();
   draw_fps();
   draw_bottom_text();
+
+}
+
+const draw_info = () => {
+
+  if (ui.show_info) {
+
+    w = _w * 0.75;
+    h = _h * 0.75;
+    
+    // draw background rectangle
+    ctx.lineWidth = size * 0.4;
+    ctx.strokeStyle = "#ffffffb0";
+    draw.stroke_rectangle(_w / 2, _h / 2, w + size * 0.4, h + size * 0.4);
+    ctx.fillStyle = "#05a10080";
+    draw.fill_rectangle(_w / 2, _h / 2, w, h);
+
+    // draw cross
+    x = (_w + w) / 2 - size * 5;
+    y = (_h - h) / 2 + size * 5;
+    r = size * 2.5;
+    hover = collide.point_circle(camera.mouse, x, y, r * 1.2);
+    ctx.fillStyle = hover ? C.red : C.white;
+    draw.svg("cross", x, y, r * 2);
+    if (hover && ui.new_click) {
+      ui.show_info = false;
+    }
+
+  } else {
+
+    // draw info button
+    x = _w - size * 5;
+    y = _h - size * 5;
+    r = size * 2.5;
+    hover = collide.point_circle(camera.mouse, x, y, r * 1.2);
+    ctx.fillStyle = hover ? C.window_blue : C.white;
+    draw.svg("info", x, y, r * 2);
+    if (hover && ui.new_click) {
+      ui.show_info = true;
+    }
+
+
+  }
 
 }
 
@@ -98,6 +150,16 @@ const draw_taskbar = () => {
   ctx.font = `${Math.round(size * 2)}px roboto condensed`;
   ctx.fillStyle = "#ffffff";
   draw.fill_text("TOTAL TASKS COMPLETED", size * 2.25, size * 3.1);
+  
+  player.display_radius = util.lerp(player.display_radius, player.real_radius, 0.04);
+  ctx.font = `${Math.round(size * 1.5)}px roboto condensed`;
+  s = `Your radius: ${Math.round(player.display_radius)} km`;
+  w = draw.get_text_width(s);
+  ctx.lineWidth = size * 0.4;
+  ctx.fillStyle = "#05a10080";
+  draw.fill_rect(size * 1.5, size * 5.9, w + size * 1.5, size * 2.2);
+  ctx.fillStyle = "#ffffff";
+  draw.fill_text(s, size * 2.25, size * 7.1);
 
 }
 

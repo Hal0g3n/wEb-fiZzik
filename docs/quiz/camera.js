@@ -2,7 +2,7 @@ import { Thing, player } from "./thing.js";
 import { draw } from "./draw.js";
 import { ctx } from "./main.js";
 import { clip_visibility_polygon, unclip_visibility_polygon } from "./see.js";
-import { draw_ui, draw_ui_before, draw_ui_middle } from "./ui.js";
+import { draw_ui, draw_ui_before, draw_ui_middle, ui } from "./ui.js";
 
 const Vector = Matter.Vector;
 
@@ -60,7 +60,9 @@ export class Camera {
 
   tick() {
     this.move_to_player();
-    Thing.tick_things();
+    if (!ui.paused()) {
+      Thing.tick_things();
+    }
   }
 
   // actually the main draw function
