@@ -9,8 +9,10 @@ export const C = {
   floor_symbol: "#60606060",
   black: "#000000",
 
-  red: "#ff0000", // "#amogus",
+  window_red: "#7d2424",
+  red: "#e63d27", // "#amogus",
   door: "#9b735e",
+  orange: "#e69027", // "#amogus",
   lime: "#5aa612",
   window_blue: "#32a2a8",
   bed_blue: "#116e96",
