@@ -134,17 +134,29 @@ export const questions = [
     author: "Vikram",
   },
   
-  
-  { // 11
+  { // 11: Yuan Xi
     question: "Can Neutron Stars produce energy?",
     choices: [
-      "Yes. They are stars after all",
-      "No. They are just hot balls of neutrons",
-      "Yes. Energy is released when electrons and protons fuse",
-      "No. They absorb energy from the surroundings instead to keep them shiny",
-      "Yes. The hot neutron star undergoes black body radiation",
+      "Yes. They are stars after all", // Flawed understanding of stars
+      "No. They are just hot balls of neutrons", // The true answer
+      "Yes. Energy is released when electrons and protons fuse", // Only occurs during formation, not relevant
+      "No. Instead, they absorb energy from the surroundings to keep them glowing", // This is just wrong, they lose heat energy to the surrounding anyways
+      "Yes. The hot neutron star undergoes Black Body Radiation, producing energy", // Black Body Radiation doesn't produce energy :angry:
     ],
     answer: 2,
+    author: "Yuan Xi",
+  },
+
+  { // 12: Yuan Xi
+    question: "What is Pauli's Exclusion Principle?",
+    choices: [
+      "No 2 particles can be at the same state", // The true answer
+      "We must exclude neutron stars from classical physics", // Wrong kind of exclusion
+      "Like charges will repel each other", // Repulsion due to Coulomb's Law
+      "For all objects, there exist an anti version of it", // What even, this is not factually correct
+      "The many universes in the multiverse will never interact", // Part of multiverse theory, but is just not exclusion
+    ],
+    answer: 1,
     author: "Yuan Xi",
   },
 ];
