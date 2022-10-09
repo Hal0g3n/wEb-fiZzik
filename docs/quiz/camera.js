@@ -9,7 +9,7 @@ const Vector = Matter.Vector;
 export class Camera {
 
   static settings = {
-    camera_scale: 0.0012,
+    camera_scale: 0.0008,
     smoothness: 0.1,
     mouse_offset_factor: 0.05,
     mouse_offset_smoothness: 0.1,

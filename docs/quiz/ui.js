@@ -2,6 +2,7 @@ import { draw } from "./draw.js";
 import { check_keys } from "./key.js";
 import { C } from "./lib.js";
 import { ctx, FPS, screen } from "./main.js";
+import { player } from "./thing.js";
 import { util } from "./util.js";
 
 const Vector = Matter.Vector;
@@ -78,8 +79,8 @@ let old_taskbar_ratio = 0;
 
 const draw_taskbar = () => {
 
-  const tasks = 1;
-  const total_tasks = 2;
+  const tasks = player.tasks_completed;
+  const total_tasks = player.total_tasks;
   const ratio = util.lerp(old_taskbar_ratio, tasks / total_tasks, 0.05);
   old_taskbar_ratio = ratio;
 
@@ -203,10 +204,9 @@ export const send_bottom_text = (text, target_height = 50, timeout = null) => {
 
   // a text is displayed now, wait time_left / 2 seconds before showing the new one
   const wait_time = Math.round(time_left / 2);
-  console.log(time_left, wait_time);
+  // console.log(time_left, wait_time);
   bottom_text_time -= wait_time;
   setTimeout(() => {
-    console.log(text);
     bottom_text = text;
     bottom_text_time = ui.time;
     bottom_text_timeout = timeout;
