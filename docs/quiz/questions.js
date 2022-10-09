@@ -143,13 +143,13 @@ export const questions = [
       "Yes. The hot neutron star undergoes Black Body Radiation, producing energy", // Black Body Radiation doesn't produce energy :angry:
     ],
     answer: 2,
-    author: "Yuan Xi",
+    author: "Yuan Xi", // Uh yuan xi we didn't teach this
   },
 
   { // 12: Yuan Xi
     question: "What is Pauli's Exclusion Principle?",
     choices: [
-      "No 2 particles can be at the same state", // The true answer
+      "No 2 fermions can be in the same quantum state", // The true answer
       "We must exclude neutron stars from classical physics", // Wrong kind of exclusion
       "Like charges will repel each other", // Repulsion due to Coulomb's Law
       "For all objects, there exist an anti version of it", // What even, this is not factually correct
