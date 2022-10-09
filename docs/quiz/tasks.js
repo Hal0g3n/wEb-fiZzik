@@ -194,6 +194,14 @@ const draw_mcq = () => {
     i++;
   }
 
+  // draw author
+  const author = `Question by ${question.author}`;
+  y = _h * 0.875 - size * 4;
+  ctx.font = `${Math.round(h * 0.3)}px roboto condensed`;
+  ctx.textAlign = "right";
+  ctx.fillStyle = "#ffffff";
+  draw.fill_text(author, _w * 0.875 - size * 4, y);
+
 };
 
 tasks.draw = () => {
