@@ -1,7 +1,7 @@
 site_name: PC5132 Website
 
 nav:
-    - Welcome: index.md
+    - index.md
     - Neutron Stars:
         - Preview: 1.md
         - Neutron Degeneracy Pressure: 2.md
