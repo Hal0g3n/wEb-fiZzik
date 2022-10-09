@@ -49,7 +49,10 @@ sub, sup {
 }
 
 img {
-    border-style: none
+    border-style: none;
+    margin: auto;
+    display: block;
+    width: 40%;
 }
 
 table {
