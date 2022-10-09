@@ -831,7 +831,7 @@ html .md-typeset__table table {
 html {
     font-size: 125%;
     height: 100%;
-    overflow-x: hidden
+    overflow-x: hidden;
 }
 
 @media screen and (min-width:100em) {

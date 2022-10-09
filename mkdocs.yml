@@ -10,6 +10,8 @@ nav:
     - Quark Stars: 5.md
     - Strange Matter: 6.md
     - Fin: Conclusion.md
+    - Final Test: quiz/index.html
+    - Credits: Credits.md
 
 theme:
     name: "material"
