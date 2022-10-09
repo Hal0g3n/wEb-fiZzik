@@ -40,8 +40,8 @@ const old_player_starting_position = {
 };
 
 export const player_starting_position = {
-  x: 1000,
-  y: 400,
+  x: 800,
+  y: 1200,
 };
 
 const map_cafeteria = [
@@ -317,6 +317,10 @@ const map_navigation = [ // hmmm snake?
     message: "Why is this task blocking my way???", message_once: true,
   },
 
+  // floor
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 50, y: -250, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 50, y: 250, parent: "floor", color: C.floor_symbol, },
+
 ];
 
 const map_shields = [ // it's just map_weapons, but in the opposite y-direction!
@@ -352,6 +356,33 @@ const map_shields = [ // it's just map_weapons, but in the opposite y-direction!
 
 ];
 
+const map_communications = [
+  
+  // walls
+  { shapes: [{ type: "line", x1: 250, y1: -70, x2: -250, y2: -50, }] },
+  { shapes: [{ type: "line", x1: 250, y1: 70, x2: 20, y2: 61, }] },
+  { shapes: [{ type: "line", x1: -20, y1: 59, x2: -250, y2: 50, }] },
+  { shapes: [{ type: "line", x1: 20, y1: 61, x2: 20, y2: 150, }] },
+  { shapes: [{ type: "line", x1: 20, y1: 150, x2: 200, y2: 150, }] },
+  { shapes: [{ type: "line", x1: 200, y1: 150, x2: 200, y2: 450, }] },
+  { shapes: [{ type: "line", x1: 200, y1: 450, x2: -200, y2: 450, }] },
+  { shapes: [{ type: "line", x1: -200, y1: 450, x2: -200, y2: 150, }] },
+  { shapes: [{ type: "line", x1: -200, y1: 150, x2: -20, y2: 150, }] },
+  { shapes: [{ type: "line", x1: -20, y1: 150, x2: -20, y2: 59, }] },
+
+  // floor
+  { shapes: [{ type: "svg", svg: "chat", r: 50, }], x: -150, y: 200, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "arrow_down", r: 25, }], x: 0, y: 100, parent: "floor", color: C.floor_symbol, },
+
+];
+
+const map_storage = [
+
+  // walls
+  { shapes: [{ type: "line", x1: 0, y1: 1, x2: 1, y2: 0, }] },
+
+];
+
 const main_map = [
 
   // big borders
@@ -369,6 +400,7 @@ const main_map = [
   ...translate(map_co2, 1000, 400),
   ...translate(map_navigation, 1500, 525),
   ...translate(map_shields, 800, 1200),
+  ...translate(map_communications, 550, 1200),
 
 ];
 
