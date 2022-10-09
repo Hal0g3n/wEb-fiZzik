@@ -10,9 +10,9 @@ const Engine = Matter.Engine,
       Events = Matter.Events,
       Vector = Matter.Vector;
 
-collide.point_circle = (point, circle, r) => {
-  const dx = circle.x - point.x;
-  const dy = circle.y - point.y;
+collide.point_circle = (point, x, y, r) => {
+  const dx = x - point.x;
+  const dy = y - point.y;
   r = r || circle.r;
   return dx * dx + dy * dy <= r * r;
 }

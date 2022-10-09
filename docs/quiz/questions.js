@@ -52,6 +52,18 @@ export const questions = [
   },
 
   { // 5
+    question: "Which of these don't exist in neutron stars?",
+    choices: [
+      "carbon dioxide",
+      "iron nuclei",
+      "neutrons",
+      "anti-gnocchi",
+      "oxygen nuclei",
+    ],
+    answer: 1,
+  },
+
+  { // 6
     question: "Everyone likes neutron stars. Why?",
     choices: [
       "they are the most accurate and stable clock in the universe",
@@ -63,7 +75,7 @@ export const questions = [
     answer: 5,
   },
 
-  { // 6
+  { // 7
     question: "Everyone doesn't like neutron stars. Why?",
     choices: [
       "they can make you blind if you stare at them for too long",
@@ -80,4 +92,5 @@ export const questions = [
 for (const question of questions) {
   if (typeof question === "number") continue;
   question.chosen = [false, false, false, false, false, false];
+  question.chosen_number = 0;
 }

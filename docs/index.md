@@ -2,7 +2,7 @@
 hide:
 - toc
 
-footer: "Did you click on the background?"
+footer: "Did you click (and hold) on the background?"
 ---
 
 <iframe style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh" allowtransparency="true" frameBorder="0" src="interactive/index.html">

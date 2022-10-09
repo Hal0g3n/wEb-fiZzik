@@ -5,6 +5,7 @@ import { add_key_listener } from "./key.js";
 import { C } from "./lib.js";
 import { ctx, screen } from "./main.js";
 import { questions } from "./questions.js";
+import { player } from "./thing.js";
 import { ui } from "./ui.js";
 
 export const tasks = {
@@ -60,6 +61,13 @@ tasks.init = () => {
     tasks.exit();
   });
 
+  for (let i = 1; i <= 5; i++) {
+    add_key_listener("Digit" + i, function() {
+      if (tasks.question <= 0) return;
+      
+    });
+  }
+
 };
 
 tasks.tick = () => {
@@ -67,6 +75,39 @@ tasks.tick = () => {
   tasks.time++;
   
 };
+
+tasks.scam_question = [
+  0, // 0
+  1, // 1
+  3 / 5, // 2
+  2 / 5, // 3
+  1 / 5, // 4,
+  0, // 5
+]
+
+tasks.check = () => {
+
+  let accuracy = 0;
+  let accuracy_total = 0;
+  let tasks_complete = 0;
+
+  // check questions
+  for (const question of questions) {
+    if (typeof question !== "object") continue;
+    if (question.chosen[question.answer]) {
+      tasks_complete++;
+      let tries = question.chosen_number;
+      accuracy += tasks.scam_question[tries];
+      accuracy_total++;
+    }
+  }
+
+  tasks.accuracy = accuracy / accuracy_total;
+  player.tasks_complete = tasks_complete;
+  
+  player.calculate_real_radius();
+
+}
 
 let _w, _h, size;
 let x, y, w, h, r;
@@ -78,27 +119,43 @@ const check_mcq = (number) => {
   const question = questions[tasks.question];
 
   question.chosen[number] = true;
+  question.chosen_number++;
 
   if (number === question.answer) {
     tasks.thing.color = C.lime;
   }
 
+  tasks.check();
+
 }
 
-const mcq_numbers = "⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖㉗㉘㉙㉚㉛㉜㉝㉞㉟㊱㊲㊳㊴㊵㊶㊷㊸㊹㊺㊻㊼㊽㊾㊿";
+const mcq_numbers = "⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖㉗㉘㉙㉚㉛㉜㉝㉞㉟㊱㊲㊳㊴㊵㊶㊷㊸㊹㊺㊻㊼㊽㊾㊿"; // actually, I only need 1-5...
 
 const draw_mcq = () => {
 
+  // get question
   const question = questions[tasks.question];
 
   w = _w * 0.75;
   h = _h * 0.75;
 
+  // draw background rectangle
   ctx.lineWidth = size * 0.4;
   ctx.strokeStyle = "#ffffffb0";
   draw.stroke_rectangle(_w / 2, _h / 2, w + size * 0.4, h + size * 0.4);
   ctx.fillStyle = tasks.thing.color + "80";
   draw.fill_rectangle(_w / 2, _h / 2, w, h);
+  
+  // draw cross
+  x = (_w + w) / 2 - size * 5;
+  y = (_h - h) / 2 + size * 5;
+  r = size * 2.5;
+  hover = collide.point_circle(camera.mouse, x, y, r * 1.2);
+  ctx.fillStyle = hover ? C.red : C.white;
+  draw.svg("cross", x, y, r * 2);
+  if (hover && ui.new_click) {
+    tasks.exit();
+  }
 
   h = _h * 0.08;
   y = _h * 0.125;
@@ -109,6 +166,7 @@ const draw_mcq = () => {
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
 
+  // draw question
   const splitted_question = draw.split_text(question.question, _w * 0.75);
   ctx.fillStyle = "#ffffff";
   for (const s of splitted_question) {
@@ -117,6 +175,7 @@ const draw_mcq = () => {
 
   y += h * 1.25;
 
+  // draw choices
   ctx.font = `${Math.round(h * 0.4)}px roboto condensed`;
   i = 1;
   for (const choice of question.choices) {
