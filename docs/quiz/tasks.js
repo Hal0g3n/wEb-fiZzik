@@ -37,6 +37,7 @@ tasks.load_task_from_number = () => {
     case 3:
     case 4:
     case 5:
+    case 8:
       tasks.question = tasks.number;
       break;
   }
@@ -113,11 +114,14 @@ const check_mcq = (number) => {
 
   const question = questions[tasks.question];
 
+  if (!question.chosen[number]) {
+    question.chosen_number++;
+  }
   question.chosen[number] = true;
-  question.chosen_number++;
 
   if (number === question.answer) {
     tasks.thing.color = C.lime;
+    tasks.thing.task = null; // vikram spotted this "bug" (actually was a feature, but I realised it might be confusing, so I just removed it...)
   }
 
   tasks.check();
