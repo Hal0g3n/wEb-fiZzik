@@ -53,8 +53,8 @@ export const draw_ui_before = function() {
 
 let _w, _h, size;
 let x, y, w, h, r;
-let c, f, s;
-
+let c, f, s, i;
+let hover, click;
 
 
 export const draw_ui_middle = function() {

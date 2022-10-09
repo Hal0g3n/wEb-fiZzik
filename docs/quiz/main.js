@@ -7,6 +7,7 @@ import { init_map, player_starting_position } from "./maps.js";
 import { clip_visibility_polygon } from "./see.js";
 import { init_ui, ui } from "./ui.js";
 import { collide, init_collide } from "./collide.js";
+import { tasks } from "./tasks.js";
 
 const Engine = Matter.Engine,
       Runner = Matter.Runner,
@@ -15,7 +16,7 @@ const Engine = Matter.Engine,
 // const parameters = new URLSearchParams(document.location.search);
 
 export const canvas = document.getElementById("canvas");
-export const ctx = canvas.getContext("2d");
+export const ctx = canvas.getContext("2d", { alpha: false });
 export const screen = {
   x: 0,
   y: 0,
@@ -41,9 +42,12 @@ function init_before() {
 
 function tick(time) {
   camera.draw();
-  if (true) { // !paused
+  if (!tasks.active) { // !paused
     Runner.tick(runner, engine);
     camera.tick();
+  } else {
+    tasks.draw();
+    tasks.tick();
   }
 }
 
@@ -55,6 +59,8 @@ function init_after() {
 
   // create map
   init_map();
+
+  tasks.init();
 
   // add key listeners
   /*

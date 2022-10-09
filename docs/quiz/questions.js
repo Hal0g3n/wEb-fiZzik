@@ -12,7 +12,7 @@ export const questions = [
       "Around the size of a mountain",
       "Black body radiation",
     ],
-    answer: 3,
+    answer: 4,
   },
 
   { // 2 
@@ -33,8 +33,8 @@ export const questions = [
       "They spin as fast as neutrons",
       "They are as dense as neutrons",
       "They are as hot as neutrons",
+      "They are as large as impostors",
       "They eat neutrinos for lunch",
-      "They are probably as big as an impostor",
     ],
     answer: 2,
   },
@@ -54,7 +54,7 @@ export const questions = [
   { // 5
     question: "Everyone likes neutron stars. Why?",
     choices: [
-      "they are the most accurate and stable clock, even better than atomic clocks",
+      "they are the most accurate and stable clock in the universe",
       "they are generally better than black holes, and won't eat you up",
       "they have the second-strongest pasta in the universe",
       "they are even cooler than the Sun",
@@ -67,7 +67,7 @@ export const questions = [
     question: "Everyone doesn't like neutron stars. Why?",
     choices: [
       "they can make you blind if you stare at them for too long",
-      "they have a surface temperature of 600000 °C and cannot be used as beds",
+      "they have a surface temperature of 600000 °C, and cannot be used as beds",
       "they enjoy eating neutrinos for lunch, leaving none for us",
       "they don't like us, therefore we don't like them",
       "they are very sus, especially in the game 'Among Us'",
@@ -76,3 +76,8 @@ export const questions = [
   },
 
 ];
+
+for (const question of questions) {
+  if (typeof question === "number") continue;
+  question.chosen = [false, false, false, false, false, false];
+}

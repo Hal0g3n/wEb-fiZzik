@@ -124,6 +124,14 @@ make.movewindow = {
   blocks_sight: false,
 };
 
+make.task = {
+  parent: "wall",
+  blocks_sight: false,
+  color: C.orange,
+  spin: 2,
+  restitution: 0.6,
+};
+
 //make.walltest = {"shapes":[{"type":"rectangle","x1":200,"y1":200,"x2":200,"y2":-200,"x":0,"y":0,"w":1,"h":200,"body":true,}],"parent":"wall","position":{"x":200,"y":0},"angle":-1.5707963267948966};
 
 make.player = {

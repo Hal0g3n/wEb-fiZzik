@@ -89,7 +89,7 @@ const map_cafeteria = [
   { shapes: [{ type: "svg", svg: "food", x: 0, y: 200, r: 50, }], parent: "floor", color: C.floor_symbol, },
 
   // tasks
-  { shapes: [{ type: "polygon", sides: 6, r: 15, }], x: 0, y: -350, spin: 2, parent: "window", color: C.orange, },
+  { shapes: [{ type: "polygon", sides: 6, r: 15, }], x: 0, y: -350, parent: "task", task: 1, },
 
   // "secret"
   { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -500 - 60 * sqrt_2, y2: -200, }] },
@@ -180,8 +180,8 @@ const map_medbay = [
   },
 
   // tasks
-  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 125, y: 250, spin: 2, parent: "window", color: C.orange, },
-  { shapes: [{ type: "polygon", sides: 6, r: 20, }], x: 325, y: 375, spin: 2, parent: "window", color: C.orange, },
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 125, y: 250, parent: "task", task: 2, },
+  { shapes: [{ type: "polygon", sides: 6, r: 20, }], x: 325, y: 375, parent: "task", task: 9, },
 
   // floor
   { shapes: [{ type: "svg", svg: "arrow_down", r: 25, }], x: 0, y: -25, parent: "floor", color: C.floor_symbol, },
@@ -214,7 +214,7 @@ const map_admin = [
   },
 
   // tasks
-  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 400, y: 205, spin: 2, parent: "window", color: C.orange, },
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 400, y: 205, parent: "task", task: 3,  },
 
 ];
 
@@ -248,7 +248,7 @@ const map_weapons = [
   //{ shapes: [{ type: "svg", svg: "arrow_right", r: 25, }], x: 0, y: 0, parent: "floor", color: C.floor_symbol, }, // this place doesn't need an arrow.
 
   // tasks
-  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 250, y: -120, spin: 2, parent: "window", color: C.orange, },
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 250, y: -120, parent: "task", task: 4, },
 
 
 ];

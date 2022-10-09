@@ -1,4 +1,5 @@
 import { engine } from "./main.js";
+import { tasks } from "./tasks.js";
 import { send_bottom_text } from "./ui.js";
 
 export const collide = { };
@@ -76,6 +77,18 @@ collide.line_circle = (a, b, circle, radius, nearest) => {
   // check collision
   return collide.point_circle(nearest, circle, radius)
           && pLen2 <= dLen2 && (px * dx + py * dy) >= 0;
+}
+
+collide.point_rect = (point, x, y, w, h) => {
+  const px = point.x;
+  const py = point.y;
+  return px >= x && px <= x + w && py >= y && py <= y + h;
+}
+
+collide.point_rectangle = (point, x, y, w, h) => {
+  const w2 = w / 2;
+  const h2 = h / 2;
+  return collide.point_rect(point, x - w2, y - h2, w, h);
 }
 
 // added and modified from https://github.com/Silverwolf90/2d-visibility/blob/master/src/
@@ -262,6 +275,13 @@ const collide_start = function(a, b, pair) {
       if (t.message_once) {
         t.message = null;
       }
+    }
+    if (t.task != null) {
+      tasks.active = true;
+      tasks.thing = t;
+
+      tasks.number = t.task;
+      tasks.load_task_from_number();
     }
   }
 }

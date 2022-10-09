@@ -31,7 +31,7 @@ util.random_sphere = () => {
 }
 
 util.get_color_component = (number_from_0_to_1) => {
-  let result = Math.floor(number_from_0_to_1 * 255).toString(16);
+  let result = ((number_from_0_to_1 * 255) | 0).toString(16);
   result = result.length == 1 ? "0" + result : result;
   return result;
 }
