@@ -3,7 +3,7 @@ export const questions = [
 
   0,
 
-  { // 1: Yu Pin
+  { // 1: 
     question: "How big are neutron stars?",
     choices: [
       "Around the size of a neutron, of course",
@@ -13,8 +13,9 @@ export const questions = [
       "Around the size of a neutral party",
     ],
     answer: 4,
+    author: "Yu Pin",
   },
-
+  
   { // 2: Yu Pin
     question: "What is spaghetti? (Think of what you learnt)",
     choices: [
@@ -25,8 +26,9 @@ export const questions = [
       "When nuclei are squeezed until they touch fully",
     ],
     answer: 3,
+    author: "Yu Pin",
   },
-
+  
   { // 3: Yu Pin
     question: "Why are neutron stars named 'neutron stars'?",
     choices: [
@@ -37,8 +39,9 @@ export const questions = [
       "They have very few protons",
     ],
     answer: 5,
+    author: "Yu Pin",
   },
-
+  
   { // 4: Yu Pin
     question: "When 2 neutron stars merge, what can't form?",
     choices: [
@@ -49,8 +52,9 @@ export const questions = [
       "Heavy elements",
     ],
     answer: 4,
+    author: "Yu Pin",
   },
-
+  
   { // 5: Yu Pin
     question: "Which one is least likely to exist in neutron stars?",
     choices: [
@@ -61,8 +65,9 @@ export const questions = [
       "An atmosphere",
     ],
     answer: 3,
+    author: "Yu Pin",
   },
-
+  
   { // 6: Vikram?
     question: "Neutron stars are interesting. Why?",
     choices: [
@@ -73,8 +78,9 @@ export const questions = [
       "All of the above",
     ],
     answer: 5,
+    author: "Vikram",
   },
-
+  
   { // 7: Vikram?
     question: "Neutron stars are not fun. Why?",
     choices: [
@@ -85,8 +91,9 @@ export const questions = [
       "All of the above",
     ],
     answer: 5,
+    author: "Vikram",
   },
-
+  
   { // 8: Vikram
     question: "What might neutron star cores contain?",
     choices: [
@@ -97,8 +104,9 @@ export const questions = [
       "Elemental Iron",
     ],
     answer: 3,
+    author: "Vikram",
   },
-
+  
   { // 9: Vikram
     question: "What are neutrons made of?",
     choices: [
@@ -109,8 +117,9 @@ export const questions = [
       "An electron and a proton",
     ],
     answer: 4,
+    author: "Vikram",
   },
-
+  
   { // 10: Vikram
     question: "When are Neutron Stars born?",
     choices: [
@@ -121,8 +130,34 @@ export const questions = [
       "When a white dwarf flickers out",
     ],
     answer: 3,
+    author: "Vikram",
+  },
+  
+  { // 11: Yuan Xi
+    question: "Can Neutron Stars produce energy?",
+    choices: [
+      "Yes. They are stars after all", // Flawed understanding of stars
+      "No. They are just hot balls of neutrons", // The true answer
+      "Yes. Energy is released when electrons and protons fuse", // Only occurs during formation, not relevant
+      "No. Instead, they absorb energy from the surroundings to keep them glowing", // This is just wrong, they lose heat energy to the surrounding anyways
+      "Yes. The hot neutron star undergoes Black Body Radiation, producing energy", // Black Body Radiation doesn't produce energy :angry:
+    ],
+    answer: 2,
+    author: "Yuan Xi",
   },
 
+  { // 12: Yuan Xi
+    question: "What is Pauli's Exclusion Principle?",
+    choices: [
+      "No 2 particles can be at the same state", // The true answer
+      "We must exclude neutron stars from classical physics", // Wrong kind of exclusion
+      "Like charges will repel each other", // Repulsion due to Coulomb's Law
+      "For all objects, there exist an anti version of it", // What even, this is not factually correct
+      "The many universes in the multiverse will never interact", // Part of multiverse theory, but is just not exclusion
+    ],
+    answer: 1,
+    author: "Yuan Xi",
+  },
 ];
 
 for (const question of questions) {
