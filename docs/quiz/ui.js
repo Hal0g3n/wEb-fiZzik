@@ -1,7 +1,7 @@
 import { camera } from "./camera.js";
 import { collide } from "./collide.js";
 import { draw } from "./draw.js";
-import { check_keys } from "./key.js";
+import { add_key_listener, check_keys } from "./key.js";
 import { C } from "./lib.js";
 import { ctx, FPS, screen } from "./main.js";
 import { tasks } from "./tasks.js";
@@ -30,6 +30,10 @@ export const check_click = function() {
 }
 
 export const init_ui = function() {
+  
+  add_key_listener("Escape", function() {
+    ui.show_info = false;
+  });
   
 }
 

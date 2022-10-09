@@ -87,6 +87,18 @@ export const questions = [
     answer: 2,
   },
 
+  { // 8
+    question: "This is a placeholder question. What is 1 + 1?",
+    choices: [
+      "2",
+      "1",
+      "probably 2",
+      "how is this related to neutron stars?",
+      "black body radiation",
+    ],
+    answer: 2, // of course!
+  },
+
 ];
 
 for (const question of questions) {

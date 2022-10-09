@@ -299,6 +299,39 @@ const map_co2 = [ // co2, not o2! neutron stars like consuming co2. yum yum!
 
 ];
 
+const map_shields = [ // it's just map_weapons, but in the opposite y-direction!
+
+  // walls
+  { shapes: [{ type: "line", x1: 0, y1: 70, x2: 0, y2: 300, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 300, x2: 150, y2: 300, }] },
+  { shapes: [{ type: "line", x1: 150, y1: 300, x2: 450, y2: 0, }] },
+  { shapes: [{ type: "line", x1: 450, y1: 0, x2: 450, y2: -250, }] },
+  { shapes: [{ type: "line", x1: 450, y1: -250, x2: 200, y2: -250, }] },
+  { shapes: [{ type: "line", x1: 100, y1: -250, x2: 50, y2: -250, }] },
+  { shapes: [{ type: "line", x1: 50, y1: -250, x2: 0, y2: -200, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -200, x2: 0, y2: -70, }] },
+
+  // railings
+  { shapes: [{ type: "line", x1: 1, y1: -70, x2: 50, y2: -70, }], parent: "window", color: C.window_red, },
+  { shapes: [{ type: "line", x1: 50, y1: -70, x2: 100, y2: -150, }], parent: "window", color: C.window_red, },
+  { shapes: [{ type: "line", x1: 100, y1: -150, x2: 100, y2: -249, }], parent: "window", color: C.window_red, },
+
+  { shapes: [{ type: "line", x1: 1, y1: 70, x2: 70, y2: 70, }], parent: "window", color: C.window_red, },
+  { shapes: [{ type: "line", x1: 70, y1: 70, x2: 70, y2: 299, }], parent: "window", color: C.window_red, },
+
+  { shapes: [{ type: "line", x1: 449, y1: 0, x2: 350, y2: 0, }], parent: "window", color: C.window_red, },
+  { shapes: [{ type: "line", x1: 350, y1: 0, x2: 200, y2: -150, }], parent: "window", color: C.window_red, },
+  { shapes: [{ type: "line", x1: 200, y1: -150, x2: 200, y2: -249, }], parent: "window", color: C.window_red, },
+
+  // floor
+  { shapes: [{ type: "svg", svg: "shield", r: 50, }], x: 190, y: 0, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 115, y: 260, parent: "floor", color: C.floor_symbol, },
+
+  // tasks
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 250, y: 120, parent: "task", task: 8, },
+
+];
+
 const map_navigation = [
 
 
@@ -320,6 +353,8 @@ const main_map = [
   ...translate(map_admin, 67, 730),
   ...translate(map_weapons, 800, 0),
   ...translate(map_co2, 1000, 400),
+  ...translate(map_navigation, 1500, 525),
+  ...translate(map_shields, 800, 1200),
 
 ];
 
