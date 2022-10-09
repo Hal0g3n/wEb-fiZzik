@@ -48,7 +48,7 @@ class Dot {
   static init() {
     for (let i = 0; i < config.star.balls; i++) {
       let d = new Dot(_w * config.star.radius, config.star.ball_size);
-      d.colour = "#4475f6"; // random_color() + "99";
+      d.colour = random_color_close_to("#4475f6", 0.1); // random_color() + "99";
       d.create();
       d.random_all();
     }
@@ -120,7 +120,7 @@ class Dot {
   }
 
   tick() {
-    this.t_theta += 5 / this.r / Dot.r;
+    this.t_theta += 10 / this.r / Dot.r;
     // this.t_phi += 0.01;
     const lerp_amount = 0.08;
     this.size = lerp(this.size, this.t_size, lerp_amount);
@@ -215,12 +215,23 @@ const get_color_component = (number_from_0_to_1) => {
   return result;
 }
 
+const get_number_from_hex = (hex) => {
+  return parseInt(hex, 16).toString(10);
+}
+
 const color_alpha = (hex, alpha) => {
   return hex + get_color_component(alpha);
 }
 
 const random_color = () => {
   return "#" + get_color_component(Math.random()) + get_color_component(Math.random()) + get_color_component(Math.random());
+}
+
+const random_color_close_to = (color, amount = 0.05) => {
+  return "#" + 
+    get_color_component(get_number_from_hex(color.substring(1, 3)) / 255 - amount / 2 + Math.random() * amount) +
+    get_color_component(get_number_from_hex(color.substring(3, 5)) / 255 - amount / 2 + Math.random() * amount) +
+    get_color_component(get_number_from_hex(color.substring(5)) / 255 - amount / 2 + Math.random() * amount);
 }
 
 const deg_to_rad = (deg) => {
@@ -292,7 +303,7 @@ const mouse_down = () => {
 }
 
 const mouse_up = () => {
-  Dot.r = 10;
+  Dot.r = 7;
 }
 
 const mouse_right = () => {
