@@ -299,6 +299,26 @@ const map_co2 = [ // co2, not o2! neutron stars like consuming co2. yum yum!
 
 ];
 
+const map_navigation = [ // hmmm snake?
+
+  // walls
+  { shapes: [{ type: "line", x1: -101, y1: -50, x2: 0, y2: -50, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -50, x2: 0, y2: -300, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -300, x2: 350, y2: -300, }] },
+  { shapes: [{ type: "line", x1: 350, y1: -300, x2: 500, y2: -75, }] },
+  { shapes: [{ type: "line", x1: 500, y1: -75, x2: 500, y2: 75, }] },
+  { shapes: [{ type: "line", x1: 500, y1: 75, x2: 350, y2: 300, }] },
+  { shapes: [{ type: "line", x1: 350, y1: 300, x2: 0, y2: 300, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 300, x2: 0, y2: 50, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 50, x2: -101, y2: 50, }] },
+
+  // tasks
+  { shapes: [{ type: "polygon", sides: 6, r: 15, }], x: 5, y: 0, parent: "task", task: 8,
+    message: "Why is this task blocking my way???", message_once: true,
+  },
+
+];
+
 const map_shields = [ // it's just map_weapons, but in the opposite y-direction!
 
   // walls
@@ -329,12 +349,6 @@ const map_shields = [ // it's just map_weapons, but in the opposite y-direction!
 
   // tasks
   { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 250, y: 120, parent: "task", task: 8, },
-
-];
-
-const map_navigation = [
-
-
 
 ];
 
