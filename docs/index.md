@@ -4,7 +4,8 @@ hide:
 
 footer: "Did you click on the background?"
 ---
-<iframe style="position: absolute; top: 50px; left: 50%; width: 100vw; margin-left: -50vw; height:100vh;" allowtransparency="true" frameBorder="0" src="interactive/index.html">
+
+<iframe style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh" allowtransparency="true" frameBorder="0" src="interactive/index.html">
 </iframe>
 
 <h1 style="font-size: 10vw; margin: 0;"><center><b>Welcome</b></center></h1>
