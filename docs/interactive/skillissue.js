@@ -48,7 +48,7 @@ class Dot {
   static init() {
     for (let i = 0; i < config.star.balls; i++) {
       let d = new Dot(_w * config.star.radius, config.star.ball_size);
-      d.colour = random_color_close_to("#4475f6", 0.1); // random_color() + "99";
+      d.colour = random_color_close_to("#4475f688", 0.1); // random_color() + "99";
       d.create();
       d.random_all();
       d.theta = d.t_theta;

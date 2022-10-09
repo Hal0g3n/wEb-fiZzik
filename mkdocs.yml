@@ -6,9 +6,9 @@ nav:
         - Neutron Degeneracy Pressure: 2.md
         - The Origin: 3.md
         - The Structure: 4.md
-    - Quark Stars: 5.md
-    - Strange Matter: 6.md
-    - Appendix: 
+    - The Quarkiness: 5.md
+    - Stranger Things: 6.md
+    - Appendices: 
         - Degeneracy: 7.md
         - Strong Force: 8.md
         - Pauli's Exclusion Principle++: 9.md
@@ -46,15 +46,13 @@ theme:
     palette:
         - media: "(prefers-color-scheme: dark)"
           scheme: slate
-          primary: black
           toggle:
-              icon: material/toggle-switch
+              icon: material/weather-sunny
               name: Switch to light mode
         - media: "(prefers-color-scheme: light)"
           scheme: default
-          primary: black
           toggle:
-              icon: material/toggle-switch-off-outline
+              icon: material/weather-night
               name: Switch to dark mode
 
 markdown_extensions:
