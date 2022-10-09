@@ -52,13 +52,13 @@ export const questions = [
   },
 
   { // 5
-    question: "Which of these don't exist in neutron stars?",
+    question: "Which one is least likely to exist in neutron stars?",
     choices: [
       "carbon dioxide",
       "iron nuclei",
       "neutrons",
       "anti-gnocchi",
-      "oxygen nuclei",
+      "an atmosphere",
     ],
     answer: 1,
   },

@@ -33,16 +33,11 @@ tasks.load_task_from_number = () => {
 
   switch (tasks.number) {
     case 1:
-      tasks.question = 1;
-      break;
     case 2:
-      tasks.question = 2;
-      break;
     case 3:
-      tasks.question = 3;
-      break;
     case 4:
-      tasks.question = 4;
+    case 5:
+      tasks.question = tasks.number;
       break;
   }
 
@@ -64,7 +59,7 @@ tasks.init = () => {
   for (let i = 1; i <= 5; i++) {
     add_key_listener("Digit" + i, function() {
       if (tasks.question <= 0) return;
-      
+      check_mcq(i);
     });
   }
 

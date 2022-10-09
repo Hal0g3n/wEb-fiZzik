@@ -288,7 +288,7 @@ const map_co2 = [ // co2, not o2! neutron stars like consuming co2. yum yum!
   { shapes: [{ type: "polygon", sides: 10, r: 20, stroke: C.white, line_width: 3, }], x: -350, y: 75, spin: -0.01, parent: "movewall", balloon: 5.5, },
   
   // tasks
-  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: -480, y: 180, parent: "task", task: 4, },
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: -480, y: 180, parent: "task", task: 5, },
 
   // floor
   { shapes: [{ type: "svg", svg: "co2", r: 50, }], x: -150, y: 0, parent: "floor", color: C.floor_symbol, },
