@@ -3,100 +3,125 @@ export const questions = [
 
   0,
 
-  { // 1 (test question)
+  { // 1: Yu Pin
     question: "How big are neutron stars?",
     choices: [
       "Around the size of a neutron, of course",
       "Around the size of the Sun",
       "Around the size of the Earth",
-      "Around the size of a mountain",
-      "Black body radiation",
+      "Around the size of a city",
+      "Around the size of a neutral party",
     ],
     answer: 4,
   },
 
-  { // 2 
+  { // 2: Yu Pin
     question: "What is spaghetti?",
     choices: [
-      "edible, long, thin, cylindrical noodles",
-      "the code of this website",
-      "astronauts falling into black holes",
-      "long rods of nucleons",
-      "an O(N) sorting algorithm",
+      "Long, thin, cylindrical noodles",
+      "The code of this website",
+      "Long rods of nucleons",
+      "An Astronaut falling into a black hole",
+      "When nuclei are squeezed until they touch",
     ],
-    answer: 4,
+    answer: 3,
   },
 
-  { // 3 
+  { // 3: Yu Pin
     question: "Why are neutron stars named 'neutron stars'?",
     choices: [
       "They spin as fast as neutrons",
       "They are as dense as neutrons",
       "They are as hot as neutrons",
-      "They are as large as impostors",
-      "They eat neutrinos for lunch",
+      "They are as large as neutrons",
+      "They have very few protons",
     ],
-    answer: 2,
+    answer: 5,
   },
 
-  { // 4 
+  { // 4: Yu Pin
     question: "When 2 neutron stars merge, what can't form?",
     choices: [
-      "a pulsar",
-      "a magnetar",
-      "a black hole",
-      "a kilonova",
-      "a white dwarf",
+      "A neutron star",
+      "A black hole",
+      "A big explosion",
+      "A white dwarf",
+      "Heavy elements",
     ],
-    answer: 5,
+    answer: 4,
   },
 
-  { // 5
+  { // 5: Yu Pin
     question: "Which one is least likely to exist in neutron stars?",
     choices: [
-      "carbon dioxide",
-      "iron nuclei",
-      "neutrons",
-      "anti-gnocchi",
-      "an atmosphere",
+      "Iron",
+      "Neutrons",
+      "Plutonium",
+      "Anti-gnocchi",
+      "An atmosphere",
     ],
-    answer: 1,
+    answer: 3,
   },
 
-  { // 6
-    question: "Everyone likes neutron stars. Why?",
+  { // 6: Vikram?
+    question: "Neutron stars are interesting. Why?",
     choices: [
-      "they are the most accurate and stable clock in the universe",
-      "they are generally better than black holes, and won't eat you up",
-      "they have the second-strongest pasta in the universe",
-      "they are even cooler than the Sun",
-      "they emit black body radiation",
+      "They are the smoothest objects in the universe",
+      "They are aggressively lethal to humans",
+      "They have the most durable pasta in the universe",
+      "They are way hotter than the Sun",
+      "All of the above",
     ],
     answer: 5,
   },
 
-  { // 7
-    question: "Everyone doesn't like neutron stars. Why?",
+  { // 7: Vikram?
+    question: "Neutron stars are not fun. Why?",
     choices: [
-      "they can make you blind if you stare at them for too long",
-      "they have a surface temperature of 600000 °C, and cannot be used as beds",
-      "they enjoy eating neutrinos for lunch, leaving none for us",
-      "they don't like us, therefore we don't like them",
-      "they are very sus, especially in the game 'Among Us'",
+      "They can sterilise the area around them",
+      "They are aggressively lethal to humans",
+      "They have very strong magnetic fields",
+      "They are way hotter than the Sun",
+      "All of the above",
     ],
-    answer: 2,
+    answer: 5,
   },
 
-  { // 8
-    question: "This is a placeholder question. What is 1 + 1?",
+  { // 8: Vikram
+    question: "What might neutron star cores contain?",
     choices: [
-      "2",
-      "1",
-      "probably 2",
-      "how is this related to neutron stars?",
-      "black body radiation",
+      "A Bose-Einstien Condensate",
+      "Protons",
+      "Quark-Gluon Plasma",
+      "Nuclear Pasta",
+      "Elemental Iron",
     ],
-    answer: 2, // of course!
+    answer: 3, // of course!
+  },
+
+  { // 9: Vikram
+    question: "What are neutrons made of?",
+    choices: [
+      "Three quarks and three gluons",
+      "Superfluid plasma",
+      "Three mesons",
+      "Two Down quarks and an Up quark",
+      "An electron and a proton",
+    ],
+    answer: 4,
+  },
+
+
+  { // 10: Vikram
+    question: "When are Neutron Stars born?",
+    choices: [
+      "When a small star runs out of energy",
+      "When a medium star runs out of heat",
+      "When a huge star runs out of fuel",
+      "When a supergiant star collides with another star",
+      "When a white dwarf flickers out",
+    ],
+    answer: 3,
   },
 
 ];
