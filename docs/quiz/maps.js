@@ -398,7 +398,7 @@ const map_storage = [
 
 
   // boxes
-  // TODO on monday
+  // to do on monday
 
   // floor
   { shapes: [{ type: "svg", svg: "box", r: 50, }], x: 225, y: 650, parent: "floor", color: C.floor_symbol, },
@@ -409,27 +409,54 @@ const map_storage = [
 const map_electrical = [
 
   // walls
-  { shapes: [{ type: "line", x1: 400, y1: 100, x2: -200, y2: 100, }] },
+  { shapes: [{ type: "line", x1: 400, y1: 100, x2: -300, y2: 100, }] },
+  { shapes: [{ type: "line", x1: -300, y1: 100, x2: -300, y2: -100, }] },
+  { shapes: [{ type: "line", x1: -300, y1: -100, x2: -400, y2: -100, }] },
+
   { shapes: [{ type: "line", x1: 400, y1: 0, x2: 100, y2: 0, }] },
   { shapes: [{ type: "line", x1: 100, y1: 0, x2: 400, y2: -500, }] },
   { shapes: [{ type: "line", x1: 400, y1: -500, x2: -100, y2: -500, }] },
   { shapes: [{ type: "line", x1: -100, y1: -500, x2: -100, y2: 0, }] },
   { shapes: [{ type: "line", x1: -100, y1: 0, x2: -200, y2: 0, }] },
+  { shapes: [{ type: "line", x1: -200, y1: 0, x2: -200, y2: -200, }] },
+  { shapes: [{ type: "line", x1: -200, y1: -200, x2: -400, y2: -200, }] },
+
+  // doors
+  {
+    shapes: [{ type: "line", x1: -99, y1: 0, x2: -1, y2: 0, }],
+    parent: "door", constraint: [{ type: "pivot", x: -99, y: 0, }, { type: "fix_point", x: -1, y: 0, }],
+  },
+  {
+    shapes: [{ type: "line", x1: 99, y1: 0, x2: 1, y2: 0, }],
+    parent: "door", constraint: [{ type: "pivot", x: 99, y: 0, }, { type: "fix_point", x: 1, y: 0, }],
+  },
 
   // electric box
   { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, color: C.offwhite, }, { type: "rectangle", w: 100, h: 50, body: true, stroke: C.white, line_width: 3, }],
-    x: 1, y: -300, parent: "movewall", color: C.grey,
+    x: 1, y: -300, parent: "movable", color: C.grey,
     constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
   },
 
   // tasks
   { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 0, y: -425, parent: "task", task: 10, },
-  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: 385, y: -491.5, parent: "task", task: 10, },
+  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: 385, y: -491.5, parent: "task", task: 12, },
 
   // floor
   { shapes: [{ type: "svg", svg: "lightning", r: 50, }], x: 0, y: -175, parent: "floor", color: C.floor_symbol, },
   { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: -65, y: -470, parent: "floor", color: C.floor_symbol, },
-  { shapes: [{ type: "svg", svg: "arrow_up", r: 25, rotation: degrees_45 + degrees_22, }], x: 350, y: -475, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "arrow_right", r: 25, rotation: -degrees_22, }], x: 350, y: -475, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "arrow_up", r: 25, }], x: 0, y: 25, parent: "floor", color: C.floor_symbol, },
+
+]
+
+const map_engines = [ // with corridors!
+
+
+
+];
+
+const map_security = [
+
 
 
 ];
@@ -454,6 +481,7 @@ const main_map = [
   ...translate(map_communications, 550, 1200),
   ...translate(map_storage, 25, 1000),
   ...translate(map_electrical, -675, 1550),
+  ...translate(map_engines, -675, 1550),
 
 ];
 
