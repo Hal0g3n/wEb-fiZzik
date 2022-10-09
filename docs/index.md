@@ -40,3 +40,7 @@ footer: "Did you click (and hold) on the background?"
         </div>
     </a>   
 </div>
+
+<h2 style="font-size: 4vw; margin: 0;"><center><b>Why Neutron Stars?</b></center></h2>
+
+<iframe src="https://www.youtube.com/embed/3zKQ_H6KMzc?rel=0&modestbranding=1&autohide=1&showinfo=0" style="position: relative; z-index: 1; width: 100%; aspect-ratio: 16 / 9;" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
