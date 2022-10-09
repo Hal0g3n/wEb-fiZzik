@@ -40,8 +40,8 @@ const old_player_starting_position = {
 };
 
 export const player_starting_position = {
-  x: 800,
-  y: 1200,
+  x: -675,
+  y: 1550,
 };
 
 const map_cafeteria = [
@@ -352,7 +352,7 @@ const map_shields = [ // it's just map_weapons, but in the opposite y-direction!
   { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 115, y: 260, parent: "floor", color: C.floor_symbol, },
 
   // tasks
-  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 250, y: 120, parent: "task", task: 8, },
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 250, y: 120, parent: "task", task: 9, },
 
 ];
 
@@ -406,6 +406,34 @@ const map_storage = [
 
 ];
 
+const map_electrical = [
+
+  // walls
+  { shapes: [{ type: "line", x1: 400, y1: 100, x2: -200, y2: 100, }] },
+  { shapes: [{ type: "line", x1: 400, y1: 0, x2: 100, y2: 0, }] },
+  { shapes: [{ type: "line", x1: 100, y1: 0, x2: 400, y2: -500, }] },
+  { shapes: [{ type: "line", x1: 400, y1: -500, x2: -100, y2: -500, }] },
+  { shapes: [{ type: "line", x1: -100, y1: -500, x2: -100, y2: 0, }] },
+  { shapes: [{ type: "line", x1: -100, y1: 0, x2: -200, y2: 0, }] },
+
+  // electric box
+  { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, color: C.offwhite, }, { type: "rectangle", w: 100, h: 50, body: true, stroke: C.white, line_width: 3, }],
+    x: 1, y: -300, parent: "movewall", color: C.grey,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+
+  // tasks
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 0, y: -425, parent: "task", task: 10, },
+  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: 385, y: -491.5, parent: "task", task: 10, },
+
+  // floor
+  { shapes: [{ type: "svg", svg: "lightning", r: 50, }], x: 0, y: -175, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: -65, y: -470, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "arrow_up", r: 25, rotation: degrees_45 + degrees_22, }], x: 350, y: -475, parent: "floor", color: C.floor_symbol, },
+
+
+];
+
 const main_map = [
 
   // big borders
@@ -425,6 +453,7 @@ const main_map = [
   ...translate(map_shields, 800, 1200),
   ...translate(map_communications, 550, 1200),
   ...translate(map_storage, 25, 1000),
+  ...translate(map_electrical, -675, 1550),
 
 ];
 

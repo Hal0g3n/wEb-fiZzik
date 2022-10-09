@@ -32,12 +32,10 @@ tasks.load_task_from_number = () => {
   tasks.question = -1;
 
   switch (tasks.number) {
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 8:
+    case 0:
+      console.error("what is task 0???");
+      break;
+    default:
       tasks.question = tasks.number;
       break;
   }
