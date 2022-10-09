@@ -1,7 +1,6 @@
 site_name: PC5132 Website
 
 nav:
-    - index.md
     - Neutron Stars:
         - Preview: 1.md
         - Neutron Degeneracy Pressure: 2.md
@@ -9,8 +8,12 @@ nav:
         - The Structure: 4.md
     - Quark Stars: 5.md
     - Strange Matter: 6.md
-    - Fin: Conclusion.md
+    - Appendix: 
+        - Degeneracy: 7.md
+        - Strong Force: 8.md
+        - Pauli's Exclusion Principle++: 9.md
     - Final Test: quiz/index.html
+    - Fin: Conclusion.md
     - Credits: Credits.md
 
 theme:
