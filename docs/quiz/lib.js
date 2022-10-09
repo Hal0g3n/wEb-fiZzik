@@ -97,6 +97,11 @@ make.spinwall = {
   fixed: false,
 };
 
+make.movewall = {
+  parent: "wall",
+  fixed: false,
+};
+
 make.door = {
   parent: "wall",
   fixed: false,

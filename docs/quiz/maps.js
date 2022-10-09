@@ -49,7 +49,8 @@ const map_cafeteria = [
   { shapes: [{ type: "line", x1: 500, y1: -200, x2: 500, y2: -70, }] },
   { shapes: [{ type: "line", x1: 500, y1: 70, x2: 500, y2: 300, }] },
   { shapes: [{ type: "line", x1: 500, y1: 300, x2: 300, y2: 500, }] },
-  { shapes: [{ type: "line", x1: 300, y1: 500, x2: -200, y2: 500, }] },
+  { shapes: [{ type: "line", x1: 300, y1: 500, x2: 75, y2: 500, }] },
+  { shapes: [{ type: "line", x1: -25, y1: 500, x2: -200, y2: 500, }] },
   { shapes: [{ type: "line", x1: -200, y1: 500, x2: -500, y2: 200, }] },
   { shapes: [{ type: "line", x1: -500, y1: 200, x2: -500, y2: 70, }] },
 
@@ -94,15 +95,30 @@ const map_cafeteria = [
   { shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 300, y2: -400 - 60 * sqrt_2, }] },
   { shapes: [{ type: "line", x1: 300, y1: -400 - 60 * sqrt_2, x2: 500 + 60 * sqrt_2, y2: -200, }] },
   { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -200, x2: 500 + 60 * sqrt_2, y2: -70, }] },
+
+  // doors
   {
-    shapes: [{ type: "line", x1: 505, y1: -70, x2: 500 + 58 * sqrt_2, y2: -70, }],
-    parent: "door", constraint: [{ type: "pivot", x: 500 + 58 * sqrt_2, y: -70, }, { type: "fix_point", x: 505, y: -70, }],
+    shapes: [{ type: "line", x1: 501, y1: -70, x2: 500 + 59 * sqrt_2, y2: -70, }],
+    parent: "door", constraint: [{ type: "pivot", x: 500 + 59 * sqrt_2, y: -70, }, { type: "fix_point", x: 501, y: -70, }],
     message: "Wow, a door! I've never seen one before!", message_once: true, // why does this rhyme
   },
   {
-    shapes: [{ type: "line", x1: -505, y1: -70, x2: -500 - 58 * sqrt_2, y2: -70, }],
-    parent: "door", constraint: [{ type: "pivot", x: -500 - 58 * sqrt_2, y: -70, }, { type: "fix_point", x: -505, y: -70, }],
+    shapes: [{ type: "line", x1: -501, y1: -70, x2: -500 - 59 * sqrt_2, y2: -70, }],
+    parent: "door", constraint: [{ type: "pivot", x: -500 - 59 * sqrt_2, y: -70, }, { type: "fix_point", x: -501, y: -70, }],
   },
+
+  // spinning door and bottom passage
+  {
+    shapes: [{ type: "line", x1: -25, y1: 500, x2: 75, y2: 500, }],
+    parent: "door", constraint: [{ type: "pivot", x: 25, y: 500, }, { type: "fix_point", x: -24, y: 500, }, /*{ type: "fix_point", x: 74, y: 500, } */],
+  },
+  { shapes: [{ type: "svg", svg: "arrow_down", x: 25, y: 470, r: 30, }], parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "line", x1: 90, y1: 500, x2: 72, y2: 680, }] },
+  { shapes: [{ type: "line", x1: 62, y1: 780, x2: 50, y2: 900, }] },
+  { shapes: [{ type: "line", x1: -40, y1: 500, x2: 0, y2: 900, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 900, x2: 0, y2: 1000, }] },
+  { shapes: [{ type: "line", x1: 50, y1: 900, x2: 50, y2: 1000, }] },
+
 
   // left passage
   { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -1200, y2: -70, }] },
@@ -171,17 +187,44 @@ const map_medbay = [
 
 ];
 
+
+const map_admin = [
+
+  // walls
+  { shapes: [{ type: "line", x1: 5, y1: -50, x2: 450, y2: -50, }] },
+  { shapes: [{ type: "line", x1: 450, y1: -50, x2: 450, y2: 200, }] },
+  { shapes: [{ type: "line", x1: 450, y1: 200, x2: 380, y2: 250, }] },
+  { shapes: [{ type: "line", x1: 380, y1: 250, x2: 100, y2: 250, }] },
+  { shapes: [{ type: "line", x1: 100, y1: 250, x2: 100, y2: 50, }] },
+  { shapes: [{ type: "line", x1: 100, y1: 50, x2: -5, y2: 50, }] },
+
+  // floor
+  { shapes: [{ type: "svg", svg: "arrow_right", r: 25, }], x: 0, y: 0, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "admin", r: 50, }], x: 410, y: 0, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 150, y: 200, parent: "floor", color: C.floor_symbol, },
+
+  // main table
+  { shapes: [
+    { type: "rectangle", w: 80, h: 50, color: C.grey, },
+    { type: "rectangle", w: 60, h: 30, body: true, stroke: C.lime, line_width: 10, }],
+    x: 275, y: 125, color: C.lime,
+  },
+
+];
+
 const main_map = [
 
-  // borders
+  // big borders
   { shapes: [{ type: "line", x1: 10000, y1: 10000, x2: 10000, y2: -10000, }], parent: "border", },
   { shapes: [{ type: "line", x1: 10000, y1: 10000, x2: -10000, y2: 10000, }], parent: "border", },
   { shapes: [{ type: "line", x1: -10000, y1: -10000, x2: 10000, y2: -10000, }], parent: "border", },
   { shapes: [{ type: "line", x1: -10000, y1: -10000, x2: -10000, y2: 10000, }], parent: "border", },
 
   // maps of areas
+  // maybe change the place names?
   ...translate(map_cafeteria, 0, 0),
   ...translate(map_medbay, -850, 70),
+  ...translate(map_admin, 67, 730),
 
 ];
 

@@ -291,10 +291,10 @@ export class Thing {
         } else {
           const _w = shape.w;
           const _h = shape.h;
-          shape_points.push(Vector.create(shape.x + _w, shape.y + _h));
-          shape_points.push(Vector.create(shape.x - _w, shape.y + _h));
-          shape_points.push(Vector.create(shape.x - _w, shape.y - _h));
-          shape_points.push(Vector.create(shape.x + _w, shape.y - _h));
+          shape_points.push(Vector.create(shape.x || 0 + _w, shape.y || 0 + _h));
+          shape_points.push(Vector.create(shape.x || 0 - _w, shape.y || 0 + _h));
+          shape_points.push(Vector.create(shape.x || 0 - _w, shape.y || 0 - _h));
+          shape_points.push(Vector.create(shape.x || 0 + _w, shape.y || 0 - _h));
         }
       } else {
         console.error("thing.get_points: invalid shape type for get_points: " + shape.type + "!")
@@ -645,6 +645,9 @@ export class Thing {
   }
 
   update_body() {
+    this.initial_angle = this.angle;
+    this.initial_position = this.position;
+    this.initial_velocity = this.velocity;
     this.remove_body();
     this.create_body();
   }
@@ -715,3 +718,4 @@ export const player = new Amogus();
 
 
 window.Thing = Thing;
+window.player = player;

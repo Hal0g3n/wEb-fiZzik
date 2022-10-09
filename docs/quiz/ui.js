@@ -204,10 +204,9 @@ export const send_bottom_text = (text, target_height = 50, timeout = null) => {
 
   // a text is displayed now, wait time_left / 2 seconds before showing the new one
   const wait_time = Math.round(time_left / 2);
-  console.log(time_left, wait_time);
+  // console.log(time_left, wait_time);
   bottom_text_time -= wait_time;
   setTimeout(() => {
-    console.log(text);
     bottom_text = text;
     bottom_text_time = ui.time;
     bottom_text_timeout = timeout;
