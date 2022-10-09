@@ -4,6 +4,7 @@ import { draw } from "./draw.js";
 import { check_keys } from "./key.js";
 import { C } from "./lib.js";
 import { ctx, FPS, screen } from "./main.js";
+import { tasks } from "./tasks.js";
 import { player } from "./thing.js";
 import { util } from "./util.js";
 
@@ -77,25 +78,32 @@ export const draw_ui = function() {
   _h = screen.h;
   size = Math.sqrt(screen.w * screen.h) / 100;
 
-  draw_info();
   draw_taskbar();
   draw_fps();
   draw_bottom_text();
+  draw_info();
 
 }
+
+const info_text = `
+Welcome to the final quiz, in a form of a game!
+You are a fairly large star ⭐ with a radius of almost a million 💯💯💯 kilometers. Move around, answer questions, and complete tasks 📝 so you can become a neutron star 💫! (no supernova animation included 🙁)
+While moving around ✨, you may find that you are too large to fit into some gaps 🤏. To decrease your size 📉, do more tasks!
+Good luck! ඞ
+`.trim();
 
 const draw_info = () => {
 
   if (ui.show_info) {
 
-    w = _w * 0.75;
-    h = _h * 0.75;
+    w = _w * 0.8;
+    h = _h * 0.8;
     
     // draw background rectangle
     ctx.lineWidth = size * 0.4;
     ctx.strokeStyle = "#ffffffb0";
     draw.stroke_rectangle(_w / 2, _h / 2, w + size * 0.4, h + size * 0.4);
-    ctx.fillStyle = "#05a10080";
+    ctx.fillStyle = "#32a2a8aa";
     draw.fill_rectangle(_w / 2, _h / 2, w, h);
 
     // draw cross
@@ -107,6 +115,18 @@ const draw_info = () => {
     draw.svg("cross", x, y, r * 2);
     if (hover && ui.new_click) {
       ui.show_info = false;
+    }
+
+    ctx.font = `${Math.round(size * 3)}px roboto condensed`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = C.white;
+
+    const splitted = draw.split_text(info_text, _w * 0.7);
+    y = _h / 2 - (splitted.length - 1) * size * 2.5;
+    for (const string of splitted) {
+      draw.fill_text(string, _w / 2, y);
+      y += size * 5;
     }
 
   } else {
@@ -128,12 +148,13 @@ const draw_info = () => {
 }
 
 let old_taskbar_ratio = 0;
+let old_accuracy_ratio = 0;
 
 const draw_taskbar = () => {
 
-  const tasks = player.tasks_complete;
+  const tasks_complete = player.tasks_complete;
   const total_tasks = player.total_tasks;
-  const ratio = util.lerp(old_taskbar_ratio, tasks / total_tasks, 0.05);
+  const ratio = util.lerp(old_taskbar_ratio, tasks_complete / total_tasks, 0.05);
   old_taskbar_ratio = ratio;
 
   ctx.lineWidth = size * 0.4;
@@ -151,15 +172,26 @@ const draw_taskbar = () => {
   ctx.fillStyle = "#ffffff";
   draw.fill_text("TOTAL TASKS COMPLETED", size * 2.25, size * 3.1);
   
-  player.display_radius = util.lerp(player.display_radius, player.real_radius, 0.04);
+  player.display_radius = util.lerp(player.display_radius, player.real_radius, 0.05);
   ctx.font = `${Math.round(size * 1.5)}px roboto condensed`;
   s = `Your radius: ${Math.round(player.display_radius)} km`;
   w = draw.get_text_width(s);
   ctx.lineWidth = size * 0.4;
-  ctx.fillStyle = "#05a10080";
+  ctx.fillStyle = `${player.color}80`;
   draw.fill_rect(size * 1.5, size * 5.9, w + size * 1.5, size * 2.2);
   ctx.fillStyle = "#ffffff";
   draw.fill_text(s, size * 2.25, size * 7.1);
+  
+  const accuracy_ratio = util.lerp(old_accuracy_ratio, (tasks.accuracy || 0), 0.1);
+  old_accuracy_ratio = accuracy_ratio;
+  ctx.fillStyle = `${chroma.mix("#611802", "#02611b", accuracy_ratio)}80`;
+  ctx.font = `${Math.round(size * 1.5)}px roboto condensed`;
+  s = `Accuracy: ${Math.round(accuracy_ratio * 100)}%`;
+  w = draw.get_text_width(s);
+  ctx.lineWidth = size * 0.4;
+  draw.fill_rect(size * 1.5, size * 8.9, w + size * 1.5, size * 2.2);
+  ctx.fillStyle = "#ffffff";
+  draw.fill_text(s, size * 2.25, size * 10.1);
 
 }
 
