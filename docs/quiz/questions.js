@@ -3,7 +3,7 @@ export const questions = [
 
   0,
 
-  { // 1 (test question)
+  { // 1: Yu Pin
     question: "How big are neutron stars?",
     choices: [
       "Around the size of a neutron, of course",
@@ -15,7 +15,7 @@ export const questions = [
     answer: 4,
   },
 
-  { // 2 
+  { // 2: Yu Pin
     question: "What is spaghetti?",
     choices: [
       "Long, thin, cylindrical noodles",
@@ -27,7 +27,7 @@ export const questions = [
     answer: 3,
   },
 
-  { // 3 
+  { // 3: Yu Pin
     question: "Why are neutron stars named 'neutron stars'?",
     choices: [
       "They spin as fast as neutrons",
@@ -39,7 +39,7 @@ export const questions = [
     answer: 5,
   },
 
-  { // 4 
+  { // 4: Yu Pin
     question: "When 2 neutron stars merge, what can't form?",
     choices: [
       "A neutron star",
@@ -51,7 +51,7 @@ export const questions = [
     answer: 4,
   },
 
-  { // 5
+  { // 5: Yu Pin
     question: "Which one is least likely to exist in neutron stars?",
     choices: [
       "Iron",
@@ -63,8 +63,8 @@ export const questions = [
     answer: 3,
   },
 
-  { // 6
-    question: "Neutron stars are cool. Why?",
+  { // 6: Vikram?
+    question: "Neutron stars are interesting. Why?",
     choices: [
       "They are the smoothest objects in the universe",
       "They are aggressively lethal to humans",
@@ -75,8 +75,8 @@ export const questions = [
     answer: 5,
   },
 
-  { // 7
-    question: "Neutron stars are not cool. Why?",
+  { // 7: Vikram?
+    question: "Neutron stars are not fun. Why?",
     choices: [
       "They can sterilise the area around them",
       "They are aggressively lethal to humans",
@@ -87,7 +87,7 @@ export const questions = [
     answer: 5,
   },
 
-  { // 8
+  { // 8: Vikram
     question: "What might neutron star cores contain?",
     choices: [
       "A Bose-Einstien Condensate",
@@ -99,7 +99,7 @@ export const questions = [
     answer: 3, // of course!
   },
 
-  { // 9
+  { // 9: Vikram
     question: "What are neutrons made of?",
     choices: [
       "Three quarks and three gluons",
@@ -112,7 +112,7 @@ export const questions = [
   },
 
 
-  { // 10
+  { // 10: Vikram
     question: "When are Neutron Stars born?",
     choices: [
       "When a small star runs out of energy",
