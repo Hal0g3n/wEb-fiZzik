@@ -167,7 +167,7 @@ draw.svg = function(type, x, y, size, rot, fill) {
   if (!SVG.hasOwnProperty(type)) throw "No such SVG type: " + type;
   if (fill != undefined) ctx.fillStyle = fill;
   ctx.translate(x, y);
-  if (rot) ctx.rotate(rot * Math.PI / 180);
+  if (rot) ctx.rotate(rot);
   ctx.translate(-size / 2, -size / 2);
   ctx.scale(size / 24, size / 24);
   ctx.fill(new Path2D(SVG[type]));
