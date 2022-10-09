@@ -36,7 +36,7 @@ export const questions = [
       "They are as dense as neutrons",
       "They are as hot as neutrons",
       "They are as large as neutrons",
-      "They have very few neutrons",
+      "They are as small as neutrons",
     ],
     answer: 2,
     author: "Yu Pin",
