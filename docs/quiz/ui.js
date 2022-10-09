@@ -79,7 +79,7 @@ let old_taskbar_ratio = 0;
 
 const draw_taskbar = () => {
 
-  const tasks = player.tasks_completed;
+  const tasks = player.tasks_complete;
   const total_tasks = player.total_tasks;
   const ratio = util.lerp(old_taskbar_ratio, tasks / total_tasks, 0.05);
   old_taskbar_ratio = ratio;
@@ -97,7 +97,7 @@ const draw_taskbar = () => {
   ctx.textAlign = "left";
   ctx.font = `${Math.round(size * 2)}px roboto condensed`;
   ctx.fillStyle = "#ffffff";
-  draw.fill_text("TOTAL TASKS COMPLETED", size * 2, size * 3.1);
+  draw.fill_text("TOTAL TASKS COMPLETED", size * 2.25, size * 3.1);
 
 }
 

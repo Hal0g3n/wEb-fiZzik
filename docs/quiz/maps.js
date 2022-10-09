@@ -59,25 +59,29 @@ const map_cafeteria = [
     { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
     { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
     x: -250, y: 250, color: C.table_blue, parent: "movewindow",
-    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0, restitution: 2,
+    message: "Boing!",
   },
   { shapes: [
     { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
     { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
     x: -250, y: -150, color: C.table_blue, parent: "movewindow",
-    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0, restitution: 2,
+    message: "Boing!",
   },
   { shapes: [
     { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
     { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
     x: 250, y: 250, color: C.table_blue, parent: "movewindow",
-    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0, restitution: 2,
+    message: "Boing!",
   },
   { shapes: [
     { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
     { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
     x: 250, y: -150, color: C.table_blue, parent: "movewindow",
-    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0, restitution: 2,
+    message: "Boing!",
   },
 
   // main table

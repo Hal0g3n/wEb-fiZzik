@@ -80,4 +80,5 @@ export const questions = [
 for (const question of questions) {
   if (typeof question === "number") continue;
   question.chosen = [false, false, false, false, false, false];
+  question.chosen_number = 0;
 }
