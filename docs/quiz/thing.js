@@ -202,8 +202,10 @@ export class Thing {
     if (this.spin != null) {
       this.angle += this.spin;
     }
-    if (this.door_angle != null) {
-      this.angle = util.lerp(this.angle, this.door_angle, 0.05);
+    if (this.fix_angle != null) {
+      if (this.angle !== this.fix_angle) {
+        this.angle = this.fix_angle;
+      }
     }
     
   }
@@ -642,6 +644,11 @@ export class Thing {
     }
   }
 
+  update_body() {
+    this.remove_body();
+    this.create_body();
+  }
+
 }
 
 
@@ -652,6 +659,14 @@ export class Amogus extends Thing {
   static tick() {
     
   }
+
+  starting_radius = 910593;
+  real_radius = 910593;
+  display_radius = 0;
+  log_radius = 4.95932430743;
+
+  tasks_complete = 0;
+  total_tasks = 10;
 
   constructor() {
     super(Vector.create(0, 0));
@@ -679,6 +694,19 @@ export class Amogus extends Thing {
   draw_player(ctx) {
     // among us
     // sus?
+  }
+
+  calculate_real_radius() {
+    if (this.tasks_complete >= this.total_tasks) {
+      this.real_radius = 10;
+      this.size = 10;
+    }
+    const ratio = this.tasks_complete / this.total_tasks;
+    const log = this.log_radius * ratio;
+    const divide = Math.pow(10, log);
+    this.real_radius = this.starting_radius / divide;
+    this.size = 30 - ratio * 20;
+    this.update_body();
   }
 
 }

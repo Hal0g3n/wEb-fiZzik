@@ -2,6 +2,7 @@ import { draw } from "./draw.js";
 import { check_keys } from "./key.js";
 import { C } from "./lib.js";
 import { ctx, FPS, screen } from "./main.js";
+import { player } from "./thing.js";
 import { util } from "./util.js";
 
 const Vector = Matter.Vector;
@@ -78,8 +79,8 @@ let old_taskbar_ratio = 0;
 
 const draw_taskbar = () => {
 
-  const tasks = 1;
-  const total_tasks = 2;
+  const tasks = player.tasks_completed;
+  const total_tasks = player.total_tasks;
   const ratio = util.lerp(old_taskbar_ratio, tasks / total_tasks, 0.05);
   old_taskbar_ratio = ratio;
 

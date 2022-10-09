@@ -16,9 +16,20 @@ const degrees_120 = degrees_60 * 2;
 
 // map 
 const translate = (list, tx = 0, ty = 0) => {
+  if (tx === 0 && ty === 0) return list;
   for (const M of list) {
     M.x = (M.x || 0) + tx;
     M.y = (M.y || 0) + ty;
+    if (M.constraint != null) {
+      let oo = M.constraint;
+      if (!Array.isArray(oo)) {
+        oo = [oo];
+      }
+      for (const o of oo) {
+        o.x = (o.x || 0) + tx;
+        o.y = (o.y || 0) + ty;
+      }
+    }
   }
   return list;
 };
@@ -28,6 +39,138 @@ export const player_starting_position = {
   y: -100,
 };
 
+const map_cafeteria = [
+
+  // walls
+  { shapes: [{ type: "line", x1: -500, y1: -70, x2: -500, y2: -200, }] },
+  { shapes: [{ type: "line", x1: -500, y1: -200, x2: -300, y2: -400, }] },
+  { shapes: [{ type: "line", x1: -300, y1: -400, x2: 300, y2: -400, }] },
+  { shapes: [{ type: "line", x1: 300, y1: -400, x2: 500, y2: -200, }] },
+  { shapes: [{ type: "line", x1: 500, y1: -200, x2: 500, y2: -70, }] },
+  { shapes: [{ type: "line", x1: 500, y1: 70, x2: 500, y2: 300, }] },
+  { shapes: [{ type: "line", x1: 500, y1: 300, x2: 300, y2: 500, }] },
+  { shapes: [{ type: "line", x1: 300, y1: 500, x2: -200, y2: 500, }] },
+  { shapes: [{ type: "line", x1: -200, y1: 500, x2: -500, y2: 200, }] },
+  { shapes: [{ type: "line", x1: -500, y1: 200, x2: -500, y2: 70, }] },
+
+  // "tables"
+  { shapes: [
+    { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
+    { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
+    x: -250, y: 250, color: C.table_blue, parent: "movewindow",
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+  { shapes: [
+    { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
+    { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
+    x: -250, y: -150, color: C.table_blue, parent: "movewindow",
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+  { shapes: [
+    { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
+    { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
+    x: 250, y: 250, color: C.table_blue, parent: "movewindow",
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+  { shapes: [
+    { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
+    { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
+    x: 250, y: -150, color: C.table_blue, parent: "movewindow",
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+
+  // main table
+  { shapes: [
+    { type: "polygon", sides: 8, r: 100, rotation: degrees_22, color: C.light_table_blue, },
+    { type: "polygon", sides: 8, r: 80, rotation: degrees_22, stroke: C.white, line_width: 3, body: true, }],
+    x: 0, y: 50, color: C.table_blue, message: "There used to be a red button here... where did it go?",
+  },
+  { shapes: [{ type: "svg", svg: "food", x: 0, y: 200, r: 50, }], parent: "floor", color: C.floor_symbol, },
+
+  // "secret"
+  { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -500 - 60 * sqrt_2, y2: -200, }] },
+  { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -200, x2: -300, y2: -400 - 60 * sqrt_2, }] },
+  { shapes: [{ type: "line", x1: -300, y1: -400 - 60 * sqrt_2, x2: -40, y2: -400 - 60 * sqrt_2, }] },
+  { shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 300, y2: -400 - 60 * sqrt_2, }] },
+  { shapes: [{ type: "line", x1: 300, y1: -400 - 60 * sqrt_2, x2: 500 + 60 * sqrt_2, y2: -200, }] },
+  { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -200, x2: 500 + 60 * sqrt_2, y2: -70, }] },
+  {
+    shapes: [{ type: "line", x1: 505, y1: -70, x2: 500 + 58 * sqrt_2, y2: -70, }],
+    parent: "door", constraint: [{ type: "pivot", x: 500 + 58 * sqrt_2, y: -70, }, { type: "fix_point", x: 505, y: -70, }],
+    message: "Wow, a door! I've never seen one before!", message_once: true, // why does this rhyme
+  },
+  {
+    shapes: [{ type: "line", x1: -505, y1: -70, x2: -500 - 58 * sqrt_2, y2: -70, }],
+    parent: "door", constraint: [{ type: "pivot", x: -500 - 58 * sqrt_2, y: -70, }, { type: "fix_point", x: -505, y: -70, }],
+  },
+
+  // left passage
+  { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -1200, y2: -70, }] },
+  { shapes: [{ type: "line", x1: -500, y1: 70, x2: -700, y2: 70, }] },
+  { shapes: [{ type: "svg", svg: "arrow_left", x: -450, y: 0, r: 75, }], parent: "floor", color: C.floor_symbol, },
+
+  // right passage
+  { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -70, x2: 800, y2: -70, }] },
+  { shapes: [{ type: "line", x1: 500, y1: 70, x2: 800, y2: 70, }] },
+  { shapes: [{ type: "svg", svg: "arrow_right", x: 450, y: 0, r: 75, }], parent: "floor", color: C.floor_symbol, },
+
+  // vent
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 450, y: 150, parent: "floor", color: C.floor_symbol, },
+
+];
+
+const map_medbay = [
+
+  // walls
+  { shapes: [{ type: "line", x1: -65, y1: 0, x2: -150, y2: 0, }] },
+  { shapes: [{ type: "line", x1: -150, y1: 0, x2: -150, y2: 300, }] },
+  { shapes: [{ type: "line", x1: -150, y1: 300, x2: -50, y2: 400, }] },
+  { shapes: [{ type: "line", x1: -50, y1: 400, x2: 400, y2: 400, }] },
+  { shapes: [{ type: "line", x1: 400, y1: 400, x2: 400, y2: 350, }] },
+  { shapes: [{ type: "line", x1: 400, y1: 350, x2: 200, y2: 350, }] },
+  { shapes: [{ type: "line", x1: 200, y1: 350, x2: 150, y2: 300, }] },
+  { shapes: [{ type: "line", x1: 150, y1: 300, x2: 150, y2: 0, }] },
+  { shapes: [{ type: "line", x1: 150, y1: 0, x2: 65, y2: 0, }] },
+
+  // beds
+  { shapes: [{ type: "rectangle", w: 60, h: 30, body: true, }, { type: "rectangle", w: 12.5, h: 25, x: 43, color: C.offwhite, }],
+    x: 89, y: 60, parent: "movewindow", color: C.bed_blue,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+  { shapes: [{ type: "rectangle", w: 60, h: 30, body: true, }, { type: "rectangle", w: 12.5, h: 25, x: -43, color: C.offwhite, }],
+    x: -89, y: 120, parent: "movewindow", color: C.bed_blue,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+  { shapes: [{ type: "rectangle", w: 60, h: 30, body: true, }, { type: "rectangle", w: 12.5, h: 25, x: 43, color: C.offwhite, }],
+    x: 89, y: 180, parent: "movewindow", color: C.bed_blue,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+  { shapes: [{ type: "rectangle", w: 60, h: 30, body: true, }, { type: "rectangle", w: 12.5, h: 25, x: -43, color: C.offwhite, }],
+    x: -89, y: 240, parent: "movewindow", color: C.bed_blue,
+    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+  },
+
+  // doors
+  {
+    shapes: [{ type: "line", x1: -64, y1: 0, x2: -1, y2: 0, }],
+    parent: "door", constraint: [{ type: "pivot", x: -64, y: 0, }, { type: "fix_point", x: -1, y: 0, }],
+  },
+  {
+    shapes: [{ type: "line", x1: 64, y1: 0, x2: 1, y2: 0, }],
+    parent: "door", constraint: [{ type: "pivot", x: 64, y: 0, }, { type: "fix_point", x: 1, y: 0, }],
+  },
+
+  // tasks
+  { shapes: [{ type: "polygon", sides: 6, r: 20, }], x: 325, y: 375, parent: "window", color: C.lime, },
+
+  // floor
+  { shapes: [{ type: "svg", svg: "arrow_down", r: 25, }], x: 0, y: -25, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "medical", r: 50, }], x: 75, y: 300, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: -75, y: 325, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "arrow_right", r: 30, }], x: 250, y: 375, parent: "floor", color: C.floor_symbol, },
+
+];
+
 const main_map = [
 
   // borders
@@ -36,82 +179,10 @@ const main_map = [
   { shapes: [{ type: "line", x1: -10000, y1: -10000, x2: 10000, y2: -10000, }], parent: "border", },
   { shapes: [{ type: "line", x1: -10000, y1: -10000, x2: -10000, y2: 10000, }], parent: "border", },
 
-  // ***** cafeteria *****
-  ...translate([
-    { shapes: [{ type: "line", x1: -500, y1: -70, x2: -500, y2: -200, }] },
-    { shapes: [{ type: "line", x1: -500, y1: -200, x2: -300, y2: -400, }] },
-    { shapes: [{ type: "line", x1: -300, y1: -400, x2: 300, y2: -400, }] },
-    { shapes: [{ type: "line", x1: 300, y1: -400, x2: 500, y2: -200, }] },
-    { shapes: [{ type: "line", x1: 500, y1: -200, x2: 500, y2: -70, }] },
-    { shapes: [{ type: "line", x1: 500, y1: 70, x2: 500, y2: 300, }] },
-    { shapes: [{ type: "line", x1: 500, y1: 300, x2: 300, y2: 500, }] },
-    { shapes: [{ type: "line", x1: 300, y1: 500, x2: -200, y2: 500, }] },
-    { shapes: [{ type: "line", x1: -200, y1: 500, x2: -500, y2: 200, }] },
-    { shapes: [{ type: "line", x1: -500, y1: 200, x2: -500, y2: 70, }] },
-    { shapes: [
-      { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
-      { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
-      x: -250, y: 250, color: C.table_blue, parent: "window",
-    },
-    { shapes: [
-      { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
-      { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
-      x: -250, y: -150, color: C.table_blue, parent: "window",
-    },
-    { shapes: [
-      { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
-      { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
-      x: 250, y: 250, color: C.table_blue, parent: "window",
-    },
-    { shapes: [
-      { type: "polygon", sides: 8, r: 75, rotation: degrees_22, color: C.light_table_blue, },
-      { type: "polygon", sides: 8, r: 60, rotation: degrees_22, body: true, }],
-      x: 250, y: -150, color: C.table_blue, parent: "window",
-    },
-    { shapes: [ // main table
-      { type: "polygon", sides: 8, r: 100, rotation: degrees_22, color: C.light_table_blue, },
-      { type: "polygon", sides: 8, r: 80, rotation: degrees_22, stroke: C.white, line_width: 3, body: true, }],
-      x: 0, y: 50, color: C.table_blue, message: "There used to be a red button here... where did it go?",
-    },
+  // maps of areas
+  ...translate(map_cafeteria, 0, 0),
+  ...translate(map_medbay, -850, 70),
 
-    // "secret"
-    { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -500 - 60 * sqrt_2, y2: -200, }] },
-    { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -200, x2: -300, y2: -400 - 60 * sqrt_2, }] },
-    { shapes: [{ type: "line", x1: -300, y1: -400 - 60 * sqrt_2, x2: -40, y2: -400 - 60 * sqrt_2, }] },
-    { shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 300, y2: -400 - 60 * sqrt_2, }] },
-    { shapes: [{ type: "line", x1: 300, y1: -400 - 60 * sqrt_2, x2: 500 + 60 * sqrt_2, y2: -200, }] },
-    { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -200, x2: 500 + 60 * sqrt_2, y2: -70, }] },
-    {
-      shapes: [{ type: "line", x1: 505, y1: -70, x2: 500 + 58 * sqrt_2, y2: -70, }],
-      parent: "door", constraint: [{ type: "pivot", x: 500 + 58 * sqrt_2, y: -70, }, { type: "fix_point", x: 505, y: -70, }],
-      message: "Wow, a door! I've never seen one before!", message_once: true, // why does this rhyme
-    },
-    {
-      shapes: [{ type: "line", x1: -505, y1: -70, x2: -500 - 58 * sqrt_2, y2: -70, }],
-      parent: "door", constraint: [{ type: "pivot", x: -500 - 58 * sqrt_2, y: -70, }, { type: "fix_point", x: -505, y: -70, }],
-    },
-
-
-    // right passage
-    { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -70, x2: 800, y2: -70, }] },
-    { shapes: [{ type: "line", x1: 500, y1: 70, x2: 800, y2: 70, }] },
-    { shapes: [{ type: "svg", svg: "arrow_right", x: 450, y1: 0, r: 75, }], parent: "floor", color: C.floor_symbol, },
-
-    // left passage
-    { shapes: [{ type: "line", x1: -500 - 60 * sqrt_2, y1: -70, x2: -800, y2: -70, }] },
-    { shapes: [{ type: "line", x1: -500, y1: 70, x2: -800, y2: 70, }] },
-    { shapes: [{ type: "svg", svg: "arrow_left", x: -450, y1: 0, r: 75, }], parent: "floor", color: C.floor_symbol, },
-
-  ], 0, 0),
-  /*
-  { shapes: [{ type: "line", x1: 200, y1: 200, x2: 200, y2: -200, }] },
-  { shapes: [{ type: "line", x1: 200, y1: 200, x2: -200, y2: 200, }] },
-  { shapes: [{ type: "line", x1: -200, y1: -200, x2: 200, y2: -200, }] },
-  { shapes: [{ type: "line", x1: -200, y1: -200, x2: -200, y2: 200, }] },
-  { shapes: [{ type: "line", x1: -140, y1: -100, x2: 30, y2: 100, }] },
-  { shapes: [{ type: "line", x1: 80, y1: -30, x2: 50, y2: 140, }], parent: "door", spin: 0.01, },
-  { shapes: [{ type: "polygon", sides: 4, r: 10, line_width: 0, }], x: 100, y: -100, static: false, fixed: false, parent: "wall", },
-  */
 ];
 
 const make_map = () => {
