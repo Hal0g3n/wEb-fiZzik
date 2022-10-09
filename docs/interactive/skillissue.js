@@ -51,6 +51,8 @@ class Dot {
       d.colour = random_color_close_to("#4475f6", 0.1); // random_color() + "99";
       d.create();
       d.random_all();
+      d.theta = d.t_theta;
+      d.phi = d.t_phi;
     }
   }
 
@@ -120,9 +122,9 @@ class Dot {
   }
 
   tick() {
-    this.t_theta += 10 / this.r / Dot.r;
+    this.t_theta += 8 / this.r / Dot.r;
     // this.t_phi += 0.01;
-    const lerp_amount = 0.08;
+    const lerp_amount = 0.05;
     this.size = lerp(this.size, this.t_size, lerp_amount);
     this.r = lerp(this.r, this.t_r * this.t_r_mult * Dot.r, lerp_amount);
     this.theta = lerp_angle(this.theta, this.t_theta, lerp_amount);
