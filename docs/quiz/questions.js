@@ -17,7 +17,7 @@ export const questions = [
   },
   
   { // 2: Yu Pin
-    question: "What is spaghetti? (Think of what you learnt)",
+    question: "What is spaghetti? (think of what you learnt)",
     choices: [
       "Long, thin, cylindrical noodles",
       "The code of this website",
@@ -30,15 +30,15 @@ export const questions = [
   },
   
   { // 3: Yu Pin
-    question: "Why are neutron stars named 'neutron stars'?",
+    question: "Which of the following is true about neutron stars?",
     choices: [
       "They spin as fast as neutrons",
       "They are as dense as neutrons",
       "They are as hot as neutrons",
       "They are as large as neutrons",
-      "They have very few protons",
+      "They have very few neutrons",
     ],
-    answer: 5,
+    answer: 2,
     author: "Yu Pin",
   },
   

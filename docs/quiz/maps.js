@@ -390,15 +390,19 @@ const map_storage = [
   { shapes: [{ type: "line", x1: -300, y1: 50, x2: -250, y2: 0, }] },
 
   // doors
+  /*
   {
     shapes: [{ type: "line", x1: 275, y1: 150.1, x2: 275, y2: 249.9, }],
     parent: "door", constraint: [{ type: "fix_point", x: 275, y: 150.1, }, { type: "fix_point", x: 275, y: 249.9, }],
   },
+  */
   { shapes: [{ type: "line", x1: 235, y1: 150, x2: 235, y2: 250, }] },
+  /*
   {
     shapes: [{ type: "line", x1: -300, y1: 550.1, x2: -300, y2: 649.9, }],
     parent: "door", constraint: [{ type: "fix_point", x: 275, y: 550.1, }, { type: "fix_point", x: 275, y: 649.9, }],
   },
+  */
   { shapes: [{ type: "line", x1: -260, y1: 550, x2: -260, y2: 650, }] },
 
 
