@@ -20,12 +20,12 @@ export const questions = [
     question: "What is spaghetti? (think of what you learnt)",
     choices: [
       "Long, thin, cylindrical noodles",
-      "The code of this website",
       "Long rods of nucleons",
+      "The code of this website",
       "An astronaut falling into a black hole",
       "When nuclei are squeezed until they touch fully",
     ],
-    answer: 3,
+    answer: 2,
     author: "Yu Pin",
   },
   
@@ -158,57 +158,31 @@ export const questions = [
     answer: 1,
     author: "Yuan Xi",
   },
-  
-  { // 13:
-    question: "Question 13?",
+
+  { // 13: Kenneth
+    Question: "Which star can form neutron stars on death?",
     choices: [
-      "Answer.",
-      "Answer...",
-      "Answer,",
-      "Answer?",
-      "Answer!",
+      "Proxima Centauri (~0.12 solar mass)",
+      "The sun (1 solar mass)",
+      "Alpha centauri (~1.1 solar mass)",
+      "Betelgeuse (~11 solar masses)",
+      "Zeta Puppis (~56.1 solar masses)",
     ],
-    answer: 1,
-    author: "Answer!?",
+    answer: 5,
+    author: "Kenneth",
   },
   
-  { // 14:
-    question: "Question 14?",
+  { // 14: Kenneth
+    Question: "Which quark is the most stable?",
     choices: [
-      "Answer.",
-      "Answer...",
-      "Answer,",
-      "Answer?",
-      "Answer!",
+      "Strange quark",
+      "Up quark",
+      "Left quark",
+      "Down quark",
+      "Right quark",
     ],
     answer: 1,
-    author: "Answer!?",
-  },
-  
-  { // 15:
-    question: "Question 15?",
-    choices: [
-      "Answer.",
-      "Answer...",
-      "Answer,",
-      "Answer?",
-      "Answer!",
-    ],
-    answer: 1,
-    author: "Answer!?",
-  },
-  
-  { // 16:
-    question: "Question 16?",
-    choices: [
-      "Answer.",
-      "Answer...",
-      "Answer,",
-      "Answer?",
-      "Answer!",
-    ],
-    answer: 1,
-    author: "Answer!?",
+    author: "Kenneth",
   },
   
   { // 17: Yu Pin
@@ -231,3 +205,18 @@ for (const question of questions) {
   question.chosen = [false, false, false, false, false, false];
   question.chosen_number = 0;
 }
+
+/* 
+Question Option Distribution
+1: 2
+2: 2
+3: 4
+4: 3
+5: 3
+
+Question Author Distribution
+Yu Pin: 5
+Vikram: 5
+Kenneth: 2
+Yuan Xi: 2
+*/
