@@ -40,8 +40,8 @@ const old_player_starting_position = {
 };
 
 export const player_starting_position = {
-  x: -1900,
-  y: 700,
+  x: 25,
+  y: 1500,
 };
 
 const map_cafeteria = [
@@ -385,7 +385,7 @@ const map_storage = [
   { shapes: [{ type: "line", x1: 25, y1: 0, x2: 275, y2: 0, }] },
   { shapes: [{ type: "line", x1: 275, y1: 0, x2: 275, y2: 150, }] },
   { shapes: [{ type: "line", x1: 275, y1: 250, x2: 275, y2: 700, }] },
-  { shapes: [{ type: "line", x1: 275, y1: 700, x2: -250, y2: 700, }] },
+  { shapes: [{ type: "line", x1: 200, y1: 700, x2: -250, y2: 700, }] },
   { shapes: [{ type: "line", x1: -250, y1: 700, x2: -300, y2: 650, }] },
   { shapes: [{ type: "line", x1: -300, y1: 550, x2: -300, y2: 50, }] },
   { shapes: [{ type: "line", x1: -300, y1: 50, x2: -250, y2: 0, }] },
@@ -410,7 +410,16 @@ const map_storage = [
 
 
   // boxes
-  // to do on monday
+  { shapes: [{ type: "polygon", sides: 4, r: 30, rotation: degrees_45, }], x: 0, y: 350, parent: "box", },
+  { shapes: [{ type: "polygon", sides: 4, r: 30, rotation: degrees_45, }], x: -1, y: 350, parent: "box", },
+  { shapes: [{ type: "polygon", sides: 4, r: 30, rotation: degrees_45, }], x: -2, y: 349, parent: "box", },
+  { shapes: [{ type: "polygon", sides: 4, r: 30, rotation: degrees_45, }], x: -3, y: 351, parent: "box", },
+  { shapes: [{ type: "polygon", sides: 4, r: 30, rotation: degrees_45, }], x: -4, y: 360, parent: "box", },
+  { shapes: [{ type: "polygon", sides: 4, r: 30, rotation: degrees_45, }], x: -10, y: 370, parent: "box", },
+  { shapes: [{ type: "polygon", sides: 4, r: 30, rotation: degrees_45, }], x: -20, y: 380, parent: "box", },
+  { shapes: [{ type: "polygon", sides: 4, r: 30, rotation: degrees_45, }], x: -30, y: 390, parent: "box", },
+  { shapes: [{ type: "line", x1: 200, y1: 700, x2: 275, y2: 700, }], parent: "rubbishwall", },
+  { shapes: [{ type: "line", x1: 200, y1: 765, x2: 275, y2: 765, }], parent: "wall", delete_box: true, },
 
   // floor
   { shapes: [{ type: "svg", svg: "box", r: 50, }], x: 225, y: 650, parent: "floor", color: C.floor_symbol, },
