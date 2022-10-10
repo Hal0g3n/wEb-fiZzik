@@ -41,7 +41,7 @@ const old_player_starting_position = {
 
 export const player_starting_position = {
   x: 0,
-  y: 100,
+  y: -400,
 };
 
 const map_cafeteria = [
@@ -107,7 +107,28 @@ const map_cafeteria = [
   { shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 300, y2: -400 - 60 * sqrt_2, }] },
   { shapes: [{ type: "line", x1: 300, y1: -400 - 60 * sqrt_2, x2: 500 + 60 * sqrt_2, y2: -200, }] },
   { shapes: [{ type: "line", x1: 500 + 60 * sqrt_2, y1: -200, x2: 500 + 60 * sqrt_2, y2: -70, }] },
-
+  
+  // Sus room
+  {
+    shapes: [{ type: "line", x1: -40, y1: -400 - 60 * sqrt_2, x2: 0, y2: -400 - 60 * sqrt_2 }],
+    parent: "door", constraint: [{ type: "pivot", x: -40, y: -400 - 60 * sqrt_2, }, { type: "fix_point", x: 0, y: -400 - 60 * sqrt_2, }],
+    message: "Sus?", message_once: false,
+  },
+  {
+    shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 0, y2: -400 - 60 * sqrt_2 }],
+    parent: "door", constraint: [{ type: "pivot", x: 40, y: -400 - 60 * sqrt_2, }, { type: "fix_point", x: 0, y: -400 - 60 * sqrt_2, }],
+    message: "Sus?", message_once: false,
+  },
+  { shapes: [{ type: "line", x1: 40, y1: -400 - 60 * sqrt_2, x2: 40, y2: -550, }] },
+  { shapes: [{ type: "line", x1: -40, y1: -400 - 60 * sqrt_2, x2: -40, y2: -550, }] },
+  { shapes: [{ type: "line", x1: 40, y1: -550, x2: 300, y2: -550, }] },
+  { shapes: [{ type: "line", x1: -40, y1: -550, x2: -300, y2: -550, }] },
+  { shapes: [{ type: "line", x1: 300, y1: -1000, x2: 300, y2: -550, }] },
+  { shapes: [{ type: "line", x1: -300, y1: -1000, x2: -300, y2: -550, }] },
+  { shapes: [{ type: "line", x1: -300, y1: -1000, x2: 300, y2: -1000, }] },
+  { shapes: [{ type: "svg", svg: "amogus", x: -140, y: -950, r: 1.5, }], parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "amogus_visor", x: -140, y: -950, r: 1.5, }], parent: "floor", color: C.floor_symbol, },
+  
   // doors
   {
     shapes: [{ type: "line", x1: 500.1, y1: -70, x2: 500 + 59.95 * sqrt_2, y2: -70, }],
