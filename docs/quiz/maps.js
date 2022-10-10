@@ -163,19 +163,19 @@ const map_medbay = [
   // beds
   { shapes: [{ type: "rectangle", w: 60, h: 30, body: true, }, { type: "rectangle", w: 12.5, h: 25, x: 43, color: C.offwhite, }],
     x: 89, y: 60, parent: "movewindow", color: C.bed_blue,
-    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+    constraint: [{ type: "fix_point", stiffness: 0.009, }], fix_angle: 0,
   },
   { shapes: [{ type: "rectangle", w: 60, h: 30, body: true, }, { type: "rectangle", w: 12.5, h: 25, x: -43, color: C.offwhite, }],
     x: -89, y: 120, parent: "movewindow", color: C.bed_blue,
-    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+    constraint: [{ type: "fix_point", stiffness: 0.009, }], fix_angle: 0,
   },
   { shapes: [{ type: "rectangle", w: 60, h: 30, body: true, }, { type: "rectangle", w: 12.5, h: 25, x: 43, color: C.offwhite, }],
     x: 89, y: 180, parent: "movewindow", color: C.bed_blue,
-    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+    constraint: [{ type: "fix_point", stiffness: 0.009, }], fix_angle: 0,
   },
   { shapes: [{ type: "rectangle", w: 60, h: 30, body: true, }, { type: "rectangle", w: 12.5, h: 25, x: -43, color: C.offwhite, }],
     x: -89, y: 240, parent: "movewindow", color: C.bed_blue,
-    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+    constraint: [{ type: "fix_point", stiffness: 0.009, }], fix_angle: 0,
   },
 
   // doors
@@ -315,6 +315,9 @@ const map_navigation = [ // hmmm snake?
   // tasks
   { shapes: [{ type: "polygon", sides: 6, r: 15, }], x: 5, y: 0, parent: "task", task: 8,
     message: "Why is this task blocking my way???", message_once: true,
+  },
+  { shapes: [{ type: "polygon", sides: 6, r: 25, }], x: 450, y: 0, parent: "task", task: 99,
+    message: "Snake!!!", message_once: true,
   },
 
   // floor
