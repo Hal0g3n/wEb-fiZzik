@@ -97,11 +97,11 @@ export const questions = [
   { // 8: Vikram
     question: "What might neutron star cores contain?",
     choices: [
-      "A Bose-Einstein Condensate",
+      "A Bose-Einstein condensate",
       "Protons",
-      "Quark-Gluon Plasma",
-      "Nuclear Pasta",
-      "Elemental Iron",
+      "Quark-gluon plasma",
+      "Nuclear pasta",
+      "Elemental iron",
     ],
     answer: 3,
     author: "Vikram",
@@ -113,7 +113,7 @@ export const questions = [
       "Three quarks and three gluons",
       "Superfluid plasma",
       "Three mesons",
-      "Two Down quarks and an Up quark",
+      "Two down quarks and an up quark",
       "An electron and a proton",
     ],
     answer: 4,
@@ -121,7 +121,7 @@ export const questions = [
   },
   
   { // 10: Vikram
-    question: "When are Neutron Stars born?",
+    question: "When are neutron stars born?",
     choices: [
       "When a small star runs out of energy",
       "When a medium star runs out of heat",
@@ -134,7 +134,7 @@ export const questions = [
   },
   
   { // 11: Yuan Xi
-    question: "Can Neutron Stars produce energy?",
+    question: "Can neutron stars produce energy?",
     choices: [
       "Yes. They are stars after all", // Flawed understanding of stars
       "No. They are just hot balls of neutrons", // The true answer
@@ -143,7 +143,7 @@ export const questions = [
       "Yes. The hot neutron star undergoes Black Body Radiation, producing energy", // Black Body Radiation doesn't produce energy :angry:
     ],
     answer: 2,
-    author: "Yuan Xi", // Uh yuan xi we didn't teach this
+    author: "Yuan Xi", // Uh yuan xi we didn't teach this (yes, we didn't)
   },
 
   { // 12: Yuan Xi
