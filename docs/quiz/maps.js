@@ -580,8 +580,8 @@ const map_reactor = [
   { shapes: [{ type: "line", x1: 120, y1:  100, x2: 335, y2:  100, }] },
   
   // walls
-  { shapes: [{ type: "line", x1: -330, y1: -390, x2: -330, y2: -90, }] },
-  { shapes: [{ type: "line", x1: -330, y1:  390, x2: -330, y2:  90, }] },
+  { shapes: [{ type: "line", x1: -330, y1: -390, x2: -330, y2: -30, }] },
+  { shapes: [{ type: "line", x1: -330, y1:  390, x2: -330, y2:  30, }] },
   { shapes: [{ type: "line", x1: -330, y1: -390, x2: -60, y2: -540, }] },
   { shapes: [{ type: "line", x1: -330, y1:  390, x2: -60, y2:  540, }] },
   { shapes: [{ type: "line", x1: -60, y1: -540, x2: -0, y2: -540, }] },
@@ -606,8 +606,8 @@ const map_reactor = [
   { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: -300, y: 270, parent: "task", task: 14, },
 
   // final pathway
-  { shapes: [{ type: "line", x1: -330, y1: -90, x2: -6330, y2: -10, }] },
-  { shapes: [{ type: "line", x1: -330, y1:  90, x2: -6330, y2:  10, }] },
+  { shapes: [{ type: "line", x1: -330, y1: -30, x2: -3333, y2: -10, }] },
+  { shapes: [{ type: "line", x1: -330, y1:  30, x2: -3333, y2:  10, }] },
 
 ];
 

@@ -282,7 +282,7 @@ const draw_bottom_text = () => {
 
 }
 
-export const send_bottom_text = (text, target_height = 50, timeout = null) => {
+export const send_bottom_text = (text, target_height = 50, timeout = null, force = false) => {
 
   if (bottom_text === text) {
     return;

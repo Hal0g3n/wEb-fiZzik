@@ -693,6 +693,7 @@ export class Amogus extends Thing {
   tick() {
     super.tick();
     this.tick_player();
+    this.tick_ending();
   }
 
   tick_player() {
@@ -701,6 +702,21 @@ export class Amogus extends Thing {
     const move_x = (check_keys(["ArrowRight", "KeyD"]) ? 1 : 0) - (check_keys(["ArrowLeft", "KeyA"]) ? 1 : 0);
     const move_y = (check_keys(["ArrowDown", "KeyS"]) ? 1 : 0) - (check_keys(["ArrowUp", "KeyW"]) ? 1 : 0);
     this.move_force(Vector.normalise(Vector.create(move_x, move_y)));
+  }
+
+  // add
+  tick_ending() {
+    // check for x value less than reactor value
+    const x = this.x;
+    const start_x = -2230;
+    const end_x = -5233;
+    if (x > start_x) return;
+    const ratio = (end_x - x) / (end_x - start_x);
+    const size_limit = 10 + 20 * ratio;
+    console.log(size_limit);
+    if (this.size >= size_limit) {
+      this.move_force(Vector.mult(Vector.create(1, 0), 2));
+    }
   }
 
   draw(ctx) {
