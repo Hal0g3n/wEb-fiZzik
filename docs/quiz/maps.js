@@ -401,7 +401,7 @@ const map_communications = [
   { shapes: [{ type: "svg", svg: "arrow_down", r: 25, }], x: 0, y: 100, parent: "floor", color: C.floor_symbol, },
 
   // Tasks  
-  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: 170, y: 300, parent: "task", task: 11, },
+  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: 170, y: 300, parent: "task", task: 13, },
 
 ];
 
@@ -574,7 +574,7 @@ const map_security = [
 
 const map_reactor = [
   
-  // Corridor to Engine
+  // corridor to map_engine
   { shapes: [{ type: "line", x1: 120, y1: -100, x2: 335, y2: -100, }] },
   { shapes: [{ type: "line", x1: 120, y1:  100, x2: 335, y2:  100, }] },
   
@@ -603,20 +603,21 @@ const map_reactor = [
   { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 0, y: 220, parent: "floor", color: C.floor_symbol, },
 
   // Tasks  
-  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: -300, y: 270, parent: "task", task: 11, },
+  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: -300, y: 270, parent: "task", task: 14, },
 
   // Final Pathway
-  { shapes: [{ type: "line", x1: -330, y1: -90, x2: -10000, y2: -10, }] },
-  { shapes: [{ type: "line", x1: -330, y1:  90, x2: -10000, y2:  10, }] },
+  { shapes: [{ type: "line", x1: -330, y1: -90, x2: -6330, y2: -10, }] },
+  { shapes: [{ type: "line", x1: -330, y1:  90, x2: -6330, y2:  10, }] },
+
 ];
 
 const main_map = [
 
   // big borders
-  { shapes: [{ type: "line", x1: 10000, y1: 10000, x2: 10000, y2: -10000, }], parent: "border", },
-  { shapes: [{ type: "line", x1: 10000, y1: 10000, x2: -10000, y2: 10000, }], parent: "border", },
-  { shapes: [{ type: "line", x1: -10000, y1: -10000, x2: 10000, y2: -10000, }], parent: "border", },
-  { shapes: [{ type: "line", x1: -10000, y1: -10000, x2: -10000, y2: 10000, }], parent: "border", },
+  { shapes: [{ type: "line", x1: 20000, y1: 20000, x2: 20000, y2: -20000, }], parent: "border", },
+  { shapes: [{ type: "line", x1: 20000, y1: 20000, x2: -20000, y2: 20000, }], parent: "border", },
+  { shapes: [{ type: "line", x1: -20000, y1: -20000, x2: 20000, y2: -20000, }], parent: "border", },
+  { shapes: [{ type: "line", x1: -20000, y1: -20000, x2: -20000, y2: 20000, }], parent: "border", },
 
   // maps of areas
   // maybe change the place names?
@@ -633,6 +634,7 @@ const main_map = [
   ...translate(map_engines, -1275, 700),
   ...translate(map_security, -1335, 700),
   ...translate(map_reactor, -1900, 700),
+
 ];
 
 const make_map = () => {
