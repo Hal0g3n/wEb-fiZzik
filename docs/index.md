@@ -44,6 +44,6 @@ footer: "Did you click (and hold) on the background?"
 <h2 style="font-size: 4vw; margin: 0;"><center><b>Why Neutron Stars?</b></center></h2>
 
 
-<center><video style="position: relative; z-index: 1; height: 70vh; aspect-ratio: 16 / 9;" autoplay>
+<center><video style="position: relative; z-index: 1; height: 70vh; aspect-ratio: 16 / 9;" autoplay controls>
     <source src="assets/Part1.mp4" type="video/mp4">
 </video></center>
