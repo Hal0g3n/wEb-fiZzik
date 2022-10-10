@@ -6,8 +6,12 @@ nav:
         - Neutron Degeneracy Pressure: 2.md
         - The Origin: 3.md
         - The Structure: 4.md
-    - The Quarkiness: 5.md
-    - Stranger Things: 6.md
+    - The Quarkiness: 
+        - An introduction: 5_video.md
+        - What are Quarks?: 5.md
+    - Stranger Things:
+        - An introduction: 6_video.md
+        - Strange Stranglets?: 6.md
     - Appendix: 
         - On Degeneracy: 7.md
         - The Strong Force: 8.md

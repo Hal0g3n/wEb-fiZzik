@@ -1126,22 +1126,8 @@ input:checked+.md-consent__settings {
 }
 
 .md-content__inner {
-    margin: 0 .8rem 1.2rem;
+    margin: 0 3rem 1.2rem;
     padding-top: .6rem
-}
-
-@media screen and (min-width:76.25em) {
-    [dir=ltr] .md-sidebar--primary:not([hidden])~.md-content>.md-content__inner {
-        margin-left: 1.2rem
-    }
-
-    [dir=ltr] .md-sidebar--secondary:not([hidden])~.md-content>.md-content__inner, [dir=rtl] .md-sidebar--primary:not([hidden])~.md-content>.md-content__inner {
-        margin-right: 1.2rem
-    }
-
-    [dir=rtl] .md-sidebar--secondary:not([hidden])~.md-content>.md-content__inner {
-        margin-left: 1.2rem
-    }
 }
 
 .md-content__inner:before {

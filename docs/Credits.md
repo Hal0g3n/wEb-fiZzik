@@ -8,14 +8,14 @@ footer: "Did you click on the background?"
 <iframe style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh" allowtransparency="true" frameBorder="0" src="../interactive/index.html">
 </iframe>
 
-<h1 style="font-size: 10vw; margin: 0;"><center><b>Team Balll</b></center></h1>
+<h1 style="position: relative; z-index: 1; font-size: 10vw; margin: 0;"><center><b>Team Balll</b></center></h1>
 <center> 
 <table>
-  <tr>
+  <tr style="position: relative; z-index: 1;">
     <th>Member</th>
     <th>Work Done (in Joules)</th>
   </tr>
-  <tr>
+  <tr style="position: relative; z-index: 1;">
     <td>Vikram</td>
     <td>
         <ul>
@@ -24,17 +24,17 @@ footer: "Did you click on the background?"
         </ul>
     </td>
   </tr>
-  <tr>
+  <tr style="position: relative; z-index: 1;">
     <td>Yuan Xi</td>
     <td>
         <ul>
             <li>Web Developer</li>
-            <li>Editor</li>
             <li>Game Developer Assistant</li>
+            <li>Proof Reader</li>
         </ul>
     </td>
   </tr>
-  <tr>
+  <tr style="position: relative; z-index: 1;">
     <td>Kenneth</td>
     <td>
         <ul>
@@ -44,17 +44,15 @@ footer: "Did you click on the background?"
         </ul>
     </td>
   </tr>
-  <tr>
+  <tr style="position: relative; z-index: 1;">
     <td>Yu Pin</td>
     <td>
         <ul>
             <li>Game Developer</li>
             <li>Animator</li>
-            <li>Editor</li>
+            <li>Proof Reader</li>
         </ul>
     </td>
   </tr>
 </table>
 </center>
-
-<h1 style="font-size: 10vw; margin: 0;"><center><b>References</b></center></h1>
