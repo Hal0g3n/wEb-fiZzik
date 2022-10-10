@@ -35,8 +35,8 @@ footer: "Did you click (and hold) on the background?"
     <a href="quiz/index.html" class="card">
         <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/945360/header.jpg?t=1646296970" class="card__image" alt="" />
         <div class="card__overlay">
-            <p class="card__title">Yu Pin Things</p>
-            <p class="card__description">Can you pass the imposter's test?</p>
+            <p class="card__title">Become a Neutron Star</p>
+            <p class="card__description">Help a supergiant star become the neutron star it was destined to be!</p>
         </div>
     </a>   
 </div>
