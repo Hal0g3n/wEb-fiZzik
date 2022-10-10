@@ -158,6 +158,72 @@ export const questions = [
     answer: 1,
     author: "Yuan Xi",
   },
+  
+  { // 13:
+    question: "Question 13?",
+    choices: [
+      "Answer.",
+      "Answer...",
+      "Answer,",
+      "Answer?",
+      "Answer!",
+    ],
+    answer: 1,
+    author: "Answer!?",
+  },
+  
+  { // 14:
+    question: "Question 14?",
+    choices: [
+      "Answer.",
+      "Answer...",
+      "Answer,",
+      "Answer?",
+      "Answer!",
+    ],
+    answer: 1,
+    author: "Answer!?",
+  },
+  
+  { // 15:
+    question: "Question 15?",
+    choices: [
+      "Answer.",
+      "Answer...",
+      "Answer,",
+      "Answer?",
+      "Answer!",
+    ],
+    answer: 1,
+    author: "Answer!?",
+  },
+  
+  { // 16:
+    question: "Question 16?",
+    choices: [
+      "Answer.",
+      "Answer...",
+      "Answer,",
+      "Answer?",
+      "Answer!",
+    ],
+    answer: 1,
+    author: "Answer!?",
+  },
+  
+  { // 17: Yu Pin
+    question: "From a scale of 1 to 10, how do you tell whether a star is sus?",
+    choices: [
+      "Black body radiation",
+      "0 * π",
+      "Among Us",
+      "Ten!", // = 3628800
+      "Sus",
+    ],
+    answer: 5,
+    author: "Yu Pin",
+  },
+
 ];
 
 for (const question of questions) {
