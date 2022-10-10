@@ -27,6 +27,8 @@ const group = {
   default: 0x0001,
   wall: 0x0002,
   player: 0x0004,
+  rubbish: 0x0008,
+  box: 0x0010,
   all: 0x00FF,
 };
 
@@ -42,12 +44,20 @@ export const category = {
   },
   wall: {
     category: group.wall,
-    mask: group.default | group.player | group.wall,
+    mask: group.default | group.player | group.wall | group.box | group.rubbish,
   },
   player: {
     category: group.player,
-    mask: group.default | group.wall | group.player,
+    mask: group.default | group.wall | group.player | group.box | group.rubbish,
   },
+  box: {
+    category: group.box,
+    mask: group.default | group.wall | group.player | group.box,
+  },
+  rubbish: {
+    category: group.rubbish,
+    mask: group.default | group.wall | group.player,
+  }
 };
 
 export const make = { };
@@ -124,6 +134,19 @@ make.movewindow = {
   static: false,
   blocks_sight: false,
 };
+
+make.box = {
+  parent: "movewindow",
+  color: C.door,
+  collision_filter: category.box,
+  box: true,
+}
+
+make.rubbishwall = {
+  parent: "wall",
+  color: C.window_red,
+  collision_filter: category.rubbish,
+}
 
 make.task = {
   parent: "wall",

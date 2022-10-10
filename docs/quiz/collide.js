@@ -1,5 +1,6 @@
 import { engine } from "./main.js";
 import { tasks } from "./tasks.js";
+import { Thing } from "./thing.js";
 import { send_bottom_text } from "./ui.js";
 
 export const collide = { };
@@ -265,6 +266,7 @@ collide.get_endpoints_from_segments = (segments) => {
   return flat_map((segment) => [segment.p1, segment.p2], segments);
 };
 
+let boxes_deleted = 0;
 
 const collide_start = function(a, b, pair) {
   const t = a.thing;
@@ -282,6 +284,21 @@ const collide_start = function(a, b, pair) {
 
       tasks.number = t.task;
       tasks.load_task_from_number();
+    }
+  }
+  if (u.delete_box) {
+    if (t.box && !t.deleted) {
+      t.remove();
+      boxes_deleted++;
+      if (boxes_deleted >= 5) {
+        for (const t of Thing.things) {
+          if (t.collision_filter.category === 0x0008) {
+            t.static = false;
+            t.fixed = false;
+            t.update_body();
+          }
+        }
+      }
     }
   }
 }
