@@ -172,7 +172,7 @@ export const questions = [
     author: "Kenneth",
   },
   
-  { // 13: Kenneth
+  { // 14: Kenneth
     Question: "Which quark is the most stable?",
     choices: [
       "Strange quark",
@@ -184,6 +184,20 @@ export const questions = [
     answer: 1,
     author: "Kenneth",
   },
+  
+  { // 17: Yu Pin
+    question: "From a scale of 1 to 10, how do you tell whether a star is sus?",
+    choices: [
+      "Black body radiation",
+      "0 * π",
+      "Among Us",
+      "Ten!", // = 3628800
+      "Sus",
+    ],
+    answer: 5,
+    author: "Yu Pin",
+  },
+
 ];
 
 for (const question of questions) {

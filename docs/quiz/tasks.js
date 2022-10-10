@@ -179,19 +179,25 @@ const draw_mcq = () => {
 
   // draw choices
   ctx.font = `${Math.round(h * 0.4)}px roboto condensed`;
+  ctx.textAlign = "left";
   i = 1;
+  let max_w = 0;
+  for (const choice of question.choices) {
+    s = `${mcq_numbers.charAt(i)}  ${choice}`;
+    max_w = Math.max(max_w, draw.get_text_width(s) + size * 2);
+  }
   for (const choice of question.choices) {
     const chosen = question.chosen[i];
     hover = collide.point_rectangle(camera.mouse, _w / 2, y, w, h);
     s = `${mcq_numbers.charAt(i)}  ${choice}`;
-    w = draw.get_text_width(s) + size * 2;
+    w = max_w; //draw.get_text_width(s) + size * 2;
     ctx.lineWidth = size * 0.4;
     ctx.strokeStyle = "#ccccccb0";
     draw.stroke_rectangle(_w / 2, y, w + size * 0.4, h + size * 0.4);
     ctx.fillStyle = (chosen ? (i === question.answer ? "#05a100" : "#a12000") : "#a19c00") + (hover ? "af" : "");
     draw.fill_rectangle(_w / 2, y, w, h);
     ctx.fillStyle = "#ffffff";
-    draw.fill_text(s, _w / 2, y);
+    draw.fill_text(s, _w / 2 - w / 2 + size, y);
     if (hover && ui.new_click) {
       check_mcq(i);
     }
