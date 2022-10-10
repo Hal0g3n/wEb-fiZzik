@@ -184,18 +184,18 @@ export const questions = [
     answer: 1,
     author: "Kenneth",
   },
-  
-  { // 15: Yu Pin
-    question: "Which of these things definitely have < 2 neutron stars?",
+
+  { // 15: Yuan Xi
+    Question: "What is the cause of currents on the atmosphere of neutron stars?",
     choices: [
-      "A galaxy",
-      "A radio pulsar and a supergiant star",
-      "A binary star system",
-      "A millisecond pulsar and a magnetar",
-      "A trinary star system",
+      "The strong magnetic fields of neutron stars",
+      "The high spin of neutron stars",
+      "The neutrons in neutron stars",
+      "The moon of the neutron stars",
+      "All of the above",
     ],
-    answer: 2,
-    author: "Yu Pin",
+    answer: 1,
+    author: "Yuan Xi",
   },
   
   { // 16: Yu Pin
@@ -210,6 +210,19 @@ export const questions = [
     answer: 5,
     author: "Yu Pin",
     joke: true,
+  },
+  
+  { // 17: Yu Pin: unused
+    question: "Which of these things definitely have < 2 neutron stars?",
+    choices: [
+      "A galaxy",
+      "A radio pulsar and a supergiant star",
+      "A binary star system",
+      "A millisecond pulsar and a magnetar",
+      "A trinary star system",
+    ],
+    answer: 2,
+    author: "Yu Pin",
   },
 
 ];
@@ -232,5 +245,5 @@ Question Author Distribution
 Yu Pin: 6
 Vikram: 5
 Kenneth: 2
-Yuan Xi: 2
+Yuan Xi: 3
 */
