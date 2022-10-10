@@ -17,6 +17,7 @@ export const tasks = {
 
   number: -1,
   question: -1,
+  snake: false,
 
 };
 
@@ -30,10 +31,14 @@ tasks.enter = (thing) => {
 tasks.load_task_from_number = () => {
 
   tasks.question = -1;
+  tasks.snake = false;
 
   switch (tasks.number) {
     case 0:
       console.error("what is task 0???");
+      break;
+    case 99:
+      tasks.snake = true;
       break;
     default:
       tasks.question = tasks.number;
@@ -204,6 +209,80 @@ const draw_mcq = () => {
 
 };
 
+const snake_board_width = 16;
+const snake_board_height = 9;
+const snake_board_padding = () => Math.max(_w * 0.15, _h * 0.15);
+
+let tilesize = 0;
+let snake_width = 0;
+let snake_height = 0;
+
+let snakes = [
+
+];
+let apples = [
+  [ // Q1
+    { x: 1, y: 1, color: C.window_red, },
+    { x: 2, y: 3, color: C.door, },
+    { x: 1, y: 5, color: C.lime, },
+    { x: 2, y: 7, color: C.yellow, },
+    { x: 1, y: 9, color: C.window_blue, },
+  ], [ // Q2
+    { },
+  ]
+];
+
+const restart_snake = () => {
+
+}
+
+function draw_snake_tile(x, y, c) {
+  ctx.fillStyle = c;
+  ctx.fillRect(
+    (_w - snake_board_width) / 2 + tilesize * (x - 1),
+    (_h - snake_board_height) / 2 + tilesize * (y - 1),
+    tilesize, tilesize
+  );
+}
+
+const resize_snake = () => {
+  tilesize = Math.min((_w - snake_board_padding()) / snake_board_width, (_h - snake_board_padding()) / snake_board_height);
+  snake_width = snake_board_width * tilesize;
+  snake_height = snake_board_height * tilesize;
+}
+
+const draw_snake = () => {
+
+  resize_snake();
+  
+  w = _w * 0.75;
+  h = _h * 0.75;
+
+  // draw background rectangle
+  ctx.lineWidth = size * 0.4;
+  ctx.strokeStyle = "#ffffffb0";
+  draw.stroke_rectangle(_w / 2, _h / 2, w + size * 0.4, h + size * 0.4);
+  ctx.fillStyle = tasks.thing.color + "80";
+  draw.fill_rectangle(_w / 2, _h / 2, w, h);
+
+  let dx, dy;
+  if (key === "ArrowUp" && dy === 0) {
+    dx = 0;
+    dy = -1;
+  } else if (key === "ArrowDown" && dy === 0) {
+    dx = 0;
+    dy = 1;
+  } else if (key === "ArrowLeft" && dx === 0) {
+    dx = -1;
+    dy = 0;
+  } else if (key === "ArrowRight" && dx === 0) {
+    dx = 1;
+    dy = 0;
+  }
+
+  
+}
+
 tasks.draw = () => {
 
   if (!tasks.active) return;
@@ -214,6 +293,8 @@ tasks.draw = () => {
   
   if (tasks.question > 0) {
     draw_mcq();
+  } else if (tasks.snake) {
+    draw_snake();
   }
 
 };

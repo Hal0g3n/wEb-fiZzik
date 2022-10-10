@@ -714,16 +714,20 @@ export class Amogus extends Thing {
   }
 
   calculate_real_radius() {
+
     if (this.tasks_complete >= this.total_tasks) {
       this.real_radius = 10;
       this.size = 10;
     }
+
     const ratio = this.tasks_complete / this.total_tasks;
     const log = this.log_radius * ratio;
     const divide = Math.pow(10, log);
-    this.real_radius = this.starting_radius / divide;
+    this.real_radius = Math.max(1, this.starting_radius / divide);
     this.size = 30 - ratio * 20;
+    this.density = 0.001 * (30 / this.size) * (30 / this.size);
     this.update_body();
+    
   }
 
 }
