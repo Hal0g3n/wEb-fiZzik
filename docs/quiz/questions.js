@@ -198,7 +198,20 @@ export const questions = [
     author: "Yuan Xi",
   },
   
-  { // 16: Yu Pin
+  { // 16: Kenneth
+    Question: "Which of the following are not hypothetical?",
+    choices: [
+      "Neutron stars",
+      "Quark star",
+      "Strange star",
+      "White hole",
+      "Black Dwarf",
+    ],
+    answer: 1,
+    author: "Kenneth",
+  },
+  
+  { // 17: Yu Pin
     question: "From a scale of 1 to 10, how do you tell whether a star is sus?",
     choices: [
       "Black body radiation",
@@ -212,7 +225,7 @@ export const questions = [
     joke: true,
   },
   
-  { // 17: Yu Pin: unused
+  { // 18: Yu Pin: unused
     question: "Which of these things definitely have < 2 neutron stars?",
     choices: [
       "A galaxy",
@@ -235,7 +248,7 @@ for (const question of questions) {
 
 /* 
 Question Option Distribution
-1: 2
+1: 4
 2: 3
 3: 4
 4: 3
@@ -244,6 +257,6 @@ Question Option Distribution
 Question Author Distribution
 Yu Pin: 6
 Vikram: 5
-Kenneth: 2
+Kenneth: 3
 Yuan Xi: 3
 */
