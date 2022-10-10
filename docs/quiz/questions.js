@@ -97,11 +97,11 @@ export const questions = [
   { // 8: Vikram
     question: "What might neutron star cores contain?",
     choices: [
-      "A Bose-Einstein Condensate",
+      "A Bose-Einstein condensate",
       "Protons",
-      "Quark-Gluon Plasma",
-      "Nuclear Pasta",
-      "Elemental Iron",
+      "Quark-gluon plasma",
+      "Nuclear pasta",
+      "Elemental iron",
     ],
     answer: 3,
     author: "Vikram",
@@ -113,7 +113,7 @@ export const questions = [
       "Three quarks and three gluons",
       "Superfluid plasma",
       "Three mesons",
-      "Two Down quarks and an Up quark",
+      "Two down quarks and an up quark",
       "An electron and a proton",
     ],
     answer: 4,
@@ -121,7 +121,7 @@ export const questions = [
   },
   
   { // 10: Vikram
-    question: "When are Neutron Stars born?",
+    question: "When are neutron stars born?",
     choices: [
       "When a small star runs out of energy",
       "When a medium star runs out of heat",
@@ -134,7 +134,7 @@ export const questions = [
   },
   
   { // 11: Yuan Xi
-    question: "Can Neutron Stars produce energy?",
+    question: "Can neutron stars produce energy?",
     choices: [
       "Yes. They are stars after all", // Flawed understanding of stars
       "No. They are just hot balls of neutrons", // The true answer
@@ -143,7 +143,7 @@ export const questions = [
       "Yes. The hot neutron star undergoes Black Body Radiation, producing energy", // Black Body Radiation doesn't produce energy :angry:
     ],
     answer: 2,
-    author: "Yuan Xi", // Uh yuan xi we didn't teach this
+    author: "Yuan Xi", // Uh yuan xi we didn't teach this (yes, we didn't)
   },
 
   { // 12: Yuan Xi
@@ -160,11 +160,11 @@ export const questions = [
   },
 
   { // 13: Kenneth
-    Question: "Which star can form neutron stars on death?",
+    question: "Which star can form neutron stars on death?",
     choices: [
-      "Proxima Centauri (~0.12 solar mass)",
-      "The sun (1 solar mass)",
-      "Alpha centauri (~1.1 solar mass)",
+      "Proxima Centauri (~0.12 solar masses)",
+      "The Sun (1 solar mass)",
+      "Alpha Centauri (~1.1 solar masses)",
       "Betelgeuse (~11 solar masses)",
       "Zeta Puppis (~56.1 solar masses)",
     ],
@@ -173,7 +173,7 @@ export const questions = [
   },
   
   { // 14: Kenneth
-    Question: "Which quark is the most stable?",
+    question: "Which quark is the most stable?",
     choices: [
       "Strange quark",
       "Up quark",
@@ -198,7 +198,21 @@ export const questions = [
     author: "Yuan Xi",
   },
   
-  { // 17: Yu Pin
+  { // 15: Yu Pin
+    question: "Which of these is not a neutron star?",
+    choices: [
+      "Pulsar",
+      "",
+      "",
+      "Magnetar", // = 3628800
+      "Sus",
+    ],
+    answer: 5,
+    author: "Yu Pin",
+    joke: true,
+  },
+  
+  { // 16: Yu Pin
     question: "From a scale of 1 to 10, how do you tell whether a star is sus?",
     choices: [
       "Black body radiation",
@@ -209,6 +223,7 @@ export const questions = [
     ],
     answer: 5,
     author: "Yu Pin",
+    joke: true,
   },
 
 ];

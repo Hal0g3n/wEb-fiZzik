@@ -677,13 +677,13 @@ export class Amogus extends Thing {
     
   }
 
-  starting_radius = 910593;
-  real_radius = 910593;
+  starting_radius = 5000000; // 910593
+  real_radius = 5000000; // 910593
   display_radius = 0;
-  log_radius = 4.95932430743;
+  log_radius = 5.6989700043360191851503177484685334638928860135456488147492927968738436356945559379073532291367;
 
   tasks_complete = 0;
-  total_tasks = 12;
+  total_tasks = 13;
 
   constructor() {
     super(Vector.create(0, 0));
@@ -727,7 +727,7 @@ export class Amogus extends Thing {
     this.size = 30 - ratio * 20;
     this.density = 0.001 * (30 / this.size) * (30 / this.size);
     this.update_body();
-    
+
   }
 
 }
