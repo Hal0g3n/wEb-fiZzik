@@ -683,7 +683,7 @@ export class Amogus extends Thing {
   log_radius = 5.6989700043360191851503177484685334638928860135456488147492927968738436356945559379073532291367;
 
   tasks_complete = 0;
-  total_tasks = 13;
+  total_tasks = 14;
 
   constructor() {
     super(Vector.create(0, 0));

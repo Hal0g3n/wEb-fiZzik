@@ -186,17 +186,16 @@ export const questions = [
   },
   
   { // 15: Yu Pin
-    question: "Which of these is not a neutron star?",
+    question: "Which of these things definitely have < 2 neutron stars?",
     choices: [
-      "Pulsar",
-      "",
-      "",
-      "Magnetar", // = 3628800
-      "Sus",
+      "A galaxy",
+      "A radio pulsar and a supergiant star",
+      "A binary star system",
+      "A millisecond pulsar and a magnetar",
+      "A trinary star system",
     ],
-    answer: 5,
+    answer: 2,
     author: "Yu Pin",
-    joke: true,
   },
   
   { // 16: Yu Pin
@@ -224,7 +223,7 @@ for (const question of questions) {
 /* 
 Question Option Distribution
 1: 2
-2: 2
+2: 3
 3: 4
 4: 3
 5: 4
