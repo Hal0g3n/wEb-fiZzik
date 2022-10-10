@@ -184,6 +184,19 @@ export const questions = [
     answer: 1,
     author: "Kenneth",
   },
+
+  { // 15: Yuan Xi
+    Question: "What is the cause of currents on the atmosphere of neutron stars?",
+    choices: [
+      "The strong magnetic fields of neutron stars",
+      "The high spin of neutron stars",
+      "The neutrons in neutron stars",
+      "The moon of the neutron stars",
+      "All of the above",
+    ],
+    answer: 1,
+    author: "Yuan Xi",
+  },
   
   { // 17: Yu Pin
     question: "From a scale of 1 to 10, how do you tell whether a star is sus?",
@@ -209,13 +222,13 @@ for (const question of questions) {
 /* 
 Question Option Distribution
 1: 2
-2: 2
-3: 4
+2: 3
+3: 3
 4: 3
-5: 3
+5: 4
 
 Question Author Distribution
-Yu Pin: 5
+Yu Pin: 6
 Vikram: 5
 Kenneth: 2
 Yuan Xi: 2
