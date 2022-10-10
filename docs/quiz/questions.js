@@ -186,7 +186,7 @@ export const questions = [
   },
 
   { // 15: Yuan Xi
-    Question: "What is the cause of currents on the atmosphere of neutron stars?",
+    question: "What is the cause of currents on the atmosphere of neutron stars?",
     choices: [
       "The strong magnetic fields of neutron stars",
       "The high spin of neutron stars",
@@ -199,7 +199,7 @@ export const questions = [
   },
   
   { // 16: Kenneth
-    Question: "Which of the following are not hypothetical?",
+    question: "Which of the following are not hypothetical?",
     choices: [
       "Neutron stars",
       "Quark star",

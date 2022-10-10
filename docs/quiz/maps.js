@@ -41,7 +41,7 @@ const old_player_starting_position = {
 
 export const player_starting_position = {
   x: 0,
-  y: -400,
+  y: -100,
 };
 
 const map_cafeteria = [
