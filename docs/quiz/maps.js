@@ -526,6 +526,9 @@ const map_security = [
   { shapes: [{ type: "line", x1: 0, y1: 250, x2: 240, y2: 250, }] },
   { shapes: [{ type: "line", x1: 240, y1: 250, x2: 240, y2: -250, }] },
   
+
+  // Vents
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 190, y: 200, parent: "floor", color: C.floor_symbol, },
 ];
 
 const map_reactor = [
@@ -553,7 +556,14 @@ const map_reactor = [
     x: -240, y: 0, parent: "movable", color: C.grey,
     constraint: [{ type: "fix_point", stiffness: 0.005, }], fix_angle: 0,
   },
-  
+
+  // Vents
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: -150, y: -270, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 0, y: 220, parent: "floor", color: C.floor_symbol, },
+
+  // Tasks  
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: -300, y: -270, parent: "task", task: 10, },
+  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: -300, y: 270, parent: "task", task: 12, },
 ];
 
 const main_map = [
