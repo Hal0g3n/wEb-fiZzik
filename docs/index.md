@@ -22,7 +22,7 @@ footer: "Did you click (and hold) on the background?"
         <img src="https://hips.hearstapps.com/pop.h-cdn.co/assets/16/46/640x352/gallery-1479416701-screen-shot-2016-11-17-at-40413-pm.jpg" class="card__image" alt="" />
         <div class="card__overlay">
             <p class="card__title">Quark Matter</p>
-            <p class="card__description">Why do they matter?</p>
+            <p class="card__description">Why does it matter?</p>
         </div>
     </a>    
     <a href="6" class="card">
