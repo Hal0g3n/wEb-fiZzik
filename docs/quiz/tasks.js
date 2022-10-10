@@ -93,6 +93,7 @@ tasks.check = () => {
   // check questions
   for (const question of questions) {
     if (typeof question !== "object") continue;
+    if (question.joke) continue;
     if (question.chosen[question.answer]) {
       tasks_complete++;
       let tries = question.chosen_number;

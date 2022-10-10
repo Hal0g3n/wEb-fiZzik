@@ -160,11 +160,11 @@ export const questions = [
   },
 
   { // 13: Kenneth
-    Question: "Which star can form neutron stars on death?",
+    question: "Which star can form neutron stars on death?",
     choices: [
-      "Proxima Centauri (~0.12 solar mass)",
-      "The sun (1 solar mass)",
-      "Alpha centauri (~1.1 solar mass)",
+      "Proxima Centauri (~0.12 solar masses)",
+      "The Sun (1 solar mass)",
+      "Alpha Centauri (~1.1 solar masses)",
       "Betelgeuse (~11 solar masses)",
       "Zeta Puppis (~56.1 solar masses)",
     ],
@@ -173,7 +173,7 @@ export const questions = [
   },
   
   { // 14: Kenneth
-    Question: "Which quark is the most stable?",
+    question: "Which quark is the most stable?",
     choices: [
       "Strange quark",
       "Up quark",
@@ -185,7 +185,21 @@ export const questions = [
     author: "Kenneth",
   },
   
-  { // 17: Yu Pin
+  { // 15: Yu Pin
+    question: "Which of these is not a neutron star?",
+    choices: [
+      "Pulsar",
+      "",
+      "",
+      "Magnetar", // = 3628800
+      "Sus",
+    ],
+    answer: 5,
+    author: "Yu Pin",
+    joke: true,
+  },
+  
+  { // 16: Yu Pin
     question: "From a scale of 1 to 10, how do you tell whether a star is sus?",
     choices: [
       "Black body radiation",
@@ -196,6 +210,7 @@ export const questions = [
     ],
     answer: 5,
     author: "Yu Pin",
+    joke: true,
   },
 
 ];
@@ -212,10 +227,10 @@ Question Option Distribution
 2: 2
 3: 4
 4: 3
-5: 3
+5: 4
 
 Question Author Distribution
-Yu Pin: 5
+Yu Pin: 6
 Vikram: 5
 Kenneth: 2
 Yuan Xi: 2

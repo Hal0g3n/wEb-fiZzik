@@ -683,7 +683,7 @@ export class Amogus extends Thing {
   log_radius = 4.95932430743;
 
   tasks_complete = 0;
-  total_tasks = 12;
+  total_tasks = 14;
 
   constructor() {
     super(Vector.create(0, 0));
@@ -727,7 +727,7 @@ export class Amogus extends Thing {
     this.size = 30 - ratio * 20;
     this.density = 0.001 * (30 / this.size) * (30 / this.size);
     this.update_body();
-    
+
   }
 
 }

@@ -6,7 +6,6 @@ export const C = {
   white: "#ffffff",
   offwhite: "#dedede",
   grey: "#808080",
-  floor_symbol: "#60606060",
   black: "#000000",
 
   window_red: "#7d2424",
@@ -19,6 +18,7 @@ export const C = {
   bed_blue: "#116e96",
   table_blue: "#0b4163",
   light_table_blue: "#146fa8",
+  floor_symbol: "#808080aa", // grey but a bit transparent
 
 }
 

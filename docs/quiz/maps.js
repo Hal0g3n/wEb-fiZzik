@@ -126,7 +126,7 @@ const map_cafeteria = [
   { shapes: [{ type: "line", x1: 300, y1: -1000, x2: 300, y2: -550, }] },
   { shapes: [{ type: "line", x1: -300, y1: -1000, x2: -300, y2: -550, }] },
   { shapes: [{ type: "line", x1: -300, y1: -1000, x2: 300, y2: -1000, }] },
-  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 0, y: -775, parent: "task", task: 17, },
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 0, y: -775, parent: "task", task: 16, },
   { shapes: [{ type: "svg", svg: "amogus", x: -140, y: -950, r: 1.5, }], parent: "floor", color: C.floor_symbol, },
   { shapes: [{ type: "svg", svg: "amogus_visor", x: -140, y: -950, r: 1.5, }], parent: "floor", color: C.floor_symbol, },
   
@@ -532,8 +532,8 @@ const map_engines = [ // with corridors!
   { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, }, { type: "rectangle", w: 150, h: 100, body: true, stroke: C.window_red, line_width: 3, }],
   x: -351, y: 700, parent: "movable", color: C.grey,
   constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
-},
-{ shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, }, { type: "rectangle", w: 150, h: 100, body: true, stroke: C.window_red, line_width: 3, }],
+  },
+  { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, }, { type: "rectangle", w: 150, h: 100, body: true, stroke: C.window_red, line_width: 3, }],
     x: -351, y: -700, parent: "movable", color: C.grey,
     constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
   },
@@ -552,11 +552,11 @@ const map_engines = [ // with corridors!
 
 const map_security = [
 
-  // Corridor to Engine
+  // corridor to map_engine
   { shapes: [{ type: "line", x1: -150, y1: -100, x2: 0, y2: -100, }] },
   { shapes: [{ type: "line", x1: -150, y1: 100, x2: 0, y2: 100, }] },
   
-  // Walls
+  // walls
   { shapes: [{ type: "line", x1: 0, y1: -100, x2: 0, y2: -250, }] },
   { shapes: [{ type: "line", x1: 0, y1: -250, x2: 50, y2: -300, }] },
   { shapes: [{ type: "line", x1: 50, y1: -300, x2: 190, y2: -300, }] },
@@ -565,12 +565,12 @@ const map_security = [
   { shapes: [{ type: "line", x1: 0, y1: 250, x2: 240, y2: 250, }] },
   { shapes: [{ type: "line", x1: 240, y1: 250, x2: 240, y2: -250, }] },
   
-
-  // Vents
+  // floor
   { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 190, y: 200, parent: "floor", color: C.floor_symbol, },
 
-  // Tasks  
-  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 120, y: -250, parent: "task", task: 10, },
+  // tasks  
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 120, y: -250, parent: "task", task: 15, },
+
 ];
 
 const map_reactor = [
@@ -579,7 +579,7 @@ const map_reactor = [
   { shapes: [{ type: "line", x1: 120, y1: -100, x2: 335, y2: -100, }] },
   { shapes: [{ type: "line", x1: 120, y1:  100, x2: 335, y2:  100, }] },
   
-  // Walls
+  // walls
   { shapes: [{ type: "line", x1: -330, y1: -390, x2: -330, y2: -90, }] },
   { shapes: [{ type: "line", x1: -330, y1:  390, x2: -330, y2:  90, }] },
   { shapes: [{ type: "line", x1: -330, y1: -390, x2: -60, y2: -540, }] },
@@ -593,20 +593,19 @@ const map_reactor = [
   { shapes: [{ type: "line", x1: 120, y1: -100, x2: 120, y2: -270, }] },
   { shapes: [{ type: "line", x1: 120, y1:  100, x2: 120, y2:  270, }] },
   
-  // Reactor
-  {
-    shapes: [{ type: "rectangle", w: 90, h: 90, body: true, stroke: C.window_red, line_width: 3, }],
+  // reactor
+  { shapes: [{ type: "rectangle", w: 90, h: 90, body: true, stroke: C.window_red, line_width: 3, }],
     x: -240, y: 0, parent: "movable", color: C.grey,
   },
 
-  // Vents
+  // floor
   { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: -150, y: -270, parent: "floor", color: C.floor_symbol, },
   { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 0, y: 220, parent: "floor", color: C.floor_symbol, },
 
-  // Tasks  
+  // tasks  
   { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: -300, y: 270, parent: "task", task: 14, },
 
-  // Final Pathway
+  // final pathway
   { shapes: [{ type: "line", x1: -330, y1: -90, x2: -6330, y2: -10, }] },
   { shapes: [{ type: "line", x1: -330, y1:  90, x2: -6330, y2:  10, }] },
 
