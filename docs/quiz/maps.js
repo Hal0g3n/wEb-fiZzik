@@ -40,8 +40,8 @@ const old_player_starting_position = {
 };
 
 export const player_starting_position = {
-  x: 25,
-  y: 1500,
+  x: 0,
+  y: 100,
 };
 
 const map_cafeteria = [
@@ -345,7 +345,7 @@ const map_shields = [ // it's just map_weapons, but in the opposite y-direction!
 
   { shapes: [{ type: "line", x1: 1, y1: 70, x2: 70, y2: 70, }], parent: "window", color: C.window_red, },
   { shapes: [{ type: "line", x1: 70, y1: 70, x2: 70, y2: 299, }], parent: "window", color: C.window_red, },
-
+  
   { shapes: [{ type: "line", x1: 449, y1: 0, x2: 350, y2: 0, }], parent: "window", color: C.window_red, },
   { shapes: [{ type: "line", x1: 350, y1: 0, x2: 200, y2: -150, }], parent: "window", color: C.window_red, },
   { shapes: [{ type: "line", x1: 200, y1: -150, x2: 200, y2: -249, }], parent: "window", color: C.window_red, },
@@ -367,15 +367,20 @@ const map_communications = [
   { shapes: [{ type: "line", x1: -20, y1: 59, x2: -250, y2: 50, }] },
   { shapes: [{ type: "line", x1: 20, y1: 61, x2: 20, y2: 150, }] },
   { shapes: [{ type: "line", x1: 20, y1: 150, x2: 200, y2: 150, }] },
-  { shapes: [{ type: "line", x1: 200, y1: 150, x2: 200, y2: 450, }] },
-  { shapes: [{ type: "line", x1: 200, y1: 450, x2: -200, y2: 450, }] },
-  { shapes: [{ type: "line", x1: -200, y1: 450, x2: -200, y2: 150, }] },
+  { shapes: [{ type: "line", x1: 200, y1: 150, x2: 200, y2: 350, }] },
+  { shapes: [{ type: "line", x1: 200, y1: 400, x2: -200, y2: 400, }] },
+  { shapes: [{ type: "line", x1: -200, y1: 350, x2: -200, y2: 150, }] },
+  { shapes: [{ type: "line", x1: -200, y1: 350, x2: -150, y2: 400, }] },
+  { shapes: [{ type: "line", x1:  200, y1: 350, x2:  150, y2: 400, }] },
   { shapes: [{ type: "line", x1: -200, y1: 150, x2: -20, y2: 150, }] },
   { shapes: [{ type: "line", x1: -20, y1: 150, x2: -20, y2: 59, }] },
 
   // floor
   { shapes: [{ type: "svg", svg: "chat", r: 50, }], x: -150, y: 200, parent: "floor", color: C.floor_symbol, },
   { shapes: [{ type: "svg", svg: "arrow_down", r: 25, }], x: 0, y: 100, parent: "floor", color: C.floor_symbol, },
+
+  // Tasks  
+  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: 170, y: 300, parent: "task", task: 11, },
 
 ];
 
@@ -538,6 +543,12 @@ const map_security = [
   { shapes: [{ type: "line", x1: 0, y1: 250, x2: 240, y2: 250, }] },
   { shapes: [{ type: "line", x1: 240, y1: 250, x2: 240, y2: -250, }] },
   
+
+  // Vents
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 190, y: 200, parent: "floor", color: C.floor_symbol, },
+
+  // Tasks  
+  { shapes: [{ type: "polygon", sides: 6, r: 10, }], x: 120, y: -250, parent: "task", task: 10, },
 ];
 
 const map_reactor = [
@@ -547,7 +558,8 @@ const map_reactor = [
   { shapes: [{ type: "line", x1: 120, y1:  100, x2: 335, y2:  100, }] },
   
   // Walls
-  { shapes: [{ type: "line", x1: -330, y1: -390, x2: -330, y2: 390, }] },
+  { shapes: [{ type: "line", x1: -330, y1: -390, x2: -330, y2: -90, }] },
+  { shapes: [{ type: "line", x1: -330, y1:  390, x2: -330, y2:  90, }] },
   { shapes: [{ type: "line", x1: -330, y1: -390, x2: -60, y2: -540, }] },
   { shapes: [{ type: "line", x1: -330, y1:  390, x2: -60, y2:  540, }] },
   { shapes: [{ type: "line", x1: -60, y1: -540, x2: -0, y2: -540, }] },
@@ -563,9 +575,18 @@ const map_reactor = [
   {
     shapes: [{ type: "rectangle", w: 90, h: 90, body: true, stroke: C.window_red, line_width: 3, }],
     x: -240, y: 0, parent: "movable", color: C.grey,
-    constraint: [{ type: "fix_point", stiffness: 0.005, }], fix_angle: 0,
   },
-  
+
+  // Vents
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: -150, y: -270, parent: "floor", color: C.floor_symbol, },
+  { shapes: [{ type: "svg", svg: "vent", r: 35, }], x: 0, y: 220, parent: "floor", color: C.floor_symbol, },
+
+  // Tasks  
+  { shapes: [{ type: "polygon", sides: 6, r: 7, }], x: -300, y: 270, parent: "task", task: 11, },
+
+  // Final Pathway
+  { shapes: [{ type: "line", x1: -330, y1: -90, x2: -10000, y2: -10, }] },
+  { shapes: [{ type: "line", x1: -330, y1:  90, x2: -10000, y2:  10, }] },
 ];
 
 const main_map = [
