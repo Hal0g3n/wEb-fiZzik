@@ -198,18 +198,17 @@ export const questions = [
     author: "Yuan Xi",
   },
   
-  { // 15: Yu Pin
-    question: "Which of these is not a neutron star?",
+  { // 15: Kenneth
+    Question: "Which of the following are not hypothetical?",
     choices: [
-      "Pulsar",
-      "",
-      "",
-      "Magnetar", // = 3628800
-      "Sus",
+      "Neutron stars",
+      "Quark star",
+      "Strange star",
+      "White hole",
+      "Black Dwarf",
     ],
-    answer: 5,
-    author: "Yu Pin",
-    joke: true,
+    answer: 1,
+    author: "Kenneth",
   },
   
   { // 16: Yu Pin
@@ -236,7 +235,7 @@ for (const question of questions) {
 
 /* 
 Question Option Distribution
-1: 2
+1: 4
 2: 3
 3: 3
 4: 3
@@ -245,6 +244,6 @@ Question Option Distribution
 Question Author Distribution
 Yu Pin: 6
 Vikram: 5
-Kenneth: 2
-Yuan Xi: 2
+Kenneth: 3
+Yuan Xi: 3
 */
