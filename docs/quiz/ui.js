@@ -90,8 +90,8 @@ export const draw_ui = function() {
 }
 
 const info_text = `
-Welcome to the final quiz, in a form of a game!
-You are a fairly large star ⭐ with a radius of almost a million 💯💯💯 kilometers. Move around, answer questions, and complete tasks 📝 so you can become a neutron star 💫! (no supernova animation included 🙁)
+Welcome to the final quiz 🏁 in a form of a game 🎮!
+You are a fairly large star ⭐ with a radius of 5 million 💯💯💯 kilometers. Move around 🚶, answer questions ❓, and complete tasks 📝 so you can become a neutron star 💫! (no supernova animation included 🙁)
 While moving around ✨, you may find that you are too large to fit into some gaps 🤏. To decrease your size 📉, do more tasks!
 Good luck! ඞ
 `.trim();
