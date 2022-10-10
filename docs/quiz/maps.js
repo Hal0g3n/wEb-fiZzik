@@ -40,8 +40,8 @@ const old_player_starting_position = {
 };
 
 export const player_starting_position = {
-  x: 0,
-  y: -100,
+  x: -1900,
+  y: 700,
 };
 
 const map_cafeteria = [
@@ -486,16 +486,18 @@ const map_engines = [ // with corridors!
   { shapes: [{ type: "line", x1: 0, y1: -630, x2: 300, y2: -630, }] },
 
   // corridor
-  { shapes: [{ type: "line", x1: -290, y1: -450, x2: -290, y2: 450, }] },
-  { shapes: [{ type: "line", x1: -210, y1: -450, x2: -210, y2: 450, }] },
+  { shapes: [{ type: "line", x1: -290, y1: -450, x2: -290, y2: -100, }] },
+  { shapes: [{ type: "line", x1: -290, y1: 100, x2: -290, y2: 450, }] },
+  { shapes: [{ type: "line", x1: -210, y1: -450, x2: -210, y2: -100, }] },
+  { shapes: [{ type: "line", x1: -210, y1: 100, x2: -210, y2: 450, }] },
   
 
   // both engines
   { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, }, { type: "rectangle", w: 150, h: 100, body: true, stroke: C.window_red, line_width: 3, }],
-    x: -351, y: 700, parent: "movable", color: C.grey,
-    constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
-  },
-  { shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, }, { type: "rectangle", w: 150, h: 100, body: true, stroke: C.window_red, line_width: 3, }],
+  x: -351, y: 700, parent: "movable", color: C.grey,
+  constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
+},
+{ shapes: [{ type: "rectangle", w: 1, h: 25, x: 43, }, { type: "rectangle", w: 150, h: 100, body: true, stroke: C.window_red, line_width: 3, }],
     x: -351, y: -700, parent: "movable", color: C.grey,
     constraint: [{ type: "fix_point", stiffness: 0.01, }], fix_angle: 0,
   },
@@ -514,8 +516,47 @@ const map_engines = [ // with corridors!
 
 const map_security = [
 
+  // Corridor to Engine
+  { shapes: [{ type: "line", x1: -150, y1: -100, x2: 0, y2: -100, }] },
+  { shapes: [{ type: "line", x1: -150, y1: 100, x2: 0, y2: 100, }] },
+  
+  // Walls
+  { shapes: [{ type: "line", x1: 0, y1: -100, x2: 0, y2: -250, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -250, x2: 50, y2: -300, }] },
+  { shapes: [{ type: "line", x1: 50, y1: -300, x2: 190, y2: -300, }] },
+  { shapes: [{ type: "line", x1: 190, y1: -300, x2: 240, y2: -250, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 100, x2: 0, y2: 250, }] },
+  { shapes: [{ type: "line", x1: 0, y1: 250, x2: 240, y2: 250, }] },
+  { shapes: [{ type: "line", x1: 240, y1: 250, x2: 240, y2: -250, }] },
+  
+];
 
-
+const map_reactor = [
+  
+  // Corridor to Engine
+  { shapes: [{ type: "line", x1: 120, y1: -100, x2: 335, y2: -100, }] },
+  { shapes: [{ type: "line", x1: 120, y1:  100, x2: 335, y2:  100, }] },
+  
+  // Walls
+  { shapes: [{ type: "line", x1: -330, y1: -390, x2: -330, y2: 390, }] },
+  { shapes: [{ type: "line", x1: -330, y1: -390, x2: -60, y2: -540, }] },
+  { shapes: [{ type: "line", x1: -330, y1:  390, x2: -60, y2:  540, }] },
+  { shapes: [{ type: "line", x1: -60, y1: -540, x2: -0, y2: -540, }] },
+  { shapes: [{ type: "line", x1: -60, y1:  540, x2: -0, y2:  540, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -540, x2: 0, y2: -270, }] },
+  { shapes: [{ type: "line", x1: 0, y1:  540, x2: 0, y2:  270, }] },
+  { shapes: [{ type: "line", x1: 0, y1: -270, x2: 120, y2: -270, }] },
+  { shapes: [{ type: "line", x1: 0, y1:  270, x2: 120, y2:  270, }] },
+  { shapes: [{ type: "line", x1: 120, y1: -100, x2: 120, y2: -270, }] },
+  { shapes: [{ type: "line", x1: 120, y1:  100, x2: 120, y2:  270, }] },
+  
+  // Reactor
+  {
+    shapes: [{ type: "rectangle", w: 90, h: 90, body: true, stroke: C.window_red, line_width: 3, }],
+    x: -240, y: 0, parent: "movable", color: C.grey,
+    constraint: [{ type: "fix_point", stiffness: 0.005, }], fix_angle: 0,
+  },
+  
 ];
 
 const main_map = [
@@ -539,7 +580,8 @@ const main_map = [
   ...translate(map_storage, 25, 1000),
   ...translate(map_electrical, -675, 1550),
   ...translate(map_engines, -1275, 700),
-
+  ...translate(map_security, -1335, 700),
+  ...translate(map_reactor, -1900, 700),
 ];
 
 const make_map = () => {
