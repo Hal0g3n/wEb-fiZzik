@@ -12,10 +12,10 @@ footer: "Did you click (and hold) on the background?"
 
 <div class="cards">
     <a href="1" class="card">
-        <img src="https://images-ext-1.discordapp.net/external/DOQryAi5r3twKOAClq8GkVq5fDSfX7cXoJX7FFWVs8w/https/static.scientificamerican.com/sciam/cache/file/D98268F4-B69A-4552-9B6122A4052D56C4_source.jpg" class="card__image" alt="" />
+        <img src="https://images-ext-1.discordapp.net/external/DOQryAi5r3twKOAClq8GkVq5fDSfX7cXoJX7FFWVs8w/https/static.scientificamerican.com/sciam/cache/file/D98268F4-B69A-4552-9B6122A4052D56C4_source.jpg?width=1600&height=900" class="card__image" alt="" />
         <div class="card__overlay">
             <p class="card__title">Neutron Stars</p>
-            <p class="card__description">What are they really?</p>
+            <p class="card__description">What are they really?<
         </div>
     </a>   
     <a href="5" class="card">
