@@ -1,0 +1,43 @@
+.question {
+    font-size: 1.5rem;
+}
+
+.result {
+    font-size: 0.75rem;
+}
+
+button.quizBtn {
+    margin: 0.5ch;
+    width: calc(100% - 1ch);
+    padding: 0ch 1ch 0ch 1ch;
+    border-radius: 6px;
+    font-size: 2.5ch;
+    text-align: right;
+    border: 0.25vmin solid grey;
+    background-color: transparent;
+    color: grey;
+}
+
+button.quizCorrect {
+    background-color: #8af44c97;
+    color: black;
+}
+
+button.quizIncorrect {
+    background-color: #f93838de;
+    color: black;
+}
+
+details {
+    background: gainsboro;
+    padding: 10px;
+}
+
+details summary {
+    cursor: pointer;
+    transition: margin 150ms ease-out;
+}
+
+details[open] summary {
+    margin-bottom: 10px;
+}

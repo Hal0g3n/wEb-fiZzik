@@ -1,0 +1,163 @@
+/* just a test for interactives */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: transparent;
+  color: white;
+  font-family: "Roboto Mono";
+  font-size: 14px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+div, input, button, textarea, select {
+  font-family: "Roboto Mono";
+  text-align: center;
+}
+
+q {
+  display: inline;
+  color: black;
+}
+
+kbd {
+  background-color: #eee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+  color: #333;
+  display: inline-block;
+  font-family: "Roboto Mono";
+  font-size: .85em;
+  font-weight: 600;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+
+.hidden {
+  display: none;
+}
+
+.antiselect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.nice:hover {
+  text-shadow: 0px 0px 10px #FFFFFF !important;
+}
+
+canvas {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  pointer-events: auto;  
+}
+
+table {
+  border-spacing: 0;
+  z-index: -100;
+}
+table.hidden {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+table td, table th {
+  border: 0px solid white;
+  padding: 10px;
+}
+tr.blankrow {
+  height: 30px;
+  border: 0;
+}
+tbody {
+  border: 1px solid white;
+}
+
+hr {
+  border-top: 2px solid #AAAAAA;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  margin: 30px 20px;
+}
+
+/* details and summary */
+
+details {
+  border: 1px solid #FFFFFF;
+  border-radius: 4px;
+  padding: .5em .5em 0;
+  margin: 0px 0px;
+}
+
+summary {
+  font-weight: bold;
+  margin: -.5em -.5em 0;
+  padding: .5em;
+  margin: 0px 0px;
+}
+
+details[open] {
+  padding: .5em;
+}
+
+details[open] summary {
+  border-bottom: 1px solid #FFFFFF;
+  margin-bottom: .5em;
+}
+
+/* scrollbar styles */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid white;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;  
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: darkgrey;  
+}
+
+.centerbox {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 50px 50px;
+  border: 2px solid white;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+}
