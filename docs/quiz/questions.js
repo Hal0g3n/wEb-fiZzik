@@ -168,7 +168,7 @@ export const questions = [
       "Betelgeuse (~11 solar masses)",
       "Zeta Puppis (~56.1 solar masses)",
     ],
-    answer: 5,
+    answer: 4,
     author: "Kenneth",
   },
   
